@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -43,48 +42,33 @@ public class Stacking : MonoBehaviour
     }
     private void Update()
     {
-
-       
-       
-            headClampPosition = new Vector3(head.transform.position.x, Mathf.Clamp(head.transform.position.y, minY, maxY), head.transform.position.z);
-            head.transform.position = headClampPosition;// Vector3.Lerp(head.transform.position,headClampPosition,Time.deltaTime);
         Movement();
         SavePositionHistory();
+        LimitBounds();
     }
 
-  
+
 
     private void Movement()
     {
         Debug.Log(input.Horizontal);
         targetSwerveAmount = Mathf.Clamp(input.Vertical * swerveSpeed, -maxSwerveAmount, maxSwerveAmount);
         Debug.Log(targetSwerveAmount);
-        // Move the player forward constantly
+
         Vector3 forwardVelocity = new Vector3(0f, 0f, forwardSpeed);
         rb.velocity = forwardVelocity;
-
-        // Move the player horizontally using swerve movement
         float displacementX = targetSwerveAmount * Time.deltaTime;
 
-        
         Vector3 targetVelocity = new Vector3(rb.velocity.x, targetSwerveAmount, 0f); // Set forward speed to 0
-
-        // Calculate the time factor for swerve movement
         float time = Mathf.Abs(displacementX / swerveSpeed);
-
-        // Apply the swerve movement using MovePosition
         Vector3 newPosition = rb.position + targetVelocity * swerveSpeed * time;
-        newPosition.z = rb.position.z + forwardSpeed *Time.deltaTime; // Maintain forward speed
+        newPosition.z = rb.position.z + forwardSpeed * Time.deltaTime; // Maintain forward speed
         rb.MovePosition(newPosition);
 
     }
-
-
-
     private void GrowBody()
     {
         GameObject trailObject = Instantiate(spawningObject, GetSpawnPosition(), transform.rotation);
-
         body.Add(trailObject);
 
     }
@@ -92,14 +76,9 @@ public class Stacking : MonoBehaviour
     {
 
         Vector3 spawnPos = new Vector3(head.transform.position.x, initialPositionY, head.transform.position.z + spawnOffset);
-
         spawnOffset -= 0.5f;
         return spawnPos;
 
-    }
-    IEnumerator SpawnWaitTime()
-    {
-        yield return new WaitForSeconds(5f);
     }
     private void SavePositionHistory()
     {
@@ -108,16 +87,24 @@ public class Stacking : MonoBehaviour
 
         foreach (var part in body)
         {
-            
+
             positionList.Add(part.transform.position);
             Vector3 lastAdded_BodyPartPosition = positionList[positionList.Count - 1];
 
-            Vector3 targetPosition = new Vector3(moveToPosition.x, moveToPosition.y, moveToPosition.z + offsetMultiplier );
+            Vector3 targetPosition = new Vector3(moveToPosition.x, moveToPosition.y, moveToPosition.z + offsetMultiplier);
 
             part.transform.position = Vector3.Lerp(lastAdded_BodyPartPosition, targetPosition, Time.deltaTime * followSpeed);
             moveToPosition = part.transform.position;
             offsetMultiplier -= 0.2f;
         }
+
+        
+    }
+
+    private void LimitBounds()
+    {
+        headClampPosition = new Vector3(head.transform.position.x, Mathf.Clamp(head.transform.position.y, minY, maxY), head.transform.position.z);
+        head.transform.position = headClampPosition;
     }
 
 
