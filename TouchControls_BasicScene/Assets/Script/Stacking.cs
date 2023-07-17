@@ -17,7 +17,7 @@ public class Stacking : MonoBehaviour
     public float maxY;
     public float minY;
     private Vector3 headClampPosition;
-    
+
 
     [Header("Spawn Section")]
     private List<Vector3> positionList = new List<Vector3>();
@@ -29,53 +29,63 @@ public class Stacking : MonoBehaviour
 
     private void Awake()
     {
-        
+
         rb = GetComponent<Rigidbody>();
     }
     private void Start()
     {
         initialPositionY = head.transform.position.y;
-        GrowBody();
-        GrowBody();
-        GrowBody();
-       
+        for (int i = 0; i < 2; i++)
+        {
+            GrowBody();
+
+        }
     }
     private void Update()
     {
 
        
+       
             headClampPosition = new Vector3(head.transform.position.x, Mathf.Clamp(head.transform.position.y, minY, maxY), head.transform.position.z);
             head.transform.position = headClampPosition;// Vector3.Lerp(head.transform.position,headClampPosition,Time.deltaTime);
-        
         Movement();
         SavePositionHistory();
     }
 
+  
 
     private void Movement()
     {
-        //Move the player forward constantly
+        Debug.Log(input.Horizontal);
+        targetSwerveAmount = Mathf.Clamp(input.Vertical * swerveSpeed, -maxSwerveAmount, maxSwerveAmount);
+        Debug.Log(targetSwerveAmount);
+        // Move the player forward constantly
         Vector3 forwardVelocity = new Vector3(0f, 0f, forwardSpeed);
         rb.velocity = forwardVelocity;
-        
-        targetSwerveAmount = Mathf.Clamp(input.Vertical * swerveSpeed, -maxSwerveAmount, maxSwerveAmount);
 
+        // Move the player horizontally using swerve movement
+        float displacementX = targetSwerveAmount * Time.deltaTime;
+
+        
         Vector3 targetVelocity = new Vector3(rb.velocity.x, targetSwerveAmount, 0f); // Set forward speed to 0
 
-        // Apply the swerve movement using MovePosition
-        Vector3 newPosition = rb.position + targetVelocity * Time.deltaTime*swerveSpeed;
-        //newPosition.z = rb.position.z + forwardSpeed * Time.deltaTime * 100; // Maintain forward speed
-        rb.MovePosition(newPosition);
-       
-    }
-  
+        // Calculate the time factor for swerve movement
+        float time = Mathf.Abs(displacementX / swerveSpeed);
 
-   
+        // Apply the swerve movement using MovePosition
+        Vector3 newPosition = rb.position + targetVelocity * swerveSpeed * time;
+        newPosition.z = rb.position.z + forwardSpeed *Time.deltaTime; // Maintain forward speed
+        rb.MovePosition(newPosition);
+
+    }
+
+
+
     private void GrowBody()
     {
         GameObject trailObject = Instantiate(spawningObject, GetSpawnPosition(), transform.rotation);
+
         body.Add(trailObject);
-        
 
     }
     private Vector3 GetSpawnPosition()
@@ -83,7 +93,7 @@ public class Stacking : MonoBehaviour
 
         Vector3 spawnPos = new Vector3(head.transform.position.x, initialPositionY, head.transform.position.z + spawnOffset);
 
-        spawnOffset -= 5f;
+        spawnOffset -= 0.5f;
         return spawnPos;
 
     }
@@ -94,24 +104,23 @@ public class Stacking : MonoBehaviour
     private void SavePositionHistory()
     {
         Vector3 moveToPosition = head.transform.position;
-        float offsetMultiplier = 0.5f;
+        float offsetMultiplier = 0.2f;
 
         foreach (var part in body)
         {
-           
+            
             positionList.Add(part.transform.position);
             Vector3 lastAdded_BodyPartPosition = positionList[positionList.Count - 1];
-            
 
-            Vector3 targetPosition = new Vector3(moveToPosition.x, moveToPosition.y, moveToPosition.z + offsetMultiplier);
+            Vector3 targetPosition = new Vector3(moveToPosition.x, moveToPosition.y, moveToPosition.z + offsetMultiplier );
 
             part.transform.position = Vector3.Lerp(lastAdded_BodyPartPosition, targetPosition, Time.deltaTime * followSpeed);
-
             moveToPosition = part.transform.position;
-            offsetMultiplier -= 0.7f;
+            offsetMultiplier -= 0.2f;
         }
     }
-    
+
+
     private void OnTriggerEnter(Collider collision)
     {
         Renderer powerColor = collision.gameObject.GetComponent<Renderer>();
@@ -129,11 +138,8 @@ public class Stacking : MonoBehaviour
         }
         else if (collision.gameObject.CompareTag("PowerNegative"))
         {
-            body.RemoveRange(body.Count - 7, 5);
-            for(int i = body.Count-7; i < body.Count-2; i++)
-            {
-                Destroy(body[i]);
-            }
+            body.RemoveRange(body.Count - 8, 7);
+
             foreach (var part in body)
             {
                 Renderer partRendered = part.GetComponent<Renderer>();
