@@ -496,18 +496,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 742035223056890270, guid: 375b2b16e611edc449e524a43d1b9a72, type: 3}
-      propertyPath: Loop
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 742035223056890270, guid: 375b2b16e611edc449e524a43d1b9a72, type: 3}
-      propertyPath: rolloffMode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 742035223056890270, guid: 375b2b16e611edc449e524a43d1b9a72, type: 3}
-      propertyPath: DopplerLevel
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 1603000545532438359, guid: 375b2b16e611edc449e524a43d1b9a72, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -610,7 +598,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2082989701220055189, guid: 375b2b16e611edc449e524a43d1b9a72, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.007
+      value: -0.183
       objectReference: {fileID: 0}
     - target: {fileID: 2082989701220055189, guid: 375b2b16e611edc449e524a43d1b9a72, type: 3}
       propertyPath: m_LocalPosition.y
@@ -618,11 +606,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2082989701220128227, guid: 375b2b16e611edc449e524a43d1b9a72, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.019
+      value: 0.66
       objectReference: {fileID: 0}
     - target: {fileID: 2082989701220128227, guid: 375b2b16e611edc449e524a43d1b9a72, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.07
+      value: 0.03
       objectReference: {fileID: 0}
     - target: {fileID: 2082989701220128227, guid: 375b2b16e611edc449e524a43d1b9a72, type: 3}
       propertyPath: m_LocalPosition.z

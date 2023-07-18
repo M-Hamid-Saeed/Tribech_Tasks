@@ -6,14 +6,21 @@ using UnityEngine;
 public class Controller : MonoBehaviour
 {
 
-    [SerializeField] AI_AnimationController animationController;
+    // [SerializeField] AI_AnimationController animationController;
     [SerializeField] FiringSystem firingSystem;
 
     [SerializeField] float _rotateSpeed;
+    [SerializeField] float maxRotationX;
+    [SerializeField] float maxRotationY;
+    [SerializeField] float lerpFactor;
+
+    //Customized Touch Input 
+    [SerializeField] InputManager touchInputManager;
+
 
 
     Vector3 mousePosition;
-    Vector3 lookDirection;
+    public Vector3 lookDirection;
 
     private void Awake()
     {
@@ -22,34 +29,42 @@ public class Controller : MonoBehaviour
 
     private void Update()
     {
-        mousePosition = MouseWorldInput.GetPosition();
-        LookRotation();
+        //  mousePosition = MouseWorldInput.GetPosition();
 
+        LookRotation();
         ShootControll();
     }
 
     private void ShootControll()
     {
-        if (Input.GetMouseButtonDown(0))
-        {
-            animationController.ShootingAnimation(true);
-            mousePosition = MouseWorldInput.GetPosition();
 
-            firingSystem.Shot(mousePosition);
-        }
+        /*  if (touchInputManager.isMousePressed)
+          {
+              mousePosition = MouseWorldInput.GetPosition();
+              firingSystem.Shot(mousePosition);
+          }*/
 
-        if (Input.GetMouseButtonUp(0))
-        {
-            animationController.ShootingAnimation(false);
-            animationController.Idle();
-        }
+
+
     }
 
     private void LookRotation()
     {
-        lookDirection = (mousePosition - transform.position).normalized;
 
-        transform.forward = Vector3.Lerp(transform.forward, lookDirection, _rotateSpeed * Time.deltaTime);
+
+        float targetLookAmountX = Mathf.Clamp(touchInputManager.Horizontal * _rotateSpeed, -maxRotationX, maxRotationX);
+        float targetLookAmountY = Mathf.Clamp(touchInputManager.Vertical * _rotateSpeed, -maxRotationY, maxRotationY);
+
+        //Input from InputManager Script
+        lookDirection = new Vector3(targetLookAmountX, targetLookAmountY, transform.position.z).normalized;
+
+        /* lookDirection = (mousePosition - transform.position).normalized; */
+
+        transform.forward = Vector3.Lerp(transform.forward, lookDirection, lerpFactor * Time.deltaTime);
+        Debug.Log(lookDirection);
+
+
+
     }
 
 }

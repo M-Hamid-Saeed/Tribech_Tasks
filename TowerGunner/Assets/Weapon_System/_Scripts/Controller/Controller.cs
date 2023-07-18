@@ -10,9 +10,7 @@ public class Controller : MonoBehaviour
     [SerializeField] float maxRotationX;
     [SerializeField] float maxRotationY;
     [SerializeField] float lerpFactor;
-    [SerializeField] private Quaternion lastGunRotation;
-    private float targetLookAmountX;
-    private float targetLookAmountY;
+
     //Customized Touch Input 
     [SerializeField] InputManager touchInputManager;
 
@@ -46,28 +44,30 @@ public class Controller : MonoBehaviour
 
 
 
-
-
     }
 
     private void LookRotation()
     {
 
-         targetLookAmountX = touchInputManager.Horizontal * _rotateSpeed;
-         targetLookAmountY = touchInputManager.Vertical * _rotateSpeed;
-       
+
+        float targetLookAmountX = touchInputManager.Horizontal * _rotateSpeed;
+        float targetLookAmountY = touchInputManager.Vertical * _rotateSpeed;
+
         //Input from InputManager Script
         lookDirection = new Vector3(targetLookAmountX, targetLookAmountY, transform.position.z).normalized;
 
         // lookDirection = (mousePosition - transform.position).normalized; 
 
         transform.forward = Vector3.Lerp(transform.forward, lookDirection, lerpFactor * Time.deltaTime);
-        
         Quaternion rot = transform.localRotation;
         rot.x = Mathf.Clamp(rot.x, -maxRotationX, maxRotationX);
         rot.y = Mathf.Clamp(rot.y, -maxRotationY, maxRotationY);
         transform.localRotation = rot;
-       
+
+
+
+
+
     }
 
 }

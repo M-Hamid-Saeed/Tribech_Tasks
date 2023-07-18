@@ -63,7 +63,7 @@ public class InputManager : MonoBehaviour
         }
         else if (Input.GetMouseButtonUp(0))
         {
-            prevMousePosition = Input.mousePosition;
+            
             isMouseUp = true;
         }
          
