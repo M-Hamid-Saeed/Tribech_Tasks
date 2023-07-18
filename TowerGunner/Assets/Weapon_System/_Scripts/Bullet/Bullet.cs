@@ -33,7 +33,7 @@ namespace AxisGames
 
 			public void Trigger(Vector3 direction)
 			{
-				EnableTrail(true);
+				//EnableTrail(true);
 				if (rigidbody)
 					rigidbody.velocity = Vector3.zero;
 				this.direction = direction;

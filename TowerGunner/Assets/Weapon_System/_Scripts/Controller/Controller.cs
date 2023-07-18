@@ -1,23 +1,24 @@
-using AxisGames.ParticleSystem;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Controller : MonoBehaviour
 {
 
-   // [SerializeField] AI_AnimationController animationController;
+    // [SerializeField] AI_AnimationController animationController;
     [SerializeField] FiringSystem firingSystem;
 
     [SerializeField] float _rotateSpeed;
-    [SerializeField] float maxRotationAmount;
+    [SerializeField] float maxRotationX;
+    [SerializeField] float maxRotationY;
+    [SerializeField] float lerpFactor;
+
     //Customized Touch Input 
     [SerializeField] InputManager touchInputManager;
-    
+
+
 
 
     Vector3 mousePosition;
-    Vector3 lookDirection;
+    public Vector3 lookDirection;
 
     private void Awake()
     {
@@ -26,7 +27,7 @@ public class Controller : MonoBehaviour
 
     private void Update()
     {
-      //  mousePosition = MouseWorldInput.GetPosition();
+        //  mousePosition = MouseWorldInput.GetPosition();
 
         LookRotation();
         ShootControll();
@@ -35,29 +36,38 @@ public class Controller : MonoBehaviour
     private void ShootControll()
     {
 
-      /*  if (touchInputManager.isMousePressed)
+        if (Input.GetMouseButton(0))
         {
-            mousePosition = MouseWorldInput.GetPosition();
+            mousePosition = touchInputManager.GetPosition();
             firingSystem.Shot(mousePosition);
-        }*/
-            
-       
-    
+        }
+
+
+
     }
 
     private void LookRotation()
     {
-        if (Input.GetMouseButton(0))
-        {
-            float targetLookAmountX = touchInputManager.Horizontal * _rotateSpeed;// Mathf.Clamp(touchInputManager.Horizontal * _rotateSpeed, -maxRotationAmount, maxRotationAmount);
-            float targetLookAmountY = touchInputManager.Vertical * _rotateSpeed;//Mathf.Clamp(touchInputManager.Vertical * _rotateSpeed, -maxRotationAmount, maxRotationAmount);
 
-            lookDirection = new Vector3(targetLookAmountX, targetLookAmountY, transform.position.z).normalized;
 
-            /* lookDirection = (mousePosition - transform.position).normalized; */
+        float targetLookAmountX = touchInputManager.Horizontal * _rotateSpeed;
+        float targetLookAmountY = touchInputManager.Vertical * _rotateSpeed;
 
-            transform.forward = Vector3.Lerp(transform.forward, lookDirection, _rotateSpeed * Time.deltaTime);
-        }
+        //Input from InputManager Script
+        lookDirection = new Vector3(targetLookAmountX, targetLookAmountY, transform.position.z).normalized;
+
+        // lookDirection = (mousePosition - transform.position).normalized; 
+
+        transform.forward = Vector3.Lerp(transform.forward, lookDirection, lerpFactor * Time.deltaTime);
+        Quaternion rot = transform.localRotation;
+        rot.x = Mathf.Clamp(rot.x, -maxRotationX, maxRotationX);
+        rot.y = Mathf.Clamp(rot.y, -maxRotationY, maxRotationY);
+        transform.localRotation = rot;
+
+
+
+
+
     }
 
 }

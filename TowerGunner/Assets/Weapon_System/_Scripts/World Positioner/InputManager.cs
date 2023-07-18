@@ -5,14 +5,19 @@ using UnityEngine;
 public class InputManager : MonoBehaviour
 {
     [SerializeField]private Vector3 prevMousePosition;
+    public Vector3 prevMouseUpPosition;
     public Vector3 touchDelta;
     private float horizontal;
     private float vertical;
     public float senstivity;
-    public bool isMousePressed = false;
-    
-    
-    
+    public bool isMouseUp = false;
+    //Mouse Position 
+    [Header("------Mouse Position------")]
+    [SerializeField] Camera camera;
+    public float shootRange;
+    [SerializeField] private LayerMask targetLayerMask;
+
+
     public float Horizontal
     {
         get { return horizontal; }
@@ -31,12 +36,11 @@ public class InputManager : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            //First Touch
-            //isMousePressed = true;
+            
             Debug.Log("MOUSE CLICKED"+ Input.mousePosition);
 
             prevMousePosition = Input.mousePosition;
-            Debug.Log("MOUSE " + prevMousePosition);
+            
         }
 
         if (Input.GetMouseButton(0))
@@ -59,13 +63,21 @@ public class InputManager : MonoBehaviour
         }
         else if (Input.GetMouseButtonUp(0))
         {
-            Debug.Log("MOUSE$ UP " + prevMousePosition);
-
-            prevMousePosition = Input.mousePosition;
-            //isMousePressed = false;
+            
+            isMouseUp = true;
         }
          
     }
-   
     
+
+
+    public Vector3 GetPosition()
+    {
+        RaycastHit hit;
+        if (Physics.Raycast(camera.transform.position, camera.transform.forward, out hit, shootRange))
+            return hit.point;
+        return hit.point;
+    }
+
+
 }

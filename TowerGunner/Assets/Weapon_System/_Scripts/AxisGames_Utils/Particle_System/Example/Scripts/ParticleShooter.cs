@@ -7,12 +7,13 @@ namespace AxisGames.ParticleSystem
     {
         [SerializeField] ParticleManager particleManager;
         [SerializeField] ParticleType particleType;
+        [SerializeField] InputManager input;
 
         void Update()
         {
             if (Input.GetMouseButtonDown(0))
             {
-                particleManager.PlayParticle(particleType, MouseWorldInput.GetPosition());
+                particleManager.PlayParticle(particleType, input.GetPosition());
             }
         }
     }

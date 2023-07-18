@@ -7,7 +7,7 @@ namespace AxisGames
 	namespace WeaponSystem
 	{
 		public abstract class Weapon : MonoBehaviour
-		{
+		{   
 			protected Transform muzzlePoint;
 			protected float fireRate;
 			protected Bullet bullet;

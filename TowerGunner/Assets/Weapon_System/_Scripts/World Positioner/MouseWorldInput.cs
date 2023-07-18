@@ -1,20 +1,19 @@
 using UnityEngine;
 public class MouseWorldInput : MonoBehaviour
 {
-    private static MouseWorldInput instance;
+   // private static MouseWorldInput instance;
 
     [SerializeField] Camera camera;
+    public float shootRange;
     [SerializeField] private LayerMask targetLayerMask;
 
-    private void Awake()
-    {
-        instance = this;
-    }
+   
 
-    public static Vector3 GetPosition()
+    public  Vector3 GetPosition()
     {
-        Ray ray = instance.camera.ScreenPointToRay(Input.mousePosition);
-        Physics.Raycast(ray, out RaycastHit rayCastHit, float.MaxValue, instance.targetLayerMask);
-        return rayCastHit.point;
+        RaycastHit hit;
+        if(Physics.Raycast(camera.transform.position, camera.transform.forward, out hit, shootRange))
+            return hit.point;
+        return hit.point;
     }
 }
