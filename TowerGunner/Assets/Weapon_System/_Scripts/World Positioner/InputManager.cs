@@ -10,7 +10,6 @@ public class InputManager : MonoBehaviour
     private float horizontal;
     private float vertical;
     public float senstivity;
-    public Vector3 deltaPosition;
     public bool isMouseUp = false;
     //Mouse Position 
     [Header("------Mouse Position------")]
@@ -51,20 +50,20 @@ public class InputManager : MonoBehaviour
             //Calculating current touch pos
             touchDelta = Input.mousePosition - prevMousePosition;
             //Multiply by senstivity
-            deltaPosition = touchDelta * senstivity;           
+            var deltaPosition = touchDelta * senstivity;
             //To get the exact position on the screen
-            deltaPosition.x /= Screen.width /2f ;
-            deltaPosition.y /= Screen.height /2f ;
+            deltaPosition.x /= Screen.width / 2f;
+            deltaPosition.y /= Screen.height / 2f;
             Horizontal = deltaPosition.x;
             Vertical = deltaPosition.y;
             Debug.Log("horiz" + Horizontal);
             Debug.Log("vertic" + Vertical);
             //prevMousePosition = Input.mousePosition;
-            
+           
         }
         else if (Input.GetMouseButtonUp(0))
         {
-            prevMousePosition = Input.mousePosition;
+            
             isMouseUp = true;
         }
          
