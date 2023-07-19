@@ -18,7 +18,7 @@ public class FiringSystem : Weapon
 	[SerializeField] BulletPooler bulletPooler;
 
 	[Header("----- Weapons Data-----------------")]
-    [SerializeField] WeaponData weaponData;
+	[SerializeField] WeaponData weaponData;
 	[Space]
 	[SerializeField] private FireSound fireSoundSource;
 	[Space]
@@ -32,15 +32,15 @@ public class FiringSystem : Weapon
 	ParticleSystem firingParticle;
 
 	bool isAI;
-    bool canShot = true;
+	bool canShot = true;
 	IEnumerator waitForHold;
-    WaitForSeconds fireRateTime;
+	WaitForSeconds fireRateTime;
 	float filltimer;
-    Vector3 aimPoint;
+	Vector3 aimPoint;
 	bool isReloading;
 
 	public void Init()
-    {
+	{
 		if (weaponData == null) { Debug.LogError("Data Not Assigned in Fire System"); return; }
 		LoadGun();
 		InitializeWeapon();
@@ -73,7 +73,7 @@ public class FiringSystem : Weapon
 			currentAmo = weaponData.dataSheet.megSize; isReloading = false;
 			
 		}
-    }
+	}
 
 	public override void AddAmmo(float amount)
 	{
@@ -89,13 +89,13 @@ public class FiringSystem : Weapon
 			if(fireSoundSource) fireSoundSource.PlayShoot();
 			this.aimPoint = aimPoint;
 			canShot = false;
-        }
-        
+		}
+		
 	}
 
 
 	public Transform GetFirePoint()
-    {
+	{
 		return muzzlePoint;
 
 	}
@@ -110,7 +110,7 @@ public class FiringSystem : Weapon
 			bulletClone.SetDamage(weaponDamage);
 			bulletClone.transform.position = muzzlePoint.position;
 			bulletClone.Trigger((aimPoint - muzzlePoint.position).normalized);
-            PlayFiringPlartice(muzzlePoint);
+			PlayFiringPlartice(muzzlePoint);
 			//currentAmo--;
 			yield return fireRateTime;
 			canShot = true;
@@ -121,37 +121,37 @@ public class FiringSystem : Weapon
 
 
 	private void PlayFiringPlartice(Transform target)
-    {
+	{
 		if (firingParticle)
 		{
 			//firingParticle.transform.position = target.position;
 			firingParticle.Play();
 		}
-    }
+	}
 	public float CurrentAmmo
-    {
-        get { return currentAmo; }
-    }
+	{
+		get { return currentAmo; }
+	}
 	
 	public void SetData(WeaponData weaponData)
-    {
+	{
 		this.weaponData = weaponData;
-    }
+	}
 
 	private void LoadGun()
-    {
-        for (int i = 0; i < guns.Length; i++)
-        {
+	{
+		for (int i = 0; i < guns.Length; i++)
+		{
 			guns[i].gameObject.SetActive(false);
-        }
+		}
 
 		currentGun = guns[(int)weaponData.guntype];
 		currentGun.gameObject.SetActive(true);
-    }
+	}
 
-    private void OnDestroy()
-    {
+	private void OnDestroy()
+	{
 		onReloadEnd   = null;
 		onReloadStart = null;
-    }
+	}
 }

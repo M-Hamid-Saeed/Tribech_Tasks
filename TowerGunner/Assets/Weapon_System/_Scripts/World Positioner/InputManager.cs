@@ -11,6 +11,9 @@ public class InputManager : MonoBehaviour
     private float vertical;
     public float senstivity;
     public bool isMouseUp = false;
+    float xRotation = 0f;
+    float yRotation = 0f;
+    private Vector3 rotated;
     //Mouse Position 
     [Header("------Mouse Position------")]
     [SerializeField] Camera camera;
@@ -35,6 +38,8 @@ public class InputManager : MonoBehaviour
     }
     public void MouseInput()
     {
+        
+        
         if (Input.GetMouseButtonDown(0))
         {
             
@@ -46,21 +51,19 @@ public class InputManager : MonoBehaviour
 
         if (Input.GetMouseButton(0))
         {
-            Debug.Log("MOUSE$ BUTTON DOWN " + prevMousePosition);
-
-            //Calculating current touch pos
+            // Drag Calculate
             touchDelta = Input.mousePosition - prevMousePosition;
-            //Multiply by senstivity
-            var deltaPosition = touchDelta * senstivity;
+             Vector2 delta= touchDelta * senstivity * Time.deltaTime;
+             
             //To get the exact position on the screen
-            deltaPosition.x /= Screen.width / 2f;
-            deltaPosition.y /= Screen.height / 2f;
-            Horizontal = deltaPosition.x;
-            Vertical = deltaPosition.y;
-            Debug.Log("horiz" + Horizontal);
-            Debug.Log("vertic" + Vertical);
-            //prevMousePosition = Input.mousePosition;
-           
+            rotated.x += delta.x;
+            rotated.y += delta.y;
+       
+            Horizontal = rotated.x;
+            Vertical = rotated.y;
+            prevMousePosition = Input.mousePosition;
+
+            // 
         }
         else if (Input.GetMouseButtonUp(0))
         {
@@ -90,7 +93,11 @@ public class InputManager : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast(camera.transform.position, camera.transform.forward, out hit, shootRange))
             return hit.point;
-        return hit.point;
+        else
+        {
+            return camera.transform.position + camera.transform.forward * shootRange;
+        }
+        
     }
 
 

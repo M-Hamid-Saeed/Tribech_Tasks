@@ -33,7 +33,7 @@ namespace AxisGames
 
 			public void Trigger(Vector3 direction)
 			{
-				//EnableTrail(true);
+				EnableTrail(true);
 				if (rigidbody)
 					rigidbody.velocity = Vector3.zero;
 				this.direction = direction;
@@ -53,8 +53,8 @@ namespace AxisGames
 				}
 			}
 
-            private void OnCollisionEnter(Collision collision)
-            {
+			private void OnCollisionEnter(Collision collision)
+			{
 				//if (collision.transform.TryGetComponent<IDamageable>(out IDamageable damagable))
 				//{
 				//    lifeTime = 5;
@@ -64,10 +64,10 @@ namespace AxisGames
 
 				ParticleManager.Instance?.PlayParticle(particleType, collision.GetContact(0).point);
 
-                pool.Free(this);
-                EnableTrail(false);
-            }
-            public void SetColor(Material newColor)
+				pool.Free(this);
+				EnableTrail(false);
+			}
+			public void SetColor(Material newColor)
 			{
 				visual.material = newColor;
 
@@ -76,17 +76,17 @@ namespace AxisGames
 			}
 
 			public void SetDamage(int damage)
-            {
+			{
 				this.damage = damage;
-            }
+			}
 
 			private void EnableTrail(bool state)
-            {
-                if (trailRenderer)
-                {
+			{
+				if (trailRenderer)
+				{
 					trailRenderer.enabled = state;
 				}
-            }
+			}
 		}
 	}
 }

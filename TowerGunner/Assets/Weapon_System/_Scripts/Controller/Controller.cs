@@ -59,10 +59,10 @@ public class Controller : MonoBehaviour
         Quaternion rotTarget = Quaternion.LookRotation(lookDirection);
         transform.rotation = Quaternion.Slerp(transform.rotation, rotTarget, lerpFactor * Time.deltaTime);
         
-        Quaternion rot = transform.localRotation;
+        Quaternion rot = transform.rotation;
         rot.x = Mathf.Clamp(rot.x, -maxRotationX, maxRotationX) ;
         rot.y = Mathf.Clamp(rot.y, -maxRotationY, maxRotationY);
-        transform.localRotation = rot;
+        transform.rotation = rot;
 
 
 
