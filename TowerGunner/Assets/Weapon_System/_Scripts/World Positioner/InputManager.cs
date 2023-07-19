@@ -31,6 +31,7 @@ public class InputManager : MonoBehaviour
     private void Update()
     {
         MouseInput();
+      // newMouseInput();
     }
     public void MouseInput()
     {
@@ -67,6 +68,19 @@ public class InputManager : MonoBehaviour
             isMouseUp = true;
         }
          
+    }
+
+
+    public float mouseX;
+    public float mouseY;
+    void newMouseInput()
+    {
+        if(Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Moved)
+        {
+             mouseX = Input.GetTouch(0).deltaPosition.x * senstivity;
+            
+             mouseY = Input.GetTouch(0).deltaPosition.y * senstivity;
+        }
     }
     
 

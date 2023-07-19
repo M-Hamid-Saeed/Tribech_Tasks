@@ -401,13 +401,15 @@ MonoBehaviour:
   prevMousePosition: {x: 0, y: 0, z: 0}
   prevMouseUpPosition: {x: 0, y: 0, z: 0}
   touchDelta: {x: 0, y: 0, z: 0}
-  senstivity: 5
+  senstivity: 2
   isMouseUp: 0
   camera: {fileID: 1302163374}
   shootRange: 20
   targetLayerMask:
     serializedVersion: 2
     m_Bits: 0
+  mouseX: 0
+  mouseY: 0
 --- !u!1 &775658007
 GameObject:
   m_ObjectHideFlags: 0
@@ -716,11 +718,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8539988258609870708, guid: 375b2b16e611edc449e524a43d1b9a72, type: 3}
       propertyPath: lerpFactor
-      value: 50
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 8539988258609870708, guid: 375b2b16e611edc449e524a43d1b9a72, type: 3}
       propertyPath: _rotateSpeed
-      value: 0.2
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 8539988258609870708, guid: 375b2b16e611edc449e524a43d1b9a72, type: 3}
       propertyPath: firingSystem
