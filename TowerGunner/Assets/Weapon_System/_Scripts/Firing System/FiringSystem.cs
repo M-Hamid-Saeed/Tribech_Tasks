@@ -109,6 +109,7 @@ public class FiringSystem : Weapon
 			if(bulletClone == null) { continue; }
 			bulletClone.SetDamage(weaponDamage);
 			bulletClone.transform.position = muzzlePoint.position;
+			Debug.Log("|aimpoint"+aimPoint);
 			bulletClone.Trigger((aimPoint - muzzlePoint.position).normalized);
             PlayFiringPlartice(muzzlePoint);
 			//currentAmo--;

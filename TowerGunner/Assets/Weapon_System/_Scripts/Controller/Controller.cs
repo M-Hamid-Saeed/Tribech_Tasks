@@ -10,6 +10,8 @@ public class Controller : MonoBehaviour
     [SerializeField] float maxRotationX;
     [SerializeField] float maxRotationY;
     [SerializeField] float lerpFactor;
+    private Quaternion initialRotation;
+    private bool isFirstTouch = true;
 
     //Customized Touch Input 
     [SerializeField] InputManager touchInputManager;
@@ -19,10 +21,17 @@ public class Controller : MonoBehaviour
 
     Vector3 mousePosition;
     public Vector3 lookDirection;
-
+    private Vector3 initialLookDirection;
+    Quaternion rot;
     private void Awake()
     {
-        firingSystem.Init();
+        // firingSystem.Init();
+
+    }
+    private void Start()
+    {
+        // initialRotation = transform.rotation;
+        rot = transform.rotation;
     }
 
     private void Update()
@@ -30,7 +39,8 @@ public class Controller : MonoBehaviour
         //  mousePosition = MouseWorldInput.GetPosition();
 
         LookRotation();
-        ShootControll();
+        //ShootControll();
+
     }
 
     private void ShootControll()
@@ -49,32 +59,24 @@ public class Controller : MonoBehaviour
     private void LookRotation()
     {
 
-        if (Input.GetMouseButtonDown(0))
-        {
-            Quaternion rotTarget2 = Quaternion.LookRotation(lookDirection);
-            transform.rotation = Quaternion.Slerp(transform.rotation, rotTarget2, lerpFactor * Time.deltaTime);
-            
-        }
+
         float targetLookAmountX = touchInputManager.Horizontal * _rotateSpeed;
         float targetLookAmountY = touchInputManager.Vertical * _rotateSpeed;
 
-        //Input from InputManager Script
         lookDirection = new Vector3(targetLookAmountX, targetLookAmountY, transform.position.z).normalized;
 
-        // lookDirection = (mousePosition - transform.position).normalized; 
+        Quaternion lookRotation = Quaternion.LookRotation(lookDirection);
+        transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * lerpFactor);
+        //transform.forward = Vector3.Lerp(transform.forward, lookDirection, Time.deltaTime * lerpFactor);
 
-        
-        Quaternion rotTarget = Quaternion.LookRotation(lookDirection);
-        transform.rotation = Quaternion.Slerp(transform.rotation, rotTarget, lerpFactor * Time.deltaTime);
-        Quaternion rot = transform.localRotation;
+
+        rot = transform.rotation;
         rot.x = Mathf.Clamp(rot.x, -maxRotationX, maxRotationX);
         rot.y = Mathf.Clamp(rot.y, -maxRotationY, maxRotationY);
-        transform.localRotation = rot;
-
-
-
+        transform.rotation = rot;
 
 
     }
+
 
 }
