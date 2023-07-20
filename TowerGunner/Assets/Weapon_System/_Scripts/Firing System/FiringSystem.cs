@@ -16,6 +16,7 @@ public class FiringSystem : Weapon
 	public event Action onReloadStart,onReloadEnd;
 	
 	[SerializeField] BulletPooler bulletPooler;
+	[SerializeField] InputManager input;
 
 	[Header("----- Weapons Data-----------------")]
 	[SerializeField] WeaponData weaponData;
@@ -87,6 +88,7 @@ public class FiringSystem : Weapon
 		{
 			if (currentAmo == 0) { Reload(); return; }
 			if(fireSoundSource) fireSoundSource.PlayShoot();
+			
 			this.aimPoint = aimPoint;
 			canShot = false;
 		}
@@ -108,6 +110,7 @@ public class FiringSystem : Weapon
 			Bullet bulletClone = bulletPooler.GetNew();
 			if(bulletClone == null) { continue; }
 			bulletClone.SetDamage(weaponDamage);
+			bulletClone.SetHitPosition(input.GetPosition());
 			bulletClone.transform.position = muzzlePoint.position;
 			bulletClone.Trigger((aimPoint - muzzlePoint.position).normalized);
 			PlayFiringPlartice(muzzlePoint);

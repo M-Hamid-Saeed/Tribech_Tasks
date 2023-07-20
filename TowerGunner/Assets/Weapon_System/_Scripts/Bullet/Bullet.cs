@@ -9,6 +9,8 @@ namespace AxisGames
 		public class Bullet : MonoBehaviour, IPooled<Bullet>
 		{
 			public float speed;
+			private Vector3 hitPos;
+			
 			[Space]
 			[Header("Bullet Visuals")]
 			[SerializeField] MeshRenderer visual;
@@ -62,7 +64,7 @@ namespace AxisGames
 				//}
 				//else { Debug.Log("Bullet is Missed"); }
 
-				ParticleManager.Instance?.PlayParticle(particleType, collision.GetContact(0).point);
+				ParticleManager.Instance?.PlayParticle(particleType, hitPos);
 
 				pool.Free(this);
 				EnableTrail(false);
@@ -87,6 +89,11 @@ namespace AxisGames
 					trailRenderer.enabled = state;
 				}
 			}
+
+			public void SetHitPosition(Vector3 pos)
+            {
+				this.hitPos = pos;
+            }
 		}
 	}
 }
