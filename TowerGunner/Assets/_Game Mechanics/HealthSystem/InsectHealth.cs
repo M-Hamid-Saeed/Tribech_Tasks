@@ -6,8 +6,8 @@ public class InsectHealth : MonoBehaviour, IDamageable
     [SerializeField] float insectMaxDamageTaken;
     public float insectAttackingDamage;
     [SerializeField] HealthBarUI healthUI;
-    public playerHealth player_Health;
     
+    [SerializeField] playerHealth player_health;
     private float currentHealth;
 
     private void Start()
@@ -18,12 +18,12 @@ public class InsectHealth : MonoBehaviour, IDamageable
     }
     public void Damage(float damage)
     {
-        if (damage <= insectMaxDamageTaken)
+        //if (damage <= insectMaxDamageTaken)
             currentHealth -= damage;     
        
-        else
+       /* else
 
-            currentHealth -= insectMaxDamageTaken;
+            currentHealth -= insectMaxDamageTaken;*/
        
         if (currentHealth <= 0)
             Destroy(gameObject);
@@ -37,7 +37,11 @@ public class InsectHealth : MonoBehaviour, IDamageable
         healthUI.SetDamage(currentHealth);
 
     }
-   
-
-
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Attacking Range"))
+        {
+            player_health.Damage(insectAttackingDamage);
+        }
+    }
 }

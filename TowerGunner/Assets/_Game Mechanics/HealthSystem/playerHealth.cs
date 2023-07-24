@@ -2,8 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
-public class playerHealth : MonoBehaviour,IDamageable
+public class playerHealth : MonoBehaviour
 {
     [SerializeField] float totalHealth;
     [SerializeField] HealthBarUI healthUI; 
@@ -18,17 +17,19 @@ public class playerHealth : MonoBehaviour,IDamageable
     public void Damage(float damage)
     {
         currentHealth -= damage;
-        if (currentHealth <= 0)
+        if(currentHealth <= 0)
         {
             levelOver();
         }
         SetUI();
     }
-
     private void SetUI()
     {
+
         healthUI.SetDamage(currentHealth);
+
     }
+
 
     private void levelOver()
     {

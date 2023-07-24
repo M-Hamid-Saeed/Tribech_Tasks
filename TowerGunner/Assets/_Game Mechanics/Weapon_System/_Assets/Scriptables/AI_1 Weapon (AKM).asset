@@ -17,4 +17,4 @@ MonoBehaviour:
   dataSheet:
     megSize: 40
     fireRate: 0.08
-    damage: 5
+    damage: 20

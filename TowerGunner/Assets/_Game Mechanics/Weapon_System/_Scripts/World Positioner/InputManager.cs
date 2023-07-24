@@ -18,7 +18,7 @@ public class InputManager : MonoBehaviour
     [Header("------Mouse Position------")]
     [SerializeField] Camera camera;
     public float shootRange;
- 
+    [SerializeField] private LayerMask targetLayerMask;
 
 
     public float Horizontal

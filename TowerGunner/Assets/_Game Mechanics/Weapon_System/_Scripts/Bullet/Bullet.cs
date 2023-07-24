@@ -64,16 +64,15 @@ namespace AxisGames
 				//}
 				//else { Debug.Log("Bullet is Missed"); }
 
+				ParticleManager.Instance?.PlayParticle(particleType, hitPos);
 				
+				pool.Free(this);
+				EnableTrail(false);
 			}
             private void OnTriggerEnter(Collider other)
             {
-				ParticleManager.Instance?.PlayParticle(particleType, hitPos);
-
-				pool.Free(this);
-				EnableTrail(false);
 				IDamageable insect = other.GetComponent<IDamageable>();
-				if (insect != null)
+				if ((InsectHealth)insect != null)
                 {
 					Debug.Log("DAMEGE" + damage);
 					insect.Damage(damage);
