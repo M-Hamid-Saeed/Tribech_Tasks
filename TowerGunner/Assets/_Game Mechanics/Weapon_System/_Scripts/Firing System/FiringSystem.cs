@@ -87,7 +87,7 @@ public class FiringSystem : Weapon
 		if (!isReloading)
 		{
 			if (currentAmo == 0) { Reload(); return; }
-			if(fireSoundSource) fireSoundSource.PlayShoot();
+			//if(fireSoundSource) fireSoundSource.PlayShoot();
 			
 			this.aimPoint = aimPoint;
 			canShot = false;
@@ -112,6 +112,7 @@ public class FiringSystem : Weapon
 			bulletClone.SetDamage(weaponDamage);
 			bulletClone.SetHitPosition(input.GetPosition());
 			bulletClone.transform.position = muzzlePoint.position;
+			if (fireSoundSource) fireSoundSource.PlayShoot();
 			bulletClone.Trigger((aimPoint - muzzlePoint.position).normalized);
 			PlayFiringPlartice(muzzlePoint);
 			//currentAmo--;

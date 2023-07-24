@@ -12,11 +12,17 @@ public class FireSound : MonoBehaviour
     private void Awake()
     {
         source.playOnAwake = false;
+
     }
 
     public void PlayShoot()
     {
-        if (!source.isPlaying) { source.PlayOneShot(ShootingSound, volume); }
+        source.clip = ShootingSound;
+        if (source.isPlaying)
+        {
+            source.Stop();
+            source.Play();
+        }
     }
     
     public void PlayReload()

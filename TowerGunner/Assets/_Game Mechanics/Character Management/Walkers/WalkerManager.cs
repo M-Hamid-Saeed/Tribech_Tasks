@@ -49,7 +49,7 @@ namespace Character_Management
 
         IEnumerator LoadSpecificWalker()
         {
-            yield return new WaitForSeconds(1);
+            yield return new WaitForSeconds(2);
 
           //  currentDataIndex = HouseManager.CurrentHouse;
 

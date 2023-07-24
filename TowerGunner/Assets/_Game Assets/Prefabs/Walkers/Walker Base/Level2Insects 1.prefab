@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 840209743164865568}
   - component: {fileID: 874752974924323780}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: 'low poly ant Idle anim '
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -64,7 +64,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4569952080476525910}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: LegE.L.003
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -95,7 +95,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7096056462539667937}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: IKTarget.R.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -126,7 +126,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4838546137677305116}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: IKPole.L.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -157,7 +157,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5946506505906308088}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: LegE.L.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -188,7 +188,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1903135546059675426}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: LegD.L.003
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -220,7 +220,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 870331613918707620}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: LegE.R.002
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -251,7 +251,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1063343039218185592}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: IKTarget.R.003
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -282,7 +282,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5983467375453888283}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: LegE.R.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -313,7 +313,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1777100366538008401}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: RB
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -352,7 +352,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8434990334642122271}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: LegB.L.002
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -384,7 +384,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4615224915711295274}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: LegB.L.003
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -417,7 +417,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3113062080024332331}
   - component: {fileID: 608665102158434992}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: ant_mesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -555,7 +555,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4282449351812479257}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: LegD.L.002
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -587,7 +587,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2526627130275121438}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: IKPole.L.003
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -618,7 +618,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7725250321675501343}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: LegA.L.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -650,7 +650,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5130988473387400978}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: LegC.R.002
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -682,7 +682,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2944276710482183647}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: IKPole.L.002
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -713,7 +713,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 591354662578119236}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Body.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -745,7 +745,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7976976267852850835}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Suspension
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -777,7 +777,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4073194194367047632}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: LegB.L.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -809,7 +809,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4069737768310138889}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: LegB.R.003
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -841,7 +841,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2056820372494166856}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Body.002
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -873,7 +873,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3500809205043802427}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: LegA.R.003
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -905,7 +905,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1955753016169644948}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: LegC.L.002
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -937,7 +937,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4307986526768056894}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: SensorB.L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -968,7 +968,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6916119958889792127}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Teeth.R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -999,7 +999,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3783460734189251356}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: LegD.L.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1031,7 +1031,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2651961440631987062}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: IKPole.R.002
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1062,7 +1062,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2521941535758095625}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: LegA.R.002
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1094,7 +1094,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4208227540697317490}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: LegC.L.003
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1127,7 +1127,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5798850538450024069}
   - component: {fileID: -6818677761476070064}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Level2Insects 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1264,7 +1264,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8618866183975410908}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: IKPole.R.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1295,7 +1295,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8601342090530117597}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: LegA.R.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1327,7 +1327,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 767583515394217132}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: LegD.R.002
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1359,7 +1359,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1425143896289789540}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: IKTarget.R.002
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1390,7 +1390,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6300365824760955748}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: LegD.R.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1422,7 +1422,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5348420170054309491}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: LegB.R.002
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1454,7 +1454,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7081719243937513428}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: LegC.R.003
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1486,7 +1486,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6745803322122822827}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: LegB.R.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1518,7 +1518,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7231633061347428717}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: IKTarget.L.002
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1549,7 +1549,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6770832413022544642}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: SensorA.L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1581,7 +1581,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3677039744010598344}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: IKPole.R.003
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1612,7 +1612,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4915291576054315151}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: SensorB.R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1643,7 +1643,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2635165984689277990}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Tail.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1674,7 +1674,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2907423244182961675}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Armature1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1718,7 +1718,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9054731997480964221}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: SensorA.R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1750,7 +1750,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3148837837214079282}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Teeth.L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1781,7 +1781,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7855173393871769123}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Level2Insects
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1813,7 +1813,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 999041389773102436}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: LegA.L.002
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1845,7 +1845,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7094710758985402236}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: IKTarget.L.003
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1876,7 +1876,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8325459668309279069}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Head.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1911,7 +1911,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1716878101259778797}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: LegA.L.003
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1943,7 +1943,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8253475716479802534}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: LegE.R.003
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1974,7 +1974,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5378735945581034261}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: LegD.R.003
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2006,7 +2006,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1244595803526939364}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: LegC.L.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2038,7 +2038,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 824313886284605083}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: LegC.R.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2070,7 +2070,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3607558935079688345}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: LegE.L.002
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2101,7 +2101,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 594214560786351905}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: IKTarget.L.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2138,9 +2138,25 @@ PrefabInstance:
       propertyPath: m_SortingOrder
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4412718050037461500, guid: 91480852ec2490f4f9f522a7f8a08e45, type: 3}
+      propertyPath: m_Color.b
+      value: 0.2980392
+      objectReference: {fileID: 0}
+    - target: {fileID: 4412718050037461500, guid: 91480852ec2490f4f9f522a7f8a08e45, type: 3}
+      propertyPath: m_Color.g
+      value: 0.3186577
+      objectReference: {fileID: 0}
+    - target: {fileID: 4412718050037461500, guid: 91480852ec2490f4f9f522a7f8a08e45, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4464527354020443789, guid: 91480852ec2490f4f9f522a7f8a08e45, type: 3}
       propertyPath: m_PresetInfoIsWorld
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5925228459618132665, guid: 91480852ec2490f4f9f522a7f8a08e45, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 7158778158370884361, guid: 91480852ec2490f4f9f522a7f8a08e45, type: 3}
       propertyPath: m_Pivot.x
@@ -2238,9 +2254,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7337611274751573943, guid: 91480852ec2490f4f9f522a7f8a08e45, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 7608162047932662223, guid: 91480852ec2490f4f9f522a7f8a08e45, type: 3}
       propertyPath: m_Name
       value: Health_Canvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 7608162047932662223, guid: 91480852ec2490f4f9f522a7f8a08e45, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 8340603740033297145, guid: 91480852ec2490f4f9f522a7f8a08e45, type: 3}
       propertyPath: m_AnchorMax.x
@@ -2249,6 +2273,10 @@ PrefabInstance:
     - target: {fileID: 8340603740033297145, guid: 91480852ec2490f4f9f522a7f8a08e45, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9027984141911057719, guid: 91480852ec2490f4f9f522a7f8a08e45, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 9057512431614879343, guid: 91480852ec2490f4f9f522a7f8a08e45, type: 3}
       propertyPath: m_SizeDelta.x
