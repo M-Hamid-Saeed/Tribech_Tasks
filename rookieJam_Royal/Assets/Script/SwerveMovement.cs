@@ -15,13 +15,6 @@ public class SwerveMovement : MonoBehaviour
         rb = GetComponent<Rigidbody>();
     }
 
-    private void Update()
-    {
-       
-            
-        
-        
-    }
 
     private void FixedUpdate()
     {

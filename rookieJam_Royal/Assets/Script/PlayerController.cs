@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour
     public FloatingJoystick fixedJoystick;
     public Canvas inputCanvas;
     private bool isJoystick;
+    public FollowTrail trailFollow;
 
     [Header("---------------Player Movement Section--------------------")]
     [SerializeField] private float moveSpeed = 5f;
@@ -21,7 +22,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float rotateMovementDeltaSpeed = 300f;
     [SerializeField] private Transform playerChild;
     [SerializeField]
-    public Vector3 moveDirection = Vector3.zero; 
+    public Vector3 moveDirection = Vector3.zero;
     public Rigidbody rb;
     [SerializeField] private InputManager input_manager;
 
@@ -48,7 +49,7 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
-      //  EnableJoystick();
+        EnableJoystick();
 
     }
     private void EnableJoystick()
@@ -62,8 +63,9 @@ public class PlayerController : MonoBehaviour
     {
         CheckGround();
         Inputs();
+        //CustomInputWalk();
         Walking();
-       
+
 
         ApplyDownForce();
 
@@ -72,24 +74,38 @@ public class PlayerController : MonoBehaviour
     private void Inputs()
     {
         //Taking input through axis
-       // if (isJoystick)
-       // {
-            /* float horizontalInput = fixedJoystick.Direction.x;
-             float verticalInput = fixedJoystick.Direction.y;*/
-            float horizontalInput = input_manager.Horizontal;
-            float verticalInput = input_manager.Vertical;
+        if (isJoystick)
+        {
+            float horizontalInput = fixedJoystick.Direction.x;
+            float verticalInput = fixedJoystick.Direction.y;
 
-            Vector3 newMoveDirection = new Vector3(horizontalInput, verticalInput, 0f);
+
+            Vector3 newMoveDirection = new Vector3(horizontalInput, 0f, verticalInput);
             moveDirection = newMoveDirection.normalized;
-        Vector3 rotateDirection = moveDirection;
-        rotateDirection.y = 0;
-          
+
+
             // Rotate the player towards the movement direction
             if (moveDirection != Vector3.zero)
-                playerChild.forward = Vector3.Slerp(playerChild.forward,rotateDirection, Time.deltaTime * rotationSpeed);
-      //  }
+                playerChild.forward = Vector3.Slerp(playerChild.forward, moveDirection, Time.deltaTime * rotationSpeed);
+        }
     }
 
+    private void CustomInputWalk()
+    {
+        float horizontalInput = input_manager.Horizontal;
+        float verticalInput = input_manager.Vertical;
+
+        Vector3 newMoveDirection = new Vector3(horizontalInput, verticalInput, 0f);
+        moveDirection = newMoveDirection.normalized;
+        Vector3 rotateDirection = moveDirection;
+        rotateDirection.y = 0;
+
+        // Rotate the player towards the movement direction
+        if (moveDirection != Vector3.zero)
+            playerChild.forward = Vector3.Slerp(playerChild.forward, rotateDirection, Time.deltaTime * rotationSpeed);
+
+
+    }
     private void Walking()
     {
         Vector3 moveVelocity;
@@ -103,7 +119,7 @@ public class PlayerController : MonoBehaviour
         {
             animator.SetBool("isWalking", moveDirection != Vector3.zero);
             animator.SetBool("isRunning", false);
-            animator.SetBool("isDashing", false);
+
 
             moveVelocity = moveDirection * moveSpeed;
         }
@@ -118,6 +134,9 @@ public class PlayerController : MonoBehaviour
         moveVelocity *= velocityReducingFactor;
         moveVelocity.y = rb.velocity.y;
         rb.velocity = Vector3.MoveTowards(rb.velocity, moveVelocity, rotateMovementDeltaSpeed * Time.deltaTime);
+
+       if(moveDirection != Vector3.zero)
+            trailFollow.SavePositionHistory();
 
     }
 
@@ -145,7 +164,7 @@ public class PlayerController : MonoBehaviour
     public void Jump()
     {
 
-        if ( isOnGround && !hasJumped  /*jumpCount < 2*/)
+        if (isOnGround && !hasJumped  /*jumpCount < 2*/)
         {
             rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
             animator.SetTrigger("isJumping");
@@ -179,15 +198,14 @@ public class PlayerController : MonoBehaviour
                 // Double right-click detected, trigger the animation
                 animator.SetTrigger("Attack2");
                 attackatPoint();
-                swordTrail.enabled = true;
+               
                 startedAttacking = Time.time;
             }
 
             lastRightClickTime = Time.time;
 
-            // this part makes sure that the trail is only rendered while attacking
-            if (swordTrail.enabled && Time.time > startedAttacking + 0.5)
-                swordTrail.enabled = false;
+           
+        
         }
     }*/
 
@@ -215,18 +233,6 @@ public class PlayerController : MonoBehaviour
           Gizmos.DrawWireSphere(AttackPoint.position, attackRange);
       }*/
 
-    /* private void PlayJumpParticle()
-     {
-         particlesParent.forward = -playerChild.transform.forward;
-         particlesParent.Rotate(60, 0, 0);
-         jumpParticles.Play();
-     }*/
 
-    /* private void SetSwordTrail(bool status)
-     {
-         swordTrail.enabled = status;
-
-
-     }*/
 
 }
