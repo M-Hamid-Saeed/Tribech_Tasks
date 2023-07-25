@@ -559,10 +559,13 @@ MonoBehaviour:
   - {fileID: 0}
   Container: {fileID: 3128116267825471184}
   walkerDataSheet: {fileID: 11400000, guid: efb9f6ac65d13e348befa1fe026b2043, type: 2}
+  insectClone: {fileID: 0}
   basic_walkerCount: 30
   m_WalkType: 2
   m_MinSpeed: 0.5
   m_MaxSpeed: 1
+  spawnDuration: 1
+  currentDataIndex: 0
 --- !u!1 &3128116268990178864
 GameObject:
   m_ObjectHideFlags: 0

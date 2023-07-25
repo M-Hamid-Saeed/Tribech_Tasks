@@ -1,11 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 public class playerHealth : MonoBehaviour
 {
     [SerializeField] float totalHealth;
     [SerializeField] HealthBarUI healthUI; 
+    [SerializeField] float playerMaxDamageTaken; 
     private float currentHealth;
 
     private void Start()
@@ -16,11 +17,14 @@ public class playerHealth : MonoBehaviour
     }
     public void Damage(float damage)
     {
-        currentHealth -= damage;
+        if (damage <= playerMaxDamageTaken)
+            currentHealth -= damage;
+        else
+            currentHealth -= playerMaxDamageTaken;
+       
         if(currentHealth <= 0)
-        {
             levelOver();
-        }
+        
         SetUI();
     }
     private void SetUI()
@@ -34,5 +38,6 @@ public class playerHealth : MonoBehaviour
     private void levelOver()
     {
         Debug.Log("LEVEL OVER");
+        SceneManager.LoadScene("first*");
     }
 }

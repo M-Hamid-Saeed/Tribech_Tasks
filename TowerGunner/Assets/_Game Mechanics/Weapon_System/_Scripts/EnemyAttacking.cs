@@ -5,7 +5,7 @@ using UnityEngine;
 public class EnemyAttacking : MonoBehaviour
 {
     [SerializeField] playerHealth player_health;
-    [SerializeField] InsectHealth insect_health;
+    
     [SerializeField] LayerMask insectLayer;
     [SerializeField] Transform attackPoint;
     [SerializeField] float attackRange;
@@ -23,7 +23,7 @@ public class EnemyAttacking : MonoBehaviour
 
         foreach (Collider insect in insects)
         {
-            insect_health = insect.GetComponent<InsectHealth>();
+            InsectHealth insect_health = insect.GetComponent<InsectHealth>();
             player_health.Damage(insect_health.insectAttackingDamage);
         }
     }

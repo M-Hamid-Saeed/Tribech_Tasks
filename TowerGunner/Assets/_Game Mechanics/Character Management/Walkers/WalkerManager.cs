@@ -14,6 +14,7 @@ namespace Character_Management
         [Header("--------- Walker Prefabs --------")]
         [SerializeField] Transform  Container;
         [SerializeField] WalkerData walkerDataSheet;
+        [SerializeField] InsectPooler insectPooler;
 
         [Space(5)]
         [Header("--------- Basic Walker --------")]
@@ -49,7 +50,7 @@ namespace Character_Management
 
         IEnumerator LoadSpecificWalker()
         {
-            yield return new WaitForSeconds(2);
+            yield return new WaitForSeconds(1);
 
           //  currentDataIndex = HouseManager.CurrentHouse;
 
@@ -73,15 +74,20 @@ namespace Character_Management
             pathIndex = 0;
             for (int i = 0; i < count; i++)
             {
+                
                 if(pathIndex > pathList.Length - 1) { pathIndex = 0; }
-
-                AiWalker walker = Instantiate(prefab,Container);
-
-                walker.transform.localPosition = pathList[pathIndex].transform.localPosition;
-                walker.Initialize(pathList[pathIndex],
-                                m_WalkType, 
-                                Random.Range(m_MinSpeed, m_MaxSpeed), startWalk);
-                pathIndex++;
+                
+                //AiWalker walker = Instantiate(prefab,Container);
+                AiWalker walker = insectPooler.GetNew();
+                if (walker == null)
+                    break;
+                
+                    walker.transform.localPosition = pathList[pathIndex].transform.localPosition;
+                    walker.Initialize(pathList[pathIndex],
+                                    m_WalkType,
+                                    Random.Range(m_MinSpeed, m_MaxSpeed), startWalk);
+                    pathIndex++;
+                
             }
         }
     }

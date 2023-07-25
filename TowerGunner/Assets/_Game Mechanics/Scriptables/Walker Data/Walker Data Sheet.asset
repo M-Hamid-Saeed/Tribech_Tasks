@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   walkerDataList:
   - walkerlist:
-    - spawnNumber: 20
+    - spawnNumber: 10
       character: {fileID: 6413979174086363027, guid: 41a577b83f146844cb6185bde4fe4b2f, type: 3}
   - walkerlist:
     - spawnNumber: 8

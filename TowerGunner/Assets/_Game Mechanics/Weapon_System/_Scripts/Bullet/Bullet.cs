@@ -24,7 +24,7 @@ namespace AxisGames
 
 			float lifeTime = 3;
 			Vector3 direction;
-			int damage;
+			int damage ;
 
 			void Start()
 			{
@@ -57,29 +57,18 @@ namespace AxisGames
 
 			private void OnCollisionEnter(Collision collision)
 			{
-				//if (collision.transform.TryGetComponent<IDamageable>(out IDamageable damagable))
-				//{
-				//    lifeTime = 5;
-				//    damagable.Damage(damage, collision.contacts[0].point);
-				//}
-				//else { Debug.Log("Bullet is Missed"); }
-
 				
-			}
-            private void OnTriggerEnter(Collider other)
-            {
-
+				IDamageable insect = collision.collider.GetComponent<IDamageable>();
+				if (insect != null)
+				{
+					Debug.Log("DAMEGE" + damage);
+					insect.Damage(damage);
+				}
 				ParticleManager.Instance?.PlayParticle(particleType, hitPos);
 				pool.Free(this);
 				EnableTrail(false);
-				IDamageable insect = other.GetComponent<IDamageable>();
-				if ((InsectHealth)insect != null)
-                {
-					Debug.Log("DAMEGE" + damage);
-					insect.Damage(damage);
-                }
-            }
-            public void SetColor(Material newColor)
+			}
+			public void SetColor(Material newColor)
 			{
 				visual.material = newColor;
 
