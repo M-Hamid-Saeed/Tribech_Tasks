@@ -22,7 +22,7 @@ namespace AxisGames
 			public int poolID { get; set; }
 			public ObjectPooler<Bullet> pool { get; set; }
 
-			float lifeTime = 3;
+			float lifeTime = 1;
 			Vector3 direction;
 			int damage ;
 
@@ -51,7 +51,7 @@ namespace AxisGames
 					//Debug.Log("Bullet Freed");
 					pool.Free(this);
 					EnableTrail(false);
-					lifeTime = 5;
+					lifeTime = 1;
 				}
 			}
 
