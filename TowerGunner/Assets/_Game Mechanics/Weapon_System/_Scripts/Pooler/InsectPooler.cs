@@ -10,7 +10,7 @@ public class InsectPooler : MonoBehaviour
     [SerializeField] int poolSize;
 
 
-    ObjectPooler<AiWalker> pooler = new ObjectPooler<AiWalker>();
+/*    ObjectPooler<AiWalker> pooler = new ObjectPooler<AiWalker>();
 
 
     private void Awake()
@@ -22,5 +22,5 @@ public class InsectPooler : MonoBehaviour
     public AiWalker GetNew()
     {
         return pooler.GetNew();
-    }
+    }*/
 }

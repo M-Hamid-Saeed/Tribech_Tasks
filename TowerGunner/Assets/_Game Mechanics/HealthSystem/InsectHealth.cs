@@ -37,11 +37,11 @@ public class InsectHealth : MonoBehaviour, IDamageable
         healthUI.SetDamage(currentHealth);
 
     }
-    private void OnTriggerEnter(Collider other)
+/*    private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Attacking Range"))
         {
             player_health.Damage(insectAttackingDamage);
         }
-    }
+    }*/
 }

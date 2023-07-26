@@ -1,11 +1,10 @@
 
 using SWS;
 using UnityEngine;
-using AxisGames.Pooler;
 namespace Character_Management
 {
 
-    public class AiWalker : MonoBehaviour,IPooled<AiWalker>
+    public class AiWalker : MonoBehaviour
     {
         [Header("------ Refrences ------")]
         [SerializeField] splineMove sMove;
@@ -14,8 +13,7 @@ namespace Character_Management
         [Space]
         [Header("------ Refrences ------")]
         [SerializeField] int coinFactor = 1;
-        public int poolID { get; set; }
-        public ObjectPooler<AiWalker> pool { get; set; }
+       
         float    normalSpeed;
         float    currentSpeed;
         Animator _animator;

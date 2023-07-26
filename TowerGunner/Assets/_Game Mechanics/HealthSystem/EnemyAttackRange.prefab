@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4556341033892470114}
   - component: {fileID: 5577174724806197995}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: EnemyAttackRange
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -45,7 +45,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player_health: {fileID: 0}
-  insect_health: {fileID: 5311666493822948628, guid: 41a577b83f146844cb6185bde4fe4b2f, type: 3}
   insectLayer:
     serializedVersion: 2
     m_Bits: 64

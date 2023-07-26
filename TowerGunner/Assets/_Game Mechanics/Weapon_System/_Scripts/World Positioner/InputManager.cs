@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class InputManager : MonoBehaviour
 {
-    [SerializeField]private Vector3 prevMousePosition;
+    [SerializeField] private Vector3 prevMousePosition;
     public Vector3 prevMouseUpPosition;
     public Vector3 touchDelta;
     private float horizontal;
@@ -34,31 +34,31 @@ public class InputManager : MonoBehaviour
     private void Update()
     {
         MouseInput();
-      // newMouseInput();
+        // newMouseInput();
     }
     public void MouseInput()
     {
-        
-        
+
+
         if (Input.GetMouseButtonDown(0))
         {
-            
-            Debug.Log("MOUSE CLICKED"+ Input.mousePosition);
+
+            Debug.Log("MOUSE CLICKED" + Input.mousePosition);
 
             prevMousePosition = Input.mousePosition;
-            
+
         }
 
         if (Input.GetMouseButton(0))
         {
             // Drag Calculate
             touchDelta = Input.mousePosition - prevMousePosition;
-             Vector2 delta= touchDelta * senstivity * Time.deltaTime;
-             
+            Vector2 delta = touchDelta * senstivity * Time.deltaTime;
+
             //To get the exact position on the screen
             rotated.x += delta.x;
             rotated.y += delta.y;
-       
+
             Horizontal = rotated.x;
             Vertical = rotated.y;
             prevMousePosition = Input.mousePosition;
@@ -67,10 +67,10 @@ public class InputManager : MonoBehaviour
         }
         else if (Input.GetMouseButtonUp(0))
         {
-            
+
             isMouseUp = true;
         }
-         
+
     }
 
 
@@ -78,14 +78,14 @@ public class InputManager : MonoBehaviour
     public float mouseY;
     void newMouseInput()
     {
-        if(Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Moved)
+        if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Moved)
         {
-             mouseX = Input.GetTouch(0).deltaPosition.x * senstivity;
-            
-             mouseY = Input.GetTouch(0).deltaPosition.y * senstivity;
+            mouseX = Input.GetTouch(0).deltaPosition.x * senstivity;
+
+            mouseY = Input.GetTouch(0).deltaPosition.y * senstivity;
         }
     }
-    
+
 
 
     public Vector3 GetPosition()
@@ -97,7 +97,7 @@ public class InputManager : MonoBehaviour
         {
             return camera.transform.position + camera.transform.forward * shootRange;
         }
-        
+
     }
 
 

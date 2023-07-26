@@ -77,10 +77,9 @@ namespace Character_Management
                 
                 if(pathIndex > pathList.Length - 1) { pathIndex = 0; }
                 
-                //AiWalker walker = Instantiate(prefab,Container);
-                AiWalker walker = insectPooler.GetNew();
-                if (walker == null)
-                    break;
+                AiWalker walker = Instantiate(prefab,Container);
+               // AiWalker walker = insectPooler.GetNew();
+           
                 
                     walker.transform.localPosition = pathList[pathIndex].transform.localPosition;
                     walker.Initialize(pathList[pathIndex],

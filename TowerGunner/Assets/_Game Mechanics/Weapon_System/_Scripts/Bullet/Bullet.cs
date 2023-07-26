@@ -10,11 +10,11 @@ namespace AxisGames
 		{
 			public float speed;
 			private Vector3 hitPos;
-			
+
 			[Space]
 			[Header("Bullet Visuals")]
 			[SerializeField] MeshRenderer visual;
-			[SerializeField] TrailRenderer trailRenderer; 
+			[SerializeField] TrailRenderer trailRenderer;
 			[Space]
 			[SerializeField] Rigidbody rigidbody;
 
@@ -22,14 +22,14 @@ namespace AxisGames
 			public int poolID { get; set; }
 			public ObjectPooler<Bullet> pool { get; set; }
 
-			float lifeTime = 1;
+			float lifeTime = 3;
 			Vector3 direction;
-			int damage ;
+			int damage = 1;
 
 			void Start()
 			{
-				if(rigidbody == null) rigidbody = GetComponent<Rigidbody>();
-				
+				if (rigidbody == null) rigidbody = GetComponent<Rigidbody>();
+
 				rigidbody.useGravity = false;
 			}
 
@@ -51,13 +51,18 @@ namespace AxisGames
 					//Debug.Log("Bullet Freed");
 					pool.Free(this);
 					EnableTrail(false);
-					lifeTime = 1;
+					lifeTime = 5;
 				}
 			}
 
 			private void OnCollisionEnter(Collision collision)
 			{
-				
+				//if (collision.transform.TryGetComponent<IDamageable>(out IDamageable damagable))
+				//{
+				//    lifeTime = 5;
+				//    damagable.Damage(damage, collision.contacts[0].point);
+				//}
+				//else { Debug.Log("Bullet is Missed"); }
 				IDamageable insect = collision.collider.GetComponent<IDamageable>();
 				if (insect != null)
 				{
@@ -65,6 +70,7 @@ namespace AxisGames
 					insect.Damage(damage);
 				}
 				ParticleManager.Instance?.PlayParticle(particleType, hitPos);
+
 				pool.Free(this);
 				EnableTrail(false);
 			}
@@ -90,9 +96,9 @@ namespace AxisGames
 			}
 
 			public void SetHitPosition(Vector3 pos)
-            {
+			{
 				this.hitPos = pos;
-            }
+			}
 		}
 	}
 }
