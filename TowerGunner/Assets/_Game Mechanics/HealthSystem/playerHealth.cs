@@ -37,7 +37,6 @@ public class playerHealth : MonoBehaviour
 
     private void levelOver()
     {
-        Debug.Log("LEVEL OVER");
-        SceneManager.LoadScene("first*");
+        GameController.changeGameState(GameState.Fail);
     }
 }

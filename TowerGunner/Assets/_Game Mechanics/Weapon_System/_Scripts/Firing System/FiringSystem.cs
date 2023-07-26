@@ -3,7 +3,6 @@ using System;
 using System.Collections;
 using UnityEngine;
 
-[System.Flags]
 public enum GunType
 {
 	Pistol /*= 1 << 0*/,
@@ -16,6 +15,8 @@ public class FiringSystem : Weapon
 	public event Action onReloadStart,onReloadEnd;
 	
 	[SerializeField] BulletPooler bulletPooler;
+	[SerializeField] Bullet _bullet;
+
 	[SerializeField] InputManager input;
 
 	[Header("----- Weapons Data-----------------")]
@@ -52,7 +53,7 @@ public class FiringSystem : Weapon
 		int megSize = weaponData.dataSheet.megSize;
 
 		//pooler.Initialize(megSize, weaponData.bullet/*,this.transform*/);
-
+		_bullet.speed = weaponData.dataSheet.bulletSpeed;
 		weaponDamage = weaponData.dataSheet.damage;
 		fireRateTime = new WaitForSeconds(weaponData.dataSheet.fireRate);
 		waitForHold = new WaitUntil(() => !canShot);
@@ -112,6 +113,7 @@ public class FiringSystem : Weapon
 			bulletClone.SetDamage(weaponDamage);
 			bulletClone.SetHitPosition(input.GetPosition());
 			bulletClone.transform.position = muzzlePoint.position;
+			
 			bulletClone.Trigger((aimPoint - muzzlePoint.position).normalized);
 			PlayFiringPlartice(muzzlePoint);
 			//currentAmo--;

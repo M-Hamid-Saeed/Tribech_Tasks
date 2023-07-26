@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2d465f023a9f1a4396e428516afd2e0, type: 3}
   m_Name: AI_1 Weapon (Pistol)
   m_EditorClassIdentifier: 
-  guntype: 2
+  guntype: 0
   bullet: {fileID: 4732932519845835773, guid: ff1a4d53ec192714ab2eba9fd1a64a8b, type: 3}
   dataSheet:
     megSize: 15

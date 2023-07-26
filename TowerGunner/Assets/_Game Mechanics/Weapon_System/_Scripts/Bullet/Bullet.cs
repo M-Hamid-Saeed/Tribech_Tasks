@@ -57,14 +57,15 @@ namespace AxisGames
 
 			private void OnCollisionEnter(Collision collision)
 			{
-				IDamageable insect = collision.collider.GetComponent<IDamageable>();
+				IDamageable insect = collision.collider.GetComponentInParent<IDamageable>();
 				if (insect != null)
 				{
-					Debug.Log("DAMEGE" + damage);
 					insect.Damage(damage);
-				}
+                    Debug.Log("DAMAGE DONE   " + damage);
 
-				ParticleManager.Instance?.PlayParticle(particleType, hitPos);
+                }
+
+                ParticleManager.Instance?.PlayParticle(particleType, hitPos);
 
 				pool.Free(this);
 				EnableTrail(false);
@@ -80,9 +81,11 @@ namespace AxisGames
 			public void SetDamage(int damage)
 			{
 				this.damage = damage;
-			}
+                Debug.Log(this.damage);
 
-			private void EnableTrail(bool state)
+            }
+
+            private void EnableTrail(bool state)
 			{
 				if (trailRenderer)
 				{

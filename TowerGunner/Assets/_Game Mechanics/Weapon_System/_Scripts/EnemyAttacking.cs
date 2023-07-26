@@ -23,7 +23,7 @@ public class EnemyAttacking : MonoBehaviour
 
         foreach (Collider insect in insects)
         {
-            InsectHealth insect_health = insect.GetComponent<InsectHealth>();
+            InsectHealth insect_health = insect.GetComponentInParent<InsectHealth>();
             player_health.Damage(insect_health.insectAttackingDamage);
         }
     }

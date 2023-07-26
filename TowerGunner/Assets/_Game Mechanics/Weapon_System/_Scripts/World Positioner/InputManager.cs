@@ -52,7 +52,7 @@ public class InputManager : MonoBehaviour
         if (Input.GetMouseButton(0))
         {
             // Drag Calculate
-            touchDelta = Input.mousePosition - prevMousePosition;
+            touchDelta = prevMousePosition-Input.mousePosition ;
             Vector2 delta = touchDelta * senstivity * Time.deltaTime;
 
             //To get the exact position on the screen
