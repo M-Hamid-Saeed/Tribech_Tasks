@@ -14,7 +14,6 @@ public class WeaponData : ScriptableObject
         public int       megSize;
         public float     fireRate;
         public int       damage;
-        public float bulletSpeed;
     }
 
     #endregion

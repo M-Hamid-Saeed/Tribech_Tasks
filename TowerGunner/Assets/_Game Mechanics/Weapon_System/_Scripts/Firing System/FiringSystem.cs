@@ -3,13 +3,12 @@ using System;
 using System.Collections;
 using UnityEngine;
 
-
+[System.Flags]
 public enum GunType
 {
-	    /*= 1 << 0*/
+	Pistol /*= 1 << 0*/,
 	AKM /*= 1 << 1*/,
-	M4 /*= 1 << 2*/,
-	Pistol
+	M4 /*= 1 << 2*/
 }
 
 public class FiringSystem : Weapon
@@ -17,7 +16,6 @@ public class FiringSystem : Weapon
 	public event Action onReloadStart,onReloadEnd;
 	
 	[SerializeField] BulletPooler bulletPooler;
-	[SerializeField] Bullet _bullet;
 	[SerializeField] InputManager input;
 
 	[Header("----- Weapons Data-----------------")]
@@ -56,7 +54,6 @@ public class FiringSystem : Weapon
 		//pooler.Initialize(megSize, weaponData.bullet/*,this.transform*/);
 
 		weaponDamage = weaponData.dataSheet.damage;
-		_bullet.speed = weaponData.dataSheet.bulletSpeed;
 		fireRateTime = new WaitForSeconds(weaponData.dataSheet.fireRate);
 		waitForHold = new WaitUntil(() => !canShot);
 
@@ -90,7 +87,7 @@ public class FiringSystem : Weapon
 		if (!isReloading)
 		{
 			if (currentAmo == 0) { Reload(); return; }
-			//if(fireSoundSource) fireSoundSource.PlayShoot();
+			if(fireSoundSource) fireSoundSource.PlayShoot();
 			
 			this.aimPoint = aimPoint;
 			canShot = false;
@@ -116,7 +113,6 @@ public class FiringSystem : Weapon
 			bulletClone.SetHitPosition(input.GetPosition());
 			bulletClone.transform.position = muzzlePoint.position;
 			bulletClone.Trigger((aimPoint - muzzlePoint.position).normalized);
-			Debug.Log("Shot");
 			PlayFiringPlartice(muzzlePoint);
 			//currentAmo--;
 			yield return fireRateTime;
