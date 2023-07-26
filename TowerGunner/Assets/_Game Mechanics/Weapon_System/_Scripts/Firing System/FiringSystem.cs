@@ -3,19 +3,21 @@ using System;
 using System.Collections;
 using UnityEngine;
 
-[System.Flags]
+
 public enum GunType
 {
-	Pistol /*= 1 << 0*/,
+	    /*= 1 << 0*/
 	AKM /*= 1 << 1*/,
-	M4 /*= 1 << 2*/
+	M4 /*= 1 << 2*/,
+	Pistol
 }
 
 public class FiringSystem : Weapon
 {
-	public event Action onReloadStart, onReloadEnd;
-
+	public event Action onReloadStart,onReloadEnd;
+	
 	[SerializeField] BulletPooler bulletPooler;
+	[SerializeField] Bullet _bullet;
 	[SerializeField] InputManager input;
 
 	[Header("----- Weapons Data-----------------")]
@@ -54,6 +56,7 @@ public class FiringSystem : Weapon
 		//pooler.Initialize(megSize, weaponData.bullet/*,this.transform*/);
 
 		weaponDamage = weaponData.dataSheet.damage;
+		_bullet.speed = weaponData.dataSheet.bulletSpeed;
 		fireRateTime = new WaitForSeconds(weaponData.dataSheet.fireRate);
 		waitForHold = new WaitUntil(() => !canShot);
 
@@ -72,7 +75,7 @@ public class FiringSystem : Weapon
 			isReloading = true;
 			if (fireSoundSource) fireSoundSource.PlayReload();
 			currentAmo = weaponData.dataSheet.megSize; isReloading = false;
-
+			
 		}
 	}
 
@@ -87,12 +90,12 @@ public class FiringSystem : Weapon
 		if (!isReloading)
 		{
 			if (currentAmo == 0) { Reload(); return; }
-			if (fireSoundSource) fireSoundSource.PlayShoot();
-
+			//if(fireSoundSource) fireSoundSource.PlayShoot();
+			
 			this.aimPoint = aimPoint;
 			canShot = false;
 		}
-
+		
 	}
 
 
@@ -108,11 +111,12 @@ public class FiringSystem : Weapon
 		{
 			//var bulletClone = pooler.GetNew();
 			Bullet bulletClone = bulletPooler.GetNew();
-			if (bulletClone == null) { continue; }
+			if(bulletClone == null) { continue; }
 			bulletClone.SetDamage(weaponDamage);
 			bulletClone.SetHitPosition(input.GetPosition());
 			bulletClone.transform.position = muzzlePoint.position;
 			bulletClone.Trigger((aimPoint - muzzlePoint.position).normalized);
+			Debug.Log("Shot");
 			PlayFiringPlartice(muzzlePoint);
 			//currentAmo--;
 			yield return fireRateTime;
@@ -135,7 +139,7 @@ public class FiringSystem : Weapon
 	{
 		get { return currentAmo; }
 	}
-
+	
 	public void SetData(WeaponData weaponData)
 	{
 		this.weaponData = weaponData;
@@ -154,7 +158,7 @@ public class FiringSystem : Weapon
 
 	private void OnDestroy()
 	{
-		onReloadEnd = null;
+		onReloadEnd   = null;
 		onReloadStart = null;
 	}
 }
