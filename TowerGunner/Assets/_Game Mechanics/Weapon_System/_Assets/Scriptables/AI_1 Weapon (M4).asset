@@ -18,4 +18,4 @@ MonoBehaviour:
     megSize: 15
     fireRate: 0.12
     damage: 10
-    bulletSpeed: 4000
+    bulletSpeed: 4500
