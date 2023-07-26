@@ -49,18 +49,18 @@ public class Controller : MonoBehaviour
     private void LookRotation()
     {
 
-
-        float targetLookAmountX = touchInputManager.Horizontal * _rotateSpeed;
+    
+        float targetLookAmountX = touchInputManager.Horizontal* _rotateSpeed;
         float targetLookAmountY = touchInputManager.Vertical * _rotateSpeed;
 
-
+      
         lookDirection = new Vector3(targetLookAmountX, targetLookAmountY, transform.position.z).normalized;
-
+      
         Quaternion rotTarget = Quaternion.LookRotation(lookDirection);
         transform.rotation = Quaternion.Slerp(transform.rotation, rotTarget, lerpFactor * Time.deltaTime);
-
+        
         Quaternion rot = transform.rotation;
-        rot.x = Mathf.Clamp(rot.x, -maxRotationX, maxRotationX);
+        rot.x = Mathf.Clamp(rot.x, -maxRotationX, maxRotationX) ;
         rot.y = Mathf.Clamp(rot.y, -maxRotationY, maxRotationY);
         transform.rotation = rot;
 
@@ -71,4 +71,3 @@ public class Controller : MonoBehaviour
     }
 
 }
-
