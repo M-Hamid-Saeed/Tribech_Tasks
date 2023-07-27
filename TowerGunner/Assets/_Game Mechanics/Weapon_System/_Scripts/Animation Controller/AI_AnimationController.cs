@@ -11,12 +11,8 @@ public class AI_AnimationController : MonoBehaviour
 
     public void ShootingAnimation(bool state)
     {
-        animator.SetBool("shoot", state);
+        animator.SetBool("isFiring", state);
     }
 
-    public void StartDancing()
-    {
-        ShootingAnimation(false);
-        animator.SetTrigger("Dance");
-    }
+   
 }

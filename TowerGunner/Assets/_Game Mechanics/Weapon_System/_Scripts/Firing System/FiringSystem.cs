@@ -1,4 +1,6 @@
 using AxisGames.WeaponSystem;
+using GameAssets.GameSet.GameDevUtils.Managers;
+using MergeSystem;
 using System;
 using System.Collections;
 using UnityEngine;
@@ -71,7 +73,7 @@ public class FiringSystem : Weapon
 		if (!isReloading)
 		{
 			isReloading = true;
-			if (fireSoundSource) fireSoundSource.PlayReload();
+			//if (fireSoundSource) fireSoundSource.PlayReload();
 			currentAmo = weaponData.dataSheet.megSize; isReloading = false;
 			
 		}
@@ -88,14 +90,20 @@ public class FiringSystem : Weapon
 		if (!isReloading)
 		{
 			if (currentAmo == 0) { Reload(); return; }
-			if(fireSoundSource) fireSoundSource.PlayShoot();
-			
 			this.aimPoint = aimPoint;
+			
+			//FunctionTimer.Create(() => { SoundManager.Instance.PlayOneShot(SoundManager.Instance.shoot, .5f); }, 0.5f);
 			canShot = false;
+
 		}
 		
 	}
 
+	private IEnumerator SoundDelay()
+    {
+		yield return new WaitForSeconds(.5f);
+		SoundManager.Instance.PlayOneShot(SoundManager.Instance.shoot, .5f);
+	}
 
 	public Transform GetFirePoint()
 	{
@@ -112,8 +120,8 @@ public class FiringSystem : Weapon
 			if(bulletClone == null) { continue; }
 			bulletClone.SetDamage(weaponDamage);
 			bulletClone.SetHitPosition(input.GetPosition());
-			bulletClone.transform.position = muzzlePoint.position;
 			
+			bulletClone.transform.position = muzzlePoint.position;
 			bulletClone.Trigger((aimPoint - muzzlePoint.position).normalized);
 			PlayFiringPlartice(muzzlePoint);
 			//currentAmo--;

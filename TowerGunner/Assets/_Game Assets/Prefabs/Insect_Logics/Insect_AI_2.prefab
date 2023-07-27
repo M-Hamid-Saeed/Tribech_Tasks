@@ -562,9 +562,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   totalHealth: 100
-  insectMaxDamageTaken: 15
+  insectMaxDamageTaken: 32
   insectAttackingDamage: 0.1
   healthUI: {fileID: 2138674337793730577}
+  particleType: 1
   currentHealth: 0
 --- !u!1 &1942291706233041565
 GameObject:

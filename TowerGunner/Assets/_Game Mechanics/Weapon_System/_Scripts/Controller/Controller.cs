@@ -1,3 +1,5 @@
+using Character_Management;
+using GameAssets.GameSet.GameDevUtils.Managers;
 using UnityEngine;
 
 public class Controller : MonoBehaviour
@@ -10,11 +12,12 @@ public class Controller : MonoBehaviour
     [SerializeField] float maxRotationX;
     [SerializeField] float maxRotationY;
     [SerializeField] float lerpFactor;
+    [SerializeField] WeaponAnimation_Controller animationController;
 
     //Customized Touch Input 
     [SerializeField] InputManager touchInputManager;
 
-
+    public int insectcounter = 0;
 
 
     Vector3 mousePosition;
@@ -29,6 +32,7 @@ public class Controller : MonoBehaviour
     {
         //  mousePosition = MouseWorldInput.GetPosition();
 
+        insectcounter = WalkerManager.insectCounter;
         LookRotation();
         ShootControll();
     }
@@ -38,12 +42,13 @@ public class Controller : MonoBehaviour
 
         if (Input.GetMouseButton(0))
         {
+            animationController.ShootingAnimation(true);
             mousePosition = touchInputManager.GetPosition();
             firingSystem.Shot(mousePosition);
+            SoundManager.Instance.PlayOneShot(SoundManager.Instance.shoot, .5f);
         }
-
-
-
+        else
+            animationController.ShootingAnimation(false);
     }
 
     private void LookRotation()
@@ -64,10 +69,6 @@ public class Controller : MonoBehaviour
         rot.y = Mathf.Clamp(rot.y, -maxRotationY, maxRotationY);
         transform.rotation = rot;
 
-
-
-
-
     }
-
+   
 }

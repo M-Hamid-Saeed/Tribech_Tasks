@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   poolerName: Confitie
   particleType: 2
-  particlePrefab: {fileID: 7192740487097793447, guid: 109c7a14f16f9bd419cb243daadefc0b, type: 3}
+  particlePrefab: {fileID: 4707957658733595922, guid: 6b55aeac9f1ffd04bba62d7fd21d086f, type: 3}
   poolSize: 20
   poolContainer: {fileID: 0}

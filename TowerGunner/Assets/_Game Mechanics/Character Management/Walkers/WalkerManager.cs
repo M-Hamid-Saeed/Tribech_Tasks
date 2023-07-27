@@ -1,5 +1,6 @@
 using SWS;
 using System.Collections;
+
 using UnityEngine;
 
 namespace Character_Management
@@ -28,7 +29,8 @@ namespace Character_Management
         [SerializeField] float m_MinSpeed = 0.5f;
         [SerializeField] float m_MaxSpeed = 1f;
         [SerializeField] float spawnWaitTime = 5f;
-        private bool allSpawned = false;
+        public static int insectCounter = 0;
+       
 
         public int currentDataIndex;
         int pathIndex;
@@ -37,12 +39,8 @@ namespace Character_Management
         {
             if (!walkerDataSheet) { Debug.Log("Walker Data Not Assigned !!"); return; }
             if (!Container) { Debug.Log("Container Not Assigned !!"); return; }
-
-            //   currentDataIndex = HouseManager.CurrentHouse;
-
-            //   HouseManager.OnHouseComplete += HouseManager_OnHouseComplete;
-            // HouseManager_OnHouseComplete();
-            LoadWalkers();
+            GameController.onGameplay += LoadWalkers;
+         
         }
 
         private void HouseManager_OnHouseComplete()
@@ -64,9 +62,18 @@ namespace Character_Management
 
         public void LoadWalkers()
         {
+            currentDataIndex = LevelManager.CurrentLevelNumber;
+            if (currentDataIndex > walkerDataSheet.walkerDataList.Length - 1)
+                currentDataIndex %= walkerDataSheet.walkerDataList.Length;
+
+            for (int j = 0; j < walkerDataSheet.walkerDataList[currentDataIndex]. walkerlist.Length; j++)
+            {
+                insectCounter += walkerDataSheet.walkerDataList[currentDataIndex].walkerlist[j].spawnNumber;
+            }
             for (int i = 0; i < walkerDataSheet.walkerDataList[currentDataIndex].
                                             walkerlist.Length; i++)
             {
+                 
                 StartCoroutine(SetWalkers(walkerDataSheet.walkerDataList[currentDataIndex].walkerlist[i].character,
                        walkerDataSheet.walkerDataList[currentDataIndex].walkerlist[i].spawnNumber));
             }
@@ -81,7 +88,7 @@ namespace Character_Management
                     yield return new WaitForSeconds(spawnWaitTime);
                     if (pathIndex > pathList.Length - 1) { pathIndex = 0; }
                     AiWalker walker = Instantiate(prefab, Container);
-
+                    //insectCounter++;
                     // AiWalker walker = insectPooler.GetNew();
 
 
@@ -95,5 +102,7 @@ namespace Character_Management
 
             }
         }
+
+      
     }
 }

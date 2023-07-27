@@ -9,7 +9,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] GameObject gamplayPanel;
     [SerializeField] GameObject competePanel;
     [SerializeField] GameObject levelFailPanel;
-
+    int levelNo;
 
 
     [Header("Text Fields"), SerializeField] Text levelNoText;
@@ -36,8 +36,9 @@ public class UIManager : MonoBehaviour
 
     void Gameplay()
     {
-        int levelNo = PlayerPrefs.GetInt("LevelNumber");
+        levelNo = PlayerPrefs.GetInt("LevelNumber");
         levelNo += 1;
+
         levelNoText.text = $"Level {levelNo.ToString("00")}";
         ActivePanel(gameplay: true);
     }

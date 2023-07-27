@@ -1,41 +1,70 @@
+using AxisGames.ParticleSystem;
+using System.Collections;
 using UnityEngine;
-
-public class InsectHealth : MonoBehaviour, IDamageable
+namespace Character_Management
 {
-    [SerializeField] float totalHealth;
-    [SerializeField] float insectMaxDamageTaken;
-    public float insectAttackingDamage;
-    [SerializeField] HealthBarUI healthUI;
-    
-  
-    public float currentHealth;
-
-    private void Start()
+    public class InsectHealth : MonoBehaviour, IDamageable
     {
-       
-        currentHealth = totalHealth;
-        healthUI.SetMaxHealth(totalHealth);
+        [SerializeField] float totalHealth;
+        [SerializeField] float insectMaxDamageTaken;
+        public float insectAttackingDamage;
+        [SerializeField] HealthBarUI healthUI;
+        [SerializeField] ParticleType particleType;
+
+        public float currentHealth;
+
+        private void Start()
+        {
+
+            currentHealth = totalHealth;
+            healthUI.SetMaxHealth(totalHealth);
+        }
+        public void Damage(float damage)
+        {
+            if (damage <= insectMaxDamageTaken)
+            {
+                currentHealth -= damage;
+            }
+
+            else
+
+                currentHealth -= insectMaxDamageTaken;
+
+            if (currentHealth <= 0)
+            {
+                PlayDeathParticle();
+                WalkerManager.insectCounter--;
+                CheckevelComplete();
+                Destroy(gameObject);
+            }
+           
+            SetUI();
+
+        }
+
+   
+        private void SetUI()
+        {
+            healthUI.SetDamage(currentHealth);
+
+        }
+        private void CheckevelComplete()
+        {
+
+            if (WalkerManager.insectCounter <= 0)
+            {
+                
+                GameController.changeGameState(GameState.Complete);
+             
+            }
+           // insectcounter = WalkerManager.insectCounter;
+        }
+
+        private void PlayDeathParticle()
+        {
+            ParticleManager.Instance?.PlayParticle(particleType,transform.position);
+        }
+
+
     }
-    public void Damage(float damage)
-    {
-        if (damage <= insectMaxDamageTaken)
-            currentHealth -= damage;     
-       
-       else
-
-            currentHealth -= insectMaxDamageTaken;
-       
-        if (currentHealth <= 0)
-            Destroy(gameObject);
-        
-        SetUI();
-
-    }
-    private void SetUI()
-    {
-
-        healthUI.SetDamage(currentHealth);
-
-    }
-
 }

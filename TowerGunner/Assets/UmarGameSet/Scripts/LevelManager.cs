@@ -21,6 +21,12 @@ public class LevelManager : MonoBehaviour
 
     [HideInInspector] public LevelInfo currentLevel;
 
+    private bool isTesting;
+    public static int CurrentLevelNumber
+    {
+        get { return PlayerPrefs.GetInt("LevelNumber"); }
+
+    }
 
     public void Awake()
     {
