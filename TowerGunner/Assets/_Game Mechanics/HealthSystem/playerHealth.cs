@@ -40,5 +40,6 @@ public class playerHealth : MonoBehaviour
     {
        
         GameController.changeGameState(GameState.Fail);
+        
     }
 }

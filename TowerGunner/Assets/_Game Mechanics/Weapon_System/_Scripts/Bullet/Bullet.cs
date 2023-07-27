@@ -69,6 +69,7 @@ namespace AxisGames
 
 				pool.Free(this);
 				EnableTrail(false);
+				
 			}
 			public void SetColor(Material newColor)
 			{
@@ -89,6 +90,7 @@ namespace AxisGames
 			{
 				if (trailRenderer)
 				{
+					trailRenderer.Clear();
 					trailRenderer.enabled = state;
 				}
 			}

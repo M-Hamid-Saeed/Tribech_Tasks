@@ -183,7 +183,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 206438366350190895, guid: 534b41c72cef0bc47a6e2300a1acc3b0, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: -0.0145
       objectReference: {fileID: 0}
     - target: {fileID: 206438366350190895, guid: 534b41c72cef0bc47a6e2300a1acc3b0, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -231,7 +231,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2033027539370493001, guid: 534b41c72cef0bc47a6e2300a1acc3b0, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -540
+      value: -539.9842
       objectReference: {fileID: 0}
     - target: {fileID: 2033027539370493001, guid: 534b41c72cef0bc47a6e2300a1acc3b0, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -276,7 +276,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1845248086197331901, guid: 41f255c0d810e1041996b6563680d336, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 0.012
       objectReference: {fileID: 0}
     - target: {fileID: 1845248086197331901, guid: 41f255c0d810e1041996b6563680d336, type: 3}
       propertyPath: m_LocalPosition.y
@@ -317,6 +317,26 @@ PrefabInstance:
     - target: {fileID: 5626581310449464699, guid: 41f255c0d810e1041996b6563680d336, type: 3}
       propertyPath: easeType
       value: 19
+      objectReference: {fileID: 0}
+    - target: {fileID: 7399291875844539490, guid: 41f255c0d810e1041996b6563680d336, type: 3}
+      propertyPath: m_Size.y
+      value: 0.15296122
+      objectReference: {fileID: 0}
+    - target: {fileID: 7399291875844539490, guid: 41f255c0d810e1041996b6563680d336, type: 3}
+      propertyPath: m_Size.z
+      value: 0.4552044
+      objectReference: {fileID: 0}
+    - target: {fileID: 7399291875844539490, guid: 41f255c0d810e1041996b6563680d336, type: 3}
+      propertyPath: m_Center.x
+      value: 0.00032912494
+      objectReference: {fileID: 0}
+    - target: {fileID: 7399291875844539490, guid: 41f255c0d810e1041996b6563680d336, type: 3}
+      propertyPath: m_Center.y
+      value: 0.08626185
+      objectReference: {fileID: 0}
+    - target: {fileID: 7399291875844539490, guid: 41f255c0d810e1041996b6563680d336, type: 3}
+      propertyPath: m_Center.z
+      value: -0.006639433
       objectReference: {fileID: 0}
     - target: {fileID: 7961554581890620306, guid: 41f255c0d810e1041996b6563680d336, type: 3}
       propertyPath: healthUI

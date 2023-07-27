@@ -87,15 +87,15 @@ public class FiringSystem : Weapon
 
 	public override void Shot(Vector3 aimPoint)
 	{
-		if (!isReloading)
-		{
-			if (currentAmo == 0) { Reload(); return; }
+	//	if (!isReloading)
+	//	{
+			//if (currentAmo == 0) { Reload(); return; }
 			this.aimPoint = aimPoint;
 			
 			//FunctionTimer.Create(() => { SoundManager.Instance.PlayOneShot(SoundManager.Instance.shoot, .5f); }, 0.5f);
 			canShot = false;
 
-		}
+		//}
 		
 	}
 

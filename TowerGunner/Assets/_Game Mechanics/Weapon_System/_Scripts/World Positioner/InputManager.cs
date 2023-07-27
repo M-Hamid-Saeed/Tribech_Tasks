@@ -10,6 +10,7 @@ public class InputManager : MonoBehaviour
     private float horizontal;
     private float vertical;
     public float senstivity;
+    public Gun currentGun;
     public bool isMouseUp = false;
     float xRotation = 0f;
     float yRotation = 0f;
@@ -88,16 +89,36 @@ public class InputManager : MonoBehaviour
 
 
 
-    public Vector3 GetPosition()
+/*    public Vector3 GetPosition()
     {
-        RaycastHit hit;
-        if (Physics.Raycast(camera.transform.position, camera.transform.forward, out hit, shootRange))
+        Ray screenPointToRay = camera.ViewportPointToRay(new Vector3(0.5f, 0.5f));
+
+        // Define a custom starting point for the ray (gun muzzle fire point)
+        Vector3 rayStartPoint = currentGun.firePoint.position;
+
+        if (Physics.Raycast(rayStartPoint, camera.transform.forward, out RaycastHit hit, shootRange))
+        {
             return hit.point;
+        }
         else
         {
+            // If no hit point, return a point along the forward direction from the gun's muzzle
+            return rayStartPoint + camera.transform.forward * shootRange;
+        }
+    }*/
+    public Vector3 GetPosition()
+    {
+        Ray screenPointToRay = camera.ViewportPointToRay(new Vector3(0.5f, 0.5f));
+
+        if (Physics.Raycast(screenPointToRay, out RaycastHit hit))
+        {
+            return hit.point;
+        }
+        else
+        {
+            // If no hit point, return a point along the camera's forward direction
             return camera.transform.position + camera.transform.forward * shootRange;
         }
-
     }
 
 
