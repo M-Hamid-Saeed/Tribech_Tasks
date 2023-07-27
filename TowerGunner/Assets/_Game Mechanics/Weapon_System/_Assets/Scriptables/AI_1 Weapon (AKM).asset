@@ -16,6 +16,6 @@ MonoBehaviour:
   bullet: {fileID: 4732932519845835773, guid: ff1a4d53ec192714ab2eba9fd1a64a8b, type: 3}
   dataSheet:
     megSize: 40
-    fireRate: 0.17
+    fireRate: 0.1
     damage: 35
-    bulletSpeed: 3500
+    bulletSpeed: 5000

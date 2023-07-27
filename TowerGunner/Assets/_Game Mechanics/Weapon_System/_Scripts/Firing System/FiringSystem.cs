@@ -91,9 +91,9 @@ public class FiringSystem : Weapon
 	//	{
 			//if (currentAmo == 0) { Reload(); return; }
 			this.aimPoint = aimPoint;
-			
-			//FunctionTimer.Create(() => { SoundManager.Instance.PlayOneShot(SoundManager.Instance.shoot, .5f); }, 0.5f);
-			canShot = false;
+		SoundManager.Instance.PlayOneShot(SoundManager.Instance.shoot, .5f);
+		//FunctionTimer.Create(() => { SoundManager.Instance.PlayOneShot(SoundManager.Instance.shoot, .5f); }, 0.5f);
+		canShot = false;
 
 		//}
 		
@@ -118,6 +118,7 @@ public class FiringSystem : Weapon
 			//var bulletClone = pooler.GetNew();
 			Bullet bulletClone = bulletPooler.GetNew();
 			if(bulletClone == null) { continue; }
+			
 			bulletClone.SetDamage(weaponDamage);
 			bulletClone.SetHitPosition(input.GetPosition());
 			

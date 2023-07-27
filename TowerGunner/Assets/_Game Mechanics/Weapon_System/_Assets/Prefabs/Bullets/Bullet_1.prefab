@@ -131,7 +131,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6c2817e88d121243aee38a9d76f64ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 3500
+  speed: 5000
   visual: {fileID: 7460834846130894289}
   trailRenderer: {fileID: 3293558745508137070}
   rigidbody: {fileID: 101283041288965316}
@@ -240,7 +240,7 @@ TrailRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Time: 0.6
+  m_Time: 0.2
   m_Parameters:
     serializedVersion: 3
     widthMultiplier: 0.2

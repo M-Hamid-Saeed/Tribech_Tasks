@@ -89,7 +89,7 @@ public class InputManager : MonoBehaviour
 
 
 
-/*    public Vector3 GetPosition()
+    public Vector3 GetPosition()
     {
         Ray screenPointToRay = camera.ViewportPointToRay(new Vector3(0.5f, 0.5f));
 
@@ -105,8 +105,8 @@ public class InputManager : MonoBehaviour
             // If no hit point, return a point along the forward direction from the gun's muzzle
             return rayStartPoint + camera.transform.forward * shootRange;
         }
-    }*/
-    public Vector3 GetPosition()
+    }
+/*    public Vector3 GetPosition()
     {
         Ray screenPointToRay = camera.ViewportPointToRay(new Vector3(0.5f, 0.5f));
 
@@ -119,7 +119,7 @@ public class InputManager : MonoBehaviour
             // If no hit point, return a point along the camera's forward direction
             return camera.transform.position + camera.transform.forward * shootRange;
         }
-    }
+    }*/
 
 
 }

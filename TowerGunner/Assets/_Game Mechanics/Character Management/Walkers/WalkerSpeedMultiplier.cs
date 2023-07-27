@@ -33,9 +33,9 @@ public class WalkerSpeedMultiplier : MonoBehaviour
             if (timer >= 0.1f) { onSpeedMultiplied?.Invoke(speed); }
             if(timer >= multiplierCooldown) { taping = false; onSpeedNormalized?.Invoke(0); }
 
-#if !UNITY_EDITOR
+/*#if !UNITY_EDITOR
             if (Input.GetMouseButtonDown(0)) { Vibration.VibratePop(); } // for small haptic on every click
-#endif
+#endif*/
         }
     }
 

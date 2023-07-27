@@ -45,7 +45,7 @@ public class Controller : MonoBehaviour
             animationController.ShootingAnimation(true);
             mousePosition = touchInputManager.GetPosition();
             firingSystem.Shot(mousePosition);
-            SoundManager.Instance.PlayOneShot(SoundManager.Instance.shoot, .5f);
+            
         }
         else
             animationController.ShootingAnimation(false);
