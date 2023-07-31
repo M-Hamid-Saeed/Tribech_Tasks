@@ -4,6 +4,7 @@ using MergeSystem;
 using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Pool;
 
 public enum GunType
 {
@@ -17,6 +18,7 @@ public class FiringSystem : Weapon
 	public event Action onReloadStart,onReloadEnd;
 	
 	[SerializeField] BulletPooler bulletPooler;
+
 	[SerializeField] Bullet _bullet;
 
 	[SerializeField] InputManager input;
@@ -47,11 +49,15 @@ public class FiringSystem : Weapon
 	{
 		if (weaponData == null) { Debug.LogError("Data Not Assigned in Fire System"); return; }
 		LoadGun();
+		//trail = TrailPool.Get();
+
 		InitializeWeapon();
 	}
 
 	private void InitializeWeapon()
 	{
+		//TrailPool = new ObjectPool<TrailRenderer>(weaponData.CreateTrail);
+
 		int megSize = weaponData.dataSheet.megSize;
 
 		//pooler.Initialize(megSize, weaponData.bullet/*,this.transform*/);
@@ -117,13 +123,16 @@ public class FiringSystem : Weapon
 		{
 			//var bulletClone = pooler.GetNew();
 			Bullet bulletClone = bulletPooler.GetNew();
+			
 			if(bulletClone == null) { continue; }
 			
 			bulletClone.SetDamage(weaponDamage);
-			bulletClone.SetHitPosition(input.GetPosition());
+			bulletClone.SetHitPosition(aimPoint);
 			
 			bulletClone.transform.position = muzzlePoint.position;
 			bulletClone.Trigger((aimPoint - muzzlePoint.position).normalized);
+		    
+
 			PlayFiringPlartice(muzzlePoint);
 			//currentAmo--;
 			yield return fireRateTime;

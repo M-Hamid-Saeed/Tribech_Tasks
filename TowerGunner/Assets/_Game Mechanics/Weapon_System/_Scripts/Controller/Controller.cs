@@ -33,7 +33,8 @@ public class Controller : MonoBehaviour
         //  mousePosition = MouseWorldInput.GetPosition();
 
         insectcounter = WalkerManager.insectCounter;
-        LookRotation();
+        if (Input.GetMouseButton(0))
+            LookRotation();
         ShootControll();
     }
 
@@ -50,11 +51,11 @@ public class Controller : MonoBehaviour
         else
             animationController.ShootingAnimation(false);
     }
-
+    
     private void LookRotation()
     {
 
-    
+       
         float targetLookAmountX = -touchInputManager.Horizontal* _rotateSpeed;
         float targetLookAmountY = touchInputManager.Vertical * _rotateSpeed;
 
