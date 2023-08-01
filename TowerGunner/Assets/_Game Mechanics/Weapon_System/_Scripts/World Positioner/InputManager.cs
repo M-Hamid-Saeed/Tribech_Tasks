@@ -43,11 +43,7 @@ public class InputManager : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0))
         {
-
-            Debug.Log("MOUSE CLICKED" + Input.mousePosition);
-
             prevMousePosition = Input.mousePosition;
-
         }
 
         if (Input.GetMouseButton(0))

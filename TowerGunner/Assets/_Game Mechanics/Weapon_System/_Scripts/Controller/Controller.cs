@@ -26,6 +26,7 @@ public class Controller : MonoBehaviour
     private void Awake()
     {
         firingSystem.Init();
+        Vibration.Init();
     }
 
     private void Update()
@@ -33,9 +34,9 @@ public class Controller : MonoBehaviour
         //  mousePosition = MouseWorldInput.GetPosition();
 
         insectcounter = WalkerManager.insectCounter;
-        if (Input.GetMouseButton(0))
-            LookRotation();
+        LookRotation();
         ShootControll();
+        CheckevelComplete();
     }
 
     private void ShootControll()
@@ -44,6 +45,7 @@ public class Controller : MonoBehaviour
         if (Input.GetMouseButton(0))
         {
             animationController.ShootingAnimation(true);
+           
             mousePosition = touchInputManager.GetPosition();
             firingSystem.Shot(mousePosition);
             
@@ -51,7 +53,7 @@ public class Controller : MonoBehaviour
         else
             animationController.ShootingAnimation(false);
     }
-    
+   
     private void LookRotation()
     {
 
@@ -71,5 +73,14 @@ public class Controller : MonoBehaviour
         transform.rotation = rot;
 
     }
-   
+    private void CheckevelComplete()
+    {
+
+        if (WalkerManager.insectCounter <= 0)
+        {
+            GameController.changeGameState(GameState.Complete);
+            
+        }
+        // insectcounter = WalkerManager.insectCounter;
+    }
 }

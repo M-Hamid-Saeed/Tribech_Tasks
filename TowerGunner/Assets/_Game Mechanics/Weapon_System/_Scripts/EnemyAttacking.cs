@@ -1,4 +1,5 @@
 using Character_Management;
+using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -26,11 +27,21 @@ public class EnemyAttacking : MonoBehaviour
         {
             InsectHealth insect_health = insect.GetComponentInParent<InsectHealth>();
             player_health.Damage(insect_health.insectAttackingDamage);
+            StartCoroutine(waitforDestroy(insect.transform.parent.gameObject));
+           
+
         }
     }
     private void OnDrawGizmosSelected()
     {
         Gizmos.DrawWireSphere(attackPoint.position, attackRange);
+    }
+
+    IEnumerator waitforDestroy(GameObject insect)
+    {
+       // insect.transform.DOScale(insect.transform.localScale * .5f, 2f);
+        yield return new WaitForSeconds(1f);
+        Destroy(insect);
     }
 
 

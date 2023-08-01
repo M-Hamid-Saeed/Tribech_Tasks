@@ -1,5 +1,6 @@
 using AxisGames.ParticleSystem;
 using AxisGames.Pooler;
+using DG.Tweening;
 using UnityEngine;
 
 namespace AxisGames
@@ -10,7 +11,7 @@ namespace AxisGames
         {
             public float speed;
             private Vector3 hitPos;
-            [SerializeField] FiringSystem firingSystem;
+           
 
             [Space]
             [Header("Bullet Visuals")]
@@ -44,20 +45,14 @@ namespace AxisGames
 
             void FixedUpdate()
             {
+
                 rigidbody.velocity = direction * (speed * Time.fixedDeltaTime);
-                
-                //transform.Translate(Vector3.forward * speed * Time.fixedDeltaTime);
-                // rigidbody.AddForce(direction.normalized * speed, ForceMode.Impulse);
-                // rigidbody.AddForce( * speed, ForceMode.Impulse);
-
-                //transform.position += direction * speed * Time.fixedDeltaTime;
                 transform.rotation = Quaternion.LookRotation(direction.normalized, Vector3.up);
-                //transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(direction) ,  Time.deltaTime);
-
                 lifeTime -= Time.deltaTime;
                 if (lifeTime < 0)
                 {
                     //Debug.Log("Bullet Freed");
+                   
                     pool.Free(this);
                     EnableTrail(false);
                     lifeTime = 2;
@@ -66,27 +61,23 @@ namespace AxisGames
 
             private void OnCollisionEnter(Collision collision)
             {
+                Vibration.Cancel();   
                 IDamageable insect = collision.collider.GetComponentInParent<IDamageable>();
                 if (insect != null)
                 {
                     insect.Damage(damage);
                     Debug.Log("DAMAGE DONE   " + damage);
-
+                    Vibration.VibrateNope();
                 }
 
-                ParticleManager.Instance?.PlayParticle(particleType, collision.GetContact(0).point);
+                ParticleManager.Instance?.PlayParticle(particleType, collision.gameObject.transform.position);
 
                 pool.Free(this);
-                /*firingSystem.trail.emitting = false;
-				firingSystem.trail.gameObject.SetActive(false);
-
-				firingSystem.trail.Clear();
-				Destroy(firingSystem.trail.gameObject);
-                firingSystem.TrailPool.Release(firingSystem.trail);*/
-
                 EnableTrail(false);
+               
 
             }
+           
             public void SetColor(Material newColor)
             {
                 visual.material = newColor;

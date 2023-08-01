@@ -88,20 +88,22 @@ public class FiringSystem : Weapon
 	public override void AddAmmo(float amount)
 	{
 		currentAmo += amount;
-		//Vibration.VibratePop();
+		
 	}
 
 	public override void Shot(Vector3 aimPoint)
 	{
-	//	if (!isReloading)
-	//	{
+		if (!isReloading)
+		{
 			//if (currentAmo == 0) { Reload(); return; }
-			this.aimPoint = aimPoint;
+	    this.aimPoint = aimPoint;
 		SoundManager.Instance.PlayOneShot(SoundManager.Instance.shoot, .5f);
+		
 		//FunctionTimer.Create(() => { SoundManager.Instance.PlayOneShot(SoundManager.Instance.shoot, .5f); }, 0.5f);
 		canShot = false;
+		
 
-		//}
+		}
 		
 	}
 
@@ -119,8 +121,10 @@ public class FiringSystem : Weapon
 	private IEnumerator BulletShoot()
 	{
 		yield return waitForHold;
+		
 		while (!canShot)
 		{
+			
 			//var bulletClone = pooler.GetNew();
 			Bullet bulletClone = bulletPooler.GetNew();
 			
@@ -130,11 +134,12 @@ public class FiringSystem : Weapon
 			bulletClone.SetHitPosition(aimPoint);
 			
 			bulletClone.transform.position = muzzlePoint.position;
+			bulletClone.transform.rotation = muzzlePoint.rotation;
 			bulletClone.Trigger((aimPoint - muzzlePoint.position).normalized);
-		    
 
+			
 			PlayFiringPlartice(muzzlePoint);
-			//currentAmo--;
+			
 			yield return fireRateTime;
 			canShot = true;
 		}

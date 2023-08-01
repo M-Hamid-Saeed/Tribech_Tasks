@@ -34,7 +34,6 @@ namespace Character_Management
             {
                 PlayDeathParticle();
                 WalkerManager.insectCounter--;
-                CheckevelComplete();
                 Destroy(gameObject);
             }
            
@@ -48,17 +47,7 @@ namespace Character_Management
             healthUI.SetDamage(currentHealth);
 
         }
-        private void CheckevelComplete()
-        {
-
-            if (WalkerManager.insectCounter <= 0)
-            {
-                
-                GameController.changeGameState(GameState.Complete);
-             
-            }
-           // insectcounter = WalkerManager.insectCounter;
-        }
+       
 
         private void PlayDeathParticle()
         {

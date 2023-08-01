@@ -37,8 +37,17 @@ namespace Character_Management
 
         private void Awake()
         {
+            Debug.Log("In awake");
+
             if (!walkerDataSheet) { Debug.Log("Walker Data Not Assigned !!"); return; }
             if (!Container) { Debug.Log("Container Not Assigned !!"); return; }
+            currentDataIndex = LevelManager.CurrentLevelNumber;
+            if (currentDataIndex > walkerDataSheet.walkerDataList.Length - 1)
+                currentDataIndex %= walkerDataSheet.walkerDataList.Length;
+            for (int j = 0; j < walkerDataSheet.walkerDataList[currentDataIndex].walkerlist.Length; j++)
+            {
+                insectCounter += walkerDataSheet.walkerDataList[currentDataIndex].walkerlist[j].spawnNumber;
+            }
             GameController.onGameplay += LoadWalkers;
          
         }
@@ -62,14 +71,9 @@ namespace Character_Management
 
         public void LoadWalkers()
         {
-            currentDataIndex = LevelManager.CurrentLevelNumber;
-            if (currentDataIndex > walkerDataSheet.walkerDataList.Length - 1)
-                currentDataIndex %= walkerDataSheet.walkerDataList.Length;
+           
 
-            for (int j = 0; j < walkerDataSheet.walkerDataList[currentDataIndex]. walkerlist.Length; j++)
-            {
-                insectCounter += walkerDataSheet.walkerDataList[currentDataIndex].walkerlist[j].spawnNumber;
-            }
+           
             for (int i = 0; i < walkerDataSheet.walkerDataList[currentDataIndex].
                                             walkerlist.Length; i++)
             {
