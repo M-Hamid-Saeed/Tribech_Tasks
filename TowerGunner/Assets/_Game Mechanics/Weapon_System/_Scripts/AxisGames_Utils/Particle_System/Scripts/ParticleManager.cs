@@ -30,12 +30,9 @@ namespace AxisGames.ParticleSystem
             Particle popedParticle = GetParticle(particleType);
             if (popedParticle)
             {
-
                 popedParticle.transform.position = position;
                 popedParticle.Play();
                 popedParticle.StartTimer();
-
-
             }
         }
 
@@ -43,6 +40,7 @@ namespace AxisGames.ParticleSystem
         {
             if (popupDictionary.ContainsKey(particleType))
             {
+                //Debug.Log(particleType);
                 return popupDictionary[particleType].pool.GetNew();
             }
             else

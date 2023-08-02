@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 namespace GameAssets.GameSet.GameDevUtils.Managers
 {
@@ -13,11 +14,13 @@ namespace GameAssets.GameSet.GameDevUtils.Managers
 
         public AudioClip bgClip;
         public AudioClip buttonClip;
-        public AudioClip eatInsect;
+        public AudioClip InsectHit;
         public AudioClip bombHitClip;
         public AudioClip shoot;
-        public AudioClip progression;
-        public AudioClip cash;
+        public AudioClip Explosion;
+        public AudioClip MetalHit;
+        public AudioClip RockHit;
+        public AudioClip WoodenHit;
 
 
         void Awake()
@@ -69,8 +72,29 @@ namespace GameAssets.GameSet.GameDevUtils.Managers
 
         public void PlayOneShot(AudioClip clip, float volume)
         {
-            if(!sFXSoundSource.isPlaying)
+            //sFXSoundSource.Stop();
+            
+            sFXSoundSource.PlayOneShot(clip, volume);
+            /*if (!sFXSoundSource.isPlaying)
+            {
                 sFXSoundSource.PlayOneShot(clip, volume);
+            }*/
+        }
+        public void PlayShootSound(float fireRate, AudioClip clip, float volume)
+        {
+            //sFXSoundSource.Stop();
+
+            StartCoroutine(WaitForFireRate(fireRate, clip, volume));
+            /*if (!sFXSoundSource.isPlaying)
+            {
+                sFXSoundSource.PlayOneShot(clip, volume);
+            }*/
+        }
+        
+        IEnumerator WaitForFireRate(float fireRate, AudioClip clip, float volume)
+        {
+            yield return new WaitForSeconds(fireRate+1f);
+            sFXSoundSource.PlayOneShot(clip, volume);
         }
 
         public void PlayButtonSound() => sFXSoundSource.PlayOneShot(buttonClip, 1);

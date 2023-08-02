@@ -97,7 +97,7 @@ public class FiringSystem : Weapon
 		{
 			//if (currentAmo == 0) { Reload(); return; }
 	    this.aimPoint = aimPoint;
-		SoundManager.Instance.PlayOneShot(SoundManager.Instance.shoot, .5f);
+		//SoundManager.Instance.PlayShootSound(weaponData.dataSheet.fireRate,SoundManager.Instance.shoot, .5f);
 		
 		//FunctionTimer.Create(() => { SoundManager.Instance.PlayOneShot(SoundManager.Instance.shoot, .5f); }, 0.5f);
 		canShot = false;
@@ -168,10 +168,10 @@ public class FiringSystem : Weapon
 
 	private void LoadGun()
 	{
-		for (int i = 0; i < guns.Length; i++)
+		/*for (int i = 0; i < guns.Length; i++)
 		{
 			guns[i].gameObject.SetActive(false);
-		}
+		}*/
 
 		currentGun = guns[(int)weaponData.guntype];
 		currentGun.gameObject.SetActive(true);

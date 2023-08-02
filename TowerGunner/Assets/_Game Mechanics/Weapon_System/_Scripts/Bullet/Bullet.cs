@@ -1,6 +1,8 @@
 using AxisGames.ParticleSystem;
 using AxisGames.Pooler;
 using DG.Tweening;
+using GameAssets.GameSet.GameDevUtils.Managers;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace AxisGames
@@ -19,8 +21,12 @@ namespace AxisGames
             [SerializeField] TrailRenderer trailRenderer;
             [Space]
             [SerializeField] Rigidbody rigidbody;
-
-            [SerializeField] ParticleType particleType;
+            
+            [SerializeField] ParticleType InsectHitParticleType;
+            [SerializeField] ParticleType IronHitParticleType;
+            [SerializeField] ParticleType DirtHitParticleType;
+            [SerializeField] ParticleType WoodHitParticleType;
+            [SerializeField] ParticleType RockHitParticleType;
             public int poolID { get; set; }
             public ObjectPooler<Bullet> pool { get; set; }
 
@@ -49,7 +55,7 @@ namespace AxisGames
                 rigidbody.velocity = direction * (speed * Time.fixedDeltaTime);
                 transform.rotation = Quaternion.LookRotation(direction.normalized, Vector3.up);
                 lifeTime -= Time.deltaTime;
-                if (lifeTime < 0)
+                if (lifeTime < 0)                                                                                
                 {
                     //Debug.Log("Bullet Freed");
                    
@@ -61,17 +67,37 @@ namespace AxisGames
 
             private void OnCollisionEnter(Collision collision)
             {
+                
                 Vibration.Cancel();   
-                IDamageable insect = collision.collider.GetComponentInParent<IDamageable>();
-                if (insect != null)
+                IDamageable targetObject = collision.collider.GetComponentInParent<IDamageable>();
+                if (targetObject != null)
                 {
-                    insect.Damage(damage);
-                    Debug.Log("DAMAGE DONE   " + damage);
+                    targetObject.Damage(damage);
                     Vibration.VibrateNope();
                 }
+                Debug.Log(collision.gameObject.tag);
+                if (collision.gameObject.CompareTag("Insects"))
+                {
+                    SoundManager.Instance.PlayOneShot(SoundManager.Instance.InsectHit, 1f);
+                    ParticleManager.Instance?.PlayParticle(InsectHitParticleType, collision.contacts[0].point);
+                }
+                if (collision.gameObject.CompareTag("Iron"))
+                {
+                    Debug.Log("IRON HIT");
 
-                ParticleManager.Instance?.PlayParticle(particleType, collision.gameObject.transform.position);
-
+                    SoundManager.Instance.PlayOneShot(SoundManager.Instance.MetalHit, 1f);
+                    ParticleManager.Instance?.PlayParticle(IronHitParticleType, collision.contacts[0].point);
+                }
+                if (collision.gameObject.CompareTag("Rock"))
+                {
+                    SoundManager.Instance.PlayOneShot(SoundManager.Instance.RockHit, .3f);
+                    ParticleManager.Instance?.PlayParticle(RockHitParticleType, collision.contacts[0].point);
+                }
+                if (collision.gameObject.CompareTag("Wood"))
+                {
+                    SoundManager.Instance.PlayOneShot(SoundManager.Instance.WoodenHit, .3f);
+                    ParticleManager.Instance?.PlayParticle(WoodHitParticleType, collision.contacts[0].point);
+                }
                 pool.Free(this);
                 EnableTrail(false);
                

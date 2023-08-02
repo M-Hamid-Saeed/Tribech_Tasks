@@ -9,7 +9,8 @@ namespace Character_Management
         [SerializeField] float insectMaxDamageTaken;
         public float insectAttackingDamage;
         [SerializeField] HealthBarUI healthUI;
-        [SerializeField] ParticleType particleType;
+        [SerializeField] ParticleType DeathParticleType;
+       
 
         public float currentHealth;
 
@@ -21,13 +22,13 @@ namespace Character_Management
         }
         public void Damage(float damage)
         {
+            
             if (damage <= insectMaxDamageTaken)
             {
                 currentHealth -= damage;
             }
 
             else
-
                 currentHealth -= insectMaxDamageTaken;
 
             if (currentHealth <= 0)
@@ -49,11 +50,9 @@ namespace Character_Management
         }
        
 
-        private void PlayDeathParticle()
+        public void PlayDeathParticle()
         {
-            ParticleManager.Instance?.PlayParticle(particleType,transform.position);
+            ParticleManager.Instance?.PlayParticle(DeathParticleType,transform.position);
         }
-
-
     }
 }

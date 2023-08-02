@@ -1,17 +1,19 @@
 using Character_Management;
-using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using EZCameraShake;
 
 public class EnemyAttacking : MonoBehaviour
 {
     [SerializeField] playerHealth player_health;
-    
     [SerializeField] LayerMask insectLayer;
     [SerializeField] Transform attackPoint;
     [SerializeField] float attackRange;
-
+    
+    [SerializeField] ParticleSystem playerHitParticle;
+    
+    
     private void FixedUpdate()
     {
         GetHit();
@@ -27,9 +29,11 @@ public class EnemyAttacking : MonoBehaviour
         {
             InsectHealth insect_health = insect.GetComponentInParent<InsectHealth>();
             player_health.Damage(insect_health.insectAttackingDamage);
-            StartCoroutine(waitforDestroy(insect.transform.parent.gameObject));
-           
+            //Instantiate(playerHitParticle, this.transform);
+           // cameraShakeManager.ShakeCamera();
 
+            
+            StartCoroutine(waitforDestroy(insect_health));
         }
     }
     private void OnDrawGizmosSelected()
@@ -37,11 +41,12 @@ public class EnemyAttacking : MonoBehaviour
         Gizmos.DrawWireSphere(attackPoint.position, attackRange);
     }
 
-    IEnumerator waitforDestroy(GameObject insect)
+    IEnumerator waitforDestroy(InsectHealth insect_health)
     {
        // insect.transform.DOScale(insect.transform.localScale * .5f, 2f);
-        yield return new WaitForSeconds(1f);
-        Destroy(insect);
+        yield return new WaitForSeconds(.5f);
+        insect_health.currentHealth = 0;
+        
     }
 
 

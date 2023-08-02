@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Death
   m_EditorClassIdentifier: 
   poolerName: Death
-  particleType: 1
+  particleType: 2
   particlePrefab: {fileID: 240063227749076031, guid: 0e1af8c696d4a7f4f9a1db1c71e07b77, type: 3}
-  poolSize: 10
+  poolSize: 20
   poolContainer: {fileID: 0}

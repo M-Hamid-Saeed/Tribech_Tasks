@@ -6,8 +6,14 @@ namespace AxisGames.ParticleSystem
     public enum ParticleType
     {
         Hit,
+        IronHit,
         Death,
-        Confitie
+        Confitie,
+        Explosion,
+        Rock,
+        Wooden,
+        Dirt
+
     }
 
 

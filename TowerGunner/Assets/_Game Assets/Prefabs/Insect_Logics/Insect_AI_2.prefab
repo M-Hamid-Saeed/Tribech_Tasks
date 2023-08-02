@@ -564,7 +564,7 @@ MonoBehaviour:
   insectMaxDamageTaken: 32
   insectAttackingDamage: 0.1
   healthUI: {fileID: 2138674337793730577}
-  particleType: 1
+  DeathParticleType: 2
   currentHealth: 0
 --- !u!1 &1942291706233041565
 GameObject:
@@ -918,7 +918,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2993401397868826643}
-  m_LocalRotation: {x: 0.0001505018, y: 0.042977598, z: 0.9990698, w: 0.0035169404}
+  m_LocalRotation: {x: 0.00007978964, y: 0.06366218, z: 0.9979654, w: 0.0035076973}
   m_LocalPosition: {x: -0, y: -0.0006722121, z: -0.00017811666}
   m_LocalScale: {x: 1, y: 1, z: 1.000003}
   m_ConstrainProportionsScale: 0
@@ -926,7 +926,7 @@ Transform:
   - {fileID: 2750810364231743056}
   m_Father: {fileID: 1879317906690465063}
   m_RootOrder: 7
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -7.3, y: 0.035, z: 179.595}
 --- !u!1 &3107024893314602533
 GameObject:
   m_ObjectHideFlags: 0
@@ -950,7 +950,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3107024893314602533}
-  m_LocalRotation: {x: 0.08370817, y: -0, z: -0, w: 0.9964903}
+  m_LocalRotation: {x: 0.083607495, y: -0.047809836, z: 0.004015963, w: 0.9953431}
   m_LocalPosition: {x: -0, y: 0.008165292, z: -2.2351741e-10}
   m_LocalScale: {x: 1, y: 1.0000001, z: 1}
   m_ConstrainProportionsScale: 0
@@ -958,7 +958,7 @@ Transform:
   - {fileID: 2177034984734003518}
   m_Father: {fileID: 1879317906690465063}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 9.603, y: -5.5, z: 0}
 --- !u!1 &3346567374707183186
 GameObject:
   m_ObjectHideFlags: 0
@@ -1891,7 +1891,6 @@ GameObject:
   - component: {fileID: 6505499067597634830}
   - component: {fileID: 3120366787194618676}
   - component: {fileID: 248258806}
-  - component: {fileID: 248258807}
   m_Layer: 6
   m_Name: Visual2
   m_TagString: Insects
@@ -1928,8 +1927,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.20825043, y: 0.10030949, z: 0.3603866}
-  m_Center: {x: -0.01710084, y: 0.05775568, z: -0.026323974}
+  m_Size: {x: 0.16104804, y: 0.10030949, z: 0.3603866}
+  m_Center: {x: 0.006500356, y: 0.05775568, z: -0.026323974}
 --- !u!114 &248258806
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1942,111 +1941,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50111b74410f82d48878d1c4defb80c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &248258807
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6505499067597634831}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4d0390bd8b8ffd640b34fe25065ff1df, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  updateType: 0
-  isSpeedBased: 0
-  hasOnStart: 0
-  hasOnPlay: 0
-  hasOnUpdate: 0
-  hasOnStepComplete: 0
-  hasOnComplete: 0
-  hasOnTweenCreated: 0
-  hasOnRewind: 0
-  onStart:
-    m_PersistentCalls:
-      m_Calls: []
-  onPlay:
-    m_PersistentCalls:
-      m_Calls: []
-  onUpdate:
-    m_PersistentCalls:
-      m_Calls: []
-  onStepComplete:
-    m_PersistentCalls:
-      m_Calls: []
-  onComplete:
-    m_PersistentCalls:
-      m_Calls: []
-  onTweenCreated:
-    m_PersistentCalls:
-      m_Calls: []
-  onRewind:
-    m_PersistentCalls:
-      m_Calls: []
-  targetIsSelf: 1
-  targetGO: {fileID: 0}
-  tweenTargetIsTargetGO: 1
-  delay: 0
-  duration: 1
-  easeType: 6
-  easeCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  loopType: 0
-  loops: 1
-  id: Shake
-  isRelative: 0
-  isFrom: 0
-  isIndependentUpdate: 0
-  autoKill: 0
-  isActive: 1
-  isValid: 1
-  target: {fileID: 6505499067597634830}
-  animationType: 13
-  targetType: 11
-  forcedTargetType: 0
-  autoPlay: 0
-  useTargetAsV3: 0
-  endValueFloat: 0
-  endValueV3: {x: 25, y: 25, z: 25}
-  endValueV2: {x: 0, y: 0}
-  endValueColor: {r: 1, g: 1, b: 1, a: 1}
-  endValueString: 
-  endValueRect:
-    serializedVersion: 2
-    x: 0
-    y: 0
-    width: 0
-    height: 0
-  endValueTransform: {fileID: 0}
-  optionalBool0: 0
-  optionalFloat0: 90
-  optionalInt0: 5
-  optionalRotationMode: 0
-  optionalScrambleMode: 0
-  optionalString: 
 --- !u!1 &6561621182966203601
 GameObject:
   m_ObjectHideFlags: 0
