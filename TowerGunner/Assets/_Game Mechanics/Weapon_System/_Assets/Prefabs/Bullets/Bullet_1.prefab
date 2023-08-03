@@ -101,7 +101,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1733455969388981352
 Transform:
   m_ObjectHideFlags: 0
@@ -168,9 +168,9 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.10269262
-  m_Height: 0.3336391
+  m_Height: 0.39560616
   m_Direction: 2
-  m_Center: {x: 0, y: -0.0050380453, z: 0.055096895}
+  m_Center: {x: 0, y: -0.0050380453, z: 0.024113357}
 --- !u!1 &8140912555423374193
 GameObject:
   m_ObjectHideFlags: 0
@@ -254,7 +254,7 @@ TrailRenderer:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 0.3912977
+        value: 0.22691476
         inSlope: 0.31640762
         outSlope: 0.31640762
         tangentMode: 0
@@ -262,13 +262,13 @@ TrailRenderer:
         inWeight: 0.33333334
         outWeight: 0.07482963
       - serializedVersion: 3
-        time: 0.46520996
-        value: 0.1956482
-        inSlope: 0.19411707
-        outSlope: 0.19411707
+        time: 0.9937134
+        value: 0.33263397
+        inSlope: 0.6977731
+        outSlope: 0.6977731
         tangentMode: 0
         weightedMode: 0
-        inWeight: 0.18670887
+        inWeight: 0.30191773
         outWeight: 0
       m_PreInfinity: 2
       m_PostInfinity: 2

@@ -76,34 +76,35 @@ namespace AxisGames
                     Vibration.VibrateNope();
                 }
                 Debug.Log(collision.gameObject.tag);
-                if (collision.gameObject.CompareTag("Insects"))
-                {
-                    SoundManager.Instance.PlayOneShot(SoundManager.Instance.InsectHit, 1f);
-                    ParticleManager.Instance?.PlayParticle(InsectHitParticleType, collision.contacts[0].point);
-                }
-                if (collision.gameObject.CompareTag("Iron"))
-                {
-                    Debug.Log("IRON HIT");
 
-                    SoundManager.Instance.PlayOneShot(SoundManager.Instance.MetalHit, 1f);
-                    ParticleManager.Instance?.PlayParticle(IronHitParticleType, collision.contacts[0].point);
-                }
-                if (collision.gameObject.CompareTag("Rock"))
-                {
-                    SoundManager.Instance.PlayOneShot(SoundManager.Instance.RockHit, .3f);
-                    ParticleManager.Instance?.PlayParticle(RockHitParticleType, collision.contacts[0].point);
-                }
-                if (collision.gameObject.CompareTag("Wood"))
-                {
-                    SoundManager.Instance.PlayOneShot(SoundManager.Instance.WoodenHit, .3f);
-                    ParticleManager.Instance?.PlayParticle(WoodHitParticleType, collision.contacts[0].point);
-                }
+                if (collision.gameObject.CompareTag("Insects"))
+
+                    PlayParticle_Sound(InsectHitParticleType, collision, SoundManager.Instance.InsectHit, 1f);
+
+                else if (collision.gameObject.CompareTag("Iron"))
+
+                    PlayParticle_Sound(IronHitParticleType, collision, SoundManager.Instance.MetalHit, .3f);
+
+                else if (collision.gameObject.CompareTag("Rock"))
+                
+                    PlayParticle_Sound(RockHitParticleType, collision, SoundManager.Instance.RockHit, .5f);
+                
+                else if (collision.gameObject.CompareTag("Wood"))
+                
+                    PlayParticle_Sound(WoodHitParticleType, collision, SoundManager.Instance.WoodenHit, .5f);
+
+                
                 pool.Free(this);
                 EnableTrail(false);
                
 
             }
-           
+            
+            private void PlayParticle_Sound(ParticleType particle, Collision collision, AudioClip audio, float volume)
+            {
+                ParticleManager.Instance?.PlayParticle(particle, collision.contacts[0].point);
+                SoundManager.Instance.PlayOneShot(audio, volume);
+            }
             public void SetColor(Material newColor)
             {
                 visual.material = newColor;

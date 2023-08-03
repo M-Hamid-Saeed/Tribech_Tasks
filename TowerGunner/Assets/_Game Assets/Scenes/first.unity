@@ -2491,7 +2491,7 @@ MonoBehaviour:
   buttonClip: {fileID: 0}
   InsectHit: {fileID: 8300000, guid: c81f9f68dbd8dcd4ea8ddb940d0a5a65, type: 3}
   bombHitClip: {fileID: 8300000, guid: 33128f0eab9af1f4192a72b6bfafb6ee, type: 3}
-  shoot: {fileID: 8300000, guid: 21e6a9bc4ef14a041ba4d30aca457239, type: 3}
+  shoot: {fileID: 8300000, guid: e2ba2ee8b0737ec488295fcdfa5eea46, type: 3}
   Explosion: {fileID: 0}
   MetalHit: {fileID: 8300000, guid: 586da9ad9a43e994095ad17917b3a534, type: 3}
   RockHit: {fileID: 8300000, guid: df596b6c604168a4a8e7f64bbd8e2cda, type: 3}
@@ -3495,7 +3495,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1733455969388981352, guid: ff1a4d53ec192714ab2eba9fd1a64a8b, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.0351
+      value: -0.0117
       objectReference: {fileID: 0}
     - target: {fileID: 1733455969388981352, guid: ff1a4d53ec192714ab2eba9fd1a64a8b, type: 3}
       propertyPath: m_LocalRotation.w
@@ -3528,6 +3528,10 @@ PrefabInstance:
     - target: {fileID: 2945876856862412137, guid: ff1a4d53ec192714ab2eba9fd1a64a8b, type: 3}
       propertyPath: m_Name
       value: Bullet_1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2945876856862412137, guid: ff1a4d53ec192714ab2eba9fd1a64a8b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ff1a4d53ec192714ab2eba9fd1a64a8b, type: 3}
@@ -3810,7 +3814,6 @@ GameObject:
   - component: {fileID: 2060818820}
   - component: {fileID: 2060818819}
   - component: {fileID: 2060818818}
-  - component: {fileID: 2060818817}
   m_Layer: 8
   m_Name: GameObject
   m_TagString: Iron
@@ -3818,22 +3821,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!54 &2060818817
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2060818816}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 0
-  m_IsKinematic: 1
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!65 &2060818818
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3843,10 +3830,10 @@ BoxCollider:
   m_GameObject: {fileID: 2060818816}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
-  m_Size: {x: 12.923166, y: 12.089447, z: 6.4391212}
-  m_Center: {x: 0.92924786, y: -1.137105, z: 1.2103052}
+  m_Size: {x: 12.923166, y: 6.232544, z: 6.4391212}
+  m_Center: {x: 0.92924786, y: 1.7913467, z: 1.2103052}
 --- !u!114 &2060818819
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7023,9 +7010,9 @@ MonoBehaviour:
   weaponData: {fileID: 11400000, guid: 769d542625184764db3cacb4d01717d3, type: 2}
   fireSoundSource: {fileID: 1429625507236811421}
   guns:
-  - {fileID: 0}
   - {fileID: 9165163665413198350}
-  - {fileID: 0}
+  - {fileID: 9165163665413198350}
+  - {fileID: 9165163665413198350}
 --- !u!114 &1429625508871401521
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7055,7 +7042,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1429625509084260851}
   m_LocalRotation: {x: -0.095845714, y: 0, z: 0, w: 0.99539626}
-  m_LocalPosition: {x: -0.015, y: -0.009, z: -0.821}
+  m_LocalPosition: {x: -0.027, y: -0.013, z: -0.844}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []

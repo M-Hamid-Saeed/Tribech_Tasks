@@ -44,8 +44,9 @@ public class FiringSystem : Weapon
 	float filltimer;
 	Vector3 aimPoint;
 	bool isReloading;
+    private float lastShootTime;
 
-	public void Init()
+    public void Init()
 	{
 		if (weaponData == null) { Debug.LogError("Data Not Assigned in Fire System"); return; }
 		LoadGun();
@@ -101,9 +102,16 @@ public class FiringSystem : Weapon
 		
 		//FunctionTimer.Create(() => { SoundManager.Instance.PlayOneShot(SoundManager.Instance.shoot, .5f); }, 0.5f);
 		canShot = false;
-		
 
-		}
+		if (Time.time > weaponData.dataSheet.fireRate + lastShootTime)
+            {
+				lastShootTime = Time.time;
+                SoundManager.Instance.PlayShootSound(SoundManager.Instance.shoot, .2f);
+
+            }
+
+
+        }
 		
 	}
 

@@ -73,27 +73,23 @@ namespace GameAssets.GameSet.GameDevUtils.Managers
         public void PlayOneShot(AudioClip clip, float volume)
         {
             //sFXSoundSource.Stop();
-            
+
             sFXSoundSource.PlayOneShot(clip, volume);
             /*if (!sFXSoundSource.isPlaying)
             {
                 sFXSoundSource.PlayOneShot(clip, volume);
             }*/
         }
-        public void PlayShootSound(float fireRate, AudioClip clip, float volume)
+        public void PlayShootSound(AudioClip clip, float volume)
         {
-            //sFXSoundSource.Stop();
 
-            StartCoroutine(WaitForFireRate(fireRate, clip, volume));
-            /*if (!sFXSoundSource.isPlaying)
-            {
-                sFXSoundSource.PlayOneShot(clip, volume);
-            }*/
+            sFXSoundSource.PlayOneShot(clip, volume);
+
         }
-        
+
         IEnumerator WaitForFireRate(float fireRate, AudioClip clip, float volume)
         {
-            yield return new WaitForSeconds(fireRate+1f);
+            yield return new WaitForSeconds(fireRate + 1f);
             sFXSoundSource.PlayOneShot(clip, volume);
         }
 
