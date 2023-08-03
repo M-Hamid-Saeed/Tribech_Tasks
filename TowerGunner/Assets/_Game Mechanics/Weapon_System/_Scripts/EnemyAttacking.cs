@@ -1,8 +1,7 @@
 using Character_Management;
+using DG.Tweening;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using EZCameraShake;
 
 public class EnemyAttacking : MonoBehaviour
 {
@@ -10,10 +9,11 @@ public class EnemyAttacking : MonoBehaviour
     [SerializeField] LayerMask insectLayer;
     [SerializeField] Transform attackPoint;
     [SerializeField] float attackRange;
-    
-    [SerializeField] ParticleSystem playerHitParticle;
-    
-    
+    [SerializeField] DOTweenAnimation playerHitAnimation;
+    [SerializeField] CameraShake_Management CameraShakerManager;
+
+
+
     private void FixedUpdate()
     {
         GetHit();
@@ -23,16 +23,19 @@ public class EnemyAttacking : MonoBehaviour
 
     void GetHit()
     {
-        Collider[] insects = Physics.OverlapSphere(attackPoint.position, attackRange, insectLayer);
 
+        Collider[] insects = Physics.OverlapSphere(attackPoint.position, attackRange, insectLayer);
+       
         foreach (Collider insect in insects)
         {
+            Vibration.Cancel();
             InsectHealth insect_health = insect.GetComponentInParent<InsectHealth>();
             player_health.Damage(insect_health.insectAttackingDamage);
-            //Instantiate(playerHitParticle, this.transform);
-           // cameraShakeManager.ShakeCamera();
-
-            
+            CameraShakerManager.ShakeCamera();
+            Vibration.VibrateNope();
+            playerHitAnimation.DORestartById("BloodHitEffect");
+            Debug.Log("Player Attacked");
+            insect_health.GetComponentInChildren<BoxCollider>().enabled = false;
             StartCoroutine(waitforDestroy(insect_health));
         }
     }
@@ -43,10 +46,12 @@ public class EnemyAttacking : MonoBehaviour
 
     IEnumerator waitforDestroy(InsectHealth insect_health)
     {
-       // insect.transform.DOScale(insect.transform.localScale * .5f, 2f);
-        yield return new WaitForSeconds(.5f);
-        insect_health.currentHealth = 0;
+        // insect.transform.DOScale(insect.transform.localScale * .5f, 2f);
+        yield return new WaitForSeconds(.3f);
+        insect_health.Dead();
         
+       
+
     }
 
 

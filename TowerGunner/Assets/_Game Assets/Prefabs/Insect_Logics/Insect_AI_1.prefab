@@ -105,7 +105,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   totalHealth: 100
   insectMaxDamageTaken: 35
-  insectAttackingDamage: 0.2
+  insectAttackingDamage: 2
   healthUI: {fileID: 4782786062740774564}
   DeathParticleType: 2
   currentHealth: 0
@@ -334,27 +334,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7399291875844539490, guid: 41f255c0d810e1041996b6563680d336, type: 3}
       propertyPath: m_Size.x
-      value: 0.116661325
+      value: 0.2446578
       objectReference: {fileID: 0}
     - target: {fileID: 7399291875844539490, guid: 41f255c0d810e1041996b6563680d336, type: 3}
       propertyPath: m_Size.y
-      value: 0.07244209
+      value: 0.091516234
       objectReference: {fileID: 0}
     - target: {fileID: 7399291875844539490, guid: 41f255c0d810e1041996b6563680d336, type: 3}
       propertyPath: m_Size.z
-      value: 0.37992427
+      value: 0.44393834
       objectReference: {fileID: 0}
     - target: {fileID: 7399291875844539490, guid: 41f255c0d810e1041996b6563680d336, type: 3}
       propertyPath: m_Center.x
-      value: 0.0019250095
+      value: 0.0019726276
       objectReference: {fileID: 0}
     - target: {fileID: 7399291875844539490, guid: 41f255c0d810e1041996b6563680d336, type: 3}
       propertyPath: m_Center.y
-      value: 0.046002287
+      value: 0.05553936
       objectReference: {fileID: 0}
     - target: {fileID: 7399291875844539490, guid: 41f255c0d810e1041996b6563680d336, type: 3}
       propertyPath: m_Center.z
-      value: -0.016358007
+      value: 0.0044899466
       objectReference: {fileID: 0}
     - target: {fileID: 7961554581890620306, guid: 41f255c0d810e1041996b6563680d336, type: 3}
       propertyPath: healthUI

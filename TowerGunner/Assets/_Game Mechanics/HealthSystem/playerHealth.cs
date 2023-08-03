@@ -22,14 +22,16 @@ public class playerHealth : MonoBehaviour
             currentHealth -= damage;
         else
             currentHealth -= playerMaxDamageTaken;
-       
-        if(currentHealth <= 0)
+        Debug.Log(damage);
+
+        if (currentHealth <= 0)
             levelOver();
         
         SetUI();
     }
     private void SetUI()
     {
+        Debug.Log("SETTING UI");
 
         healthUI.SetDamage(currentHealth);
 

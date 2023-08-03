@@ -562,7 +562,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   totalHealth: 100
   insectMaxDamageTaken: 32
-  insectAttackingDamage: 0.1
+  insectAttackingDamage: 4
   healthUI: {fileID: 2138674337793730577}
   DeathParticleType: 2
   currentHealth: 0
@@ -1927,8 +1927,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.16104804, y: 0.10030949, z: 0.3603866}
-  m_Center: {x: 0.006500356, y: 0.05775568, z: -0.026323974}
+  m_Size: {x: 0.2237663, y: 0.10030949, z: 0.3603866}
+  m_Center: {x: 0.006524861, y: 0.05775568, z: -0.026323974}
 --- !u!114 &248258806
 MonoBehaviour:
   m_ObjectHideFlags: 0

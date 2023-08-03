@@ -15,5 +15,5 @@ MonoBehaviour:
   poolerName: Explosion
   particleType: 4
   particlePrefab: {fileID: 2879140877408421091, guid: 29c72787614825e4f89ae8e48b9cfb18, type: 3}
-  poolSize: 10
+  poolSize: 4
   poolContainer: {fileID: 0}

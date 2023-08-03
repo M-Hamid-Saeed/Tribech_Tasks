@@ -33,9 +33,9 @@ namespace Character_Management
 
             if (currentHealth <= 0)
             {
-                PlayDeathParticle();
+               
                 WalkerManager.insectCounter--;
-                Destroy(gameObject);
+                Dead();
             }
            
             SetUI();
@@ -50,9 +50,12 @@ namespace Character_Management
         }
        
 
-        public void PlayDeathParticle()
+        public void Dead()
         {
-            ParticleManager.Instance?.PlayParticle(DeathParticleType,transform.position);
+
+            ParticleManager.Instance?.PlayParticle(DeathParticleType, transform.position);
+            Destroy(gameObject);
+
         }
     }
 }

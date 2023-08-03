@@ -106,7 +106,7 @@ public class FiringSystem : Weapon
 		if (Time.time > weaponData.dataSheet.fireRate + lastShootTime)
             {
 				lastShootTime = Time.time;
-                SoundManager.Instance.PlayShootSound(SoundManager.Instance.shoot, .2f);
+                SoundManager.Instance.PlayShootSound(SoundManager.Instance.shoot, .1f);
 
             }
 
@@ -115,12 +115,7 @@ public class FiringSystem : Weapon
 		
 	}
 
-	private IEnumerator SoundDelay()
-    {
-		yield return new WaitForSeconds(.5f);
-		SoundManager.Instance.PlayOneShot(SoundManager.Instance.shoot, .5f);
-	}
-
+	
 	public Transform GetFirePoint()
 	{
 		return muzzlePoint;

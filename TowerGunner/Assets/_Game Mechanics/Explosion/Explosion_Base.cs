@@ -4,21 +4,30 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Explosion {
+namespace DarkVortex {
     public class Explosion_Base : MonoBehaviour, IDamageable
     {
         [SerializeField] float attackRange;
         [SerializeField] float MaxHealth;
         [SerializeField] float MaxDamageTaken;
         [SerializeField] float ExplosionDamage;
+        [Space(3)]
+        [SerializeField] GameObject explosionRange;
+        [Space(3)]
         [SerializeField] CameraShake_Management CameraShakeManager;
         [SerializeField]  ParticleType  ExplosinParticleType;
+        [SerializeField]  ParticleType  BulletHitParticleType;
+        [SerializeField]  SoundType soundType;
+        [SerializeField]  SoundType ExplosionSound;
+        [SerializeField] float volume;
+
         public float currentHealth;
 
         private void Awake()
         {
-            gameObject.GetComponent<BoxCollider>().enabled = false;
+           // gameObject.GetComponent<BoxCollider>().enabled = false;
             currentHealth = MaxHealth;
+            explosionRange.SetActive(false);
         }
         public void Damage(float damage)
         {
@@ -29,33 +38,39 @@ namespace Explosion {
 
             if (currentHealth <= 0)
             {
-                gameObject.GetComponent<BoxCollider>().enabled = true;
+                gameObject.GetComponentInChildren<BoxCollider>().enabled = false;
+                gameObject.GetComponentInChildren<MeshRenderer>().enabled = false;
                 CameraShakeManager.ShakeCamera();
                 PlayExplosionParticle();
-                gameObject.GetComponentInChildren<MeshRenderer>().enabled = false;
+                
+                if(explosionRange)
+                    explosionRange?.SetActive(true);
                 StartCoroutine(WaitForDestroy());
                 
             }
 
         }
 
-        private void OnTriggerStay(Collider other)
-        {
-            Debug.Log("IN THE TRIGGER");
-
-            other.gameObject.GetComponentInParent<IDamageable>().Damage(ExplosionDamage);
-
-        }
 
         private IEnumerator WaitForDestroy()
         {
-            yield return new WaitForSeconds(0.5f);
-            
+            yield return new WaitForSeconds(1f);
             Destroy(gameObject);
         }
         private void PlayExplosionParticle()
         {
             ParticleManager.Instance?.PlayParticle(ExplosinParticleType, transform.position);
+            SoundManager.Instance.PlayOneShot(ExplosionSound,1f);
         }
+        
+
+
+        public void PlayParticle_Sound(Vector3 collisionPoint)
+        {
+            SoundManager.Instance.PlayOneShot(soundType, volume);
+            ParticleManager.Instance?.PlayParticle(BulletHitParticleType, collisionPoint);
+
+        }
+       
     } 
 }

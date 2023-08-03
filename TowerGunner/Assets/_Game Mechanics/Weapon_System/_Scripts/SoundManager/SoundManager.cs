@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace GameAssets.GameSet.GameDevUtils.Managers
 {
@@ -21,6 +20,7 @@ namespace GameAssets.GameSet.GameDevUtils.Managers
         public AudioClip MetalHit;
         public AudioClip RockHit;
         public AudioClip WoodenHit;
+        public AudioClip DustSound;
 
 
         void Awake()
@@ -70,28 +70,41 @@ namespace GameAssets.GameSet.GameDevUtils.Managers
 
         }
 
-        public void PlayOneShot(AudioClip clip, float volume)
+        public void PlayOneShot(SoundType audioType, float volume)
         {
-            //sFXSoundSource.Stop();
 
-            sFXSoundSource.PlayOneShot(clip, volume);
-            /*if (!sFXSoundSource.isPlaying)
+            switch (audioType)
             {
-                sFXSoundSource.PlayOneShot(clip, volume);
-            }*/
+                case SoundType.InsectHit:
+                    PlayShootSound(InsectHit, volume);
+                    break;
+                case SoundType.MetalHit:
+                    PlayShootSound(MetalHit, volume);
+                    break;
+                case SoundType.RockHit:
+                    PlayShootSound(RockHit, volume);
+                    break;
+                case SoundType.WoodenHit:
+                    PlayShootSound(WoodenHit, volume);
+                    break;
+                case SoundType.ExplosionSound:
+                    PlayShootSound(Explosion, volume);
+                    break;
+                case SoundType.DustSound:
+                    PlayShootSound(DustSound, volume);
+                    break;
+                default:
+                    break;
+            }
+
+
         }
         public void PlayShootSound(AudioClip clip, float volume)
         {
 
             sFXSoundSource.PlayOneShot(clip, volume);
-
         }
 
-        IEnumerator WaitForFireRate(float fireRate, AudioClip clip, float volume)
-        {
-            yield return new WaitForSeconds(fireRate + 1f);
-            sFXSoundSource.PlayOneShot(clip, volume);
-        }
 
         public void PlayButtonSound() => sFXSoundSource.PlayOneShot(buttonClip, 1);
 
@@ -99,5 +112,13 @@ namespace GameAssets.GameSet.GameDevUtils.Managers
 
     }
 
-
+    public enum SoundType
+    {
+        InsectHit,
+        RockHit,
+        MetalHit,
+        WoodenHit,
+        ExplosionSound,
+        DustSound
+    }
 }

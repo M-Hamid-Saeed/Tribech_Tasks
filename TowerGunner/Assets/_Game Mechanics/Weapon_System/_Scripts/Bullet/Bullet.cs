@@ -1,9 +1,8 @@
 using AxisGames.ParticleSystem;
 using AxisGames.Pooler;
-using DG.Tweening;
 using GameAssets.GameSet.GameDevUtils.Managers;
-using System.Collections.Generic;
 using UnityEngine;
+using DarkVortex;
 
 namespace AxisGames
 {
@@ -23,10 +22,9 @@ namespace AxisGames
             [SerializeField] Rigidbody rigidbody;
             
             [SerializeField] ParticleType InsectHitParticleType;
-            [SerializeField] ParticleType IronHitParticleType;
-            [SerializeField] ParticleType DirtHitParticleType;
-            [SerializeField] ParticleType WoodHitParticleType;
-            [SerializeField] ParticleType RockHitParticleType;
+            [SerializeField] SoundType InsectHitSoundType;
+            [SerializeField] ParticleType GroundHitParticleType;
+            [SerializeField] SoundType GroundHitSoundType;
             public int poolID { get; set; }
             public ObjectPooler<Bullet> pool { get; set; }
 
@@ -75,35 +73,40 @@ namespace AxisGames
                     targetObject.Damage(damage);
                     Vibration.VibrateNope();
                 }
-                Debug.Log(collision.gameObject.tag);
+                Debug.Log(collision.gameObject.name);
+                Explosion_Base explosion_Base = collision.collider.GetComponentInParent<Explosion_Base>();
+                if (explosion_Base != null)
+                   explosion_Base.PlayParticle_Sound(collision.GetContact(0).point);
 
                 if (collision.gameObject.CompareTag("Insects"))
+                    PlayParticle_Sound(collision.GetContact(0));
+                else if (collision.gameObject.CompareTag("Ground"))
+                {
+                    ParticleManager.Instance?.PlayParticle(GroundHitParticleType, collision.GetContact(0).point);
+                    SoundManager.Instance.PlayOneShot(GroundHitSoundType, .7f);
+                }
+                /* else if (collision.gameObject.CompareTag("Iron"))
 
-                    PlayParticle_Sound(InsectHitParticleType, collision, SoundManager.Instance.InsectHit, 1f);
+                     PlayParticle_Sound(IronHitParticleType, collision, SoundManager.Instance.MetalHit, .3f);
 
-                else if (collision.gameObject.CompareTag("Iron"))
+                 else if (collision.gameObject.CompareTag("Rock"))
 
-                    PlayParticle_Sound(IronHitParticleType, collision, SoundManager.Instance.MetalHit, .3f);
+                     PlayParticle_Sound(RockHitParticleType, collision, SoundManager.Instance.RockHit, .5f);
 
-                else if (collision.gameObject.CompareTag("Rock"))
-                
-                    PlayParticle_Sound(RockHitParticleType, collision, SoundManager.Instance.RockHit, .5f);
-                
-                else if (collision.gameObject.CompareTag("Wood"))
-                
-                    PlayParticle_Sound(WoodHitParticleType, collision, SoundManager.Instance.WoodenHit, .5f);
+                 else if (collision.gameObject.CompareTag("Wood"))
 
-                
+                     PlayParticle_Sound(WoodHitParticleType, collision, SoundManager.Instance.WoodenHit, .5f);
+ */
+
                 pool.Free(this);
                 EnableTrail(false);
                
 
             }
-            
-            private void PlayParticle_Sound(ParticleType particle, Collision collision, AudioClip audio, float volume)
+            public void PlayParticle_Sound(ContactPoint collision)
             {
-                ParticleManager.Instance?.PlayParticle(particle, collision.contacts[0].point);
-                SoundManager.Instance.PlayOneShot(audio, volume);
+                ParticleManager.Instance?.PlayParticle(InsectHitParticleType, collision.point);
+                SoundManager.Instance.PlayOneShot(InsectHitSoundType,1f);
             }
             public void SetColor(Material newColor)
             {

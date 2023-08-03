@@ -101,7 +101,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1733455969388981352
 Transform:
   m_ObjectHideFlags: 0
@@ -137,10 +137,9 @@ MonoBehaviour:
   trailRenderer: {fileID: 3293558745508137070}
   rigidbody: {fileID: 101283041288965316}
   InsectHitParticleType: 0
-  IronHitParticleType: 1
-  DirtHitParticleType: 7
-  WoodHitParticleType: 6
-  RockHitParticleType: 5
+  InsectHitSoundType: 0
+  GroundHitParticleType: 7
+  GroundHitSoundType: 5
 --- !u!54 &101283041288965316
 Rigidbody:
   m_ObjectHideFlags: 0

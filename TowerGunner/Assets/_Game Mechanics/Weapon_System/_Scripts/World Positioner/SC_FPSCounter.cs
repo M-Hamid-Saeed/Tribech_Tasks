@@ -22,7 +22,7 @@ public class SC_FPSCounter : MonoBehaviour
 
         textStyle.fontStyle = FontStyle.Bold;
         textStyle.normal.textColor = Color.black;
-        textStyle.fontSize = 103;
+        textStyle.fontSize = 70;
         
     }
 

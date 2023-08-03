@@ -11,6 +11,7 @@ TagManager:
   - Iron
   - Rock
   - Wood
+  - Ground
   layers:
   - Default
   - TransparentFX
