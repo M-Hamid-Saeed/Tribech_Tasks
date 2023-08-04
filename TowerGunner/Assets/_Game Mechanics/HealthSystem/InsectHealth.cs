@@ -1,4 +1,5 @@
 using AxisGames.ParticleSystem;
+using GameAssets.GameSet.GameDevUtils.Managers;
 using System.Collections;
 using UnityEngine;
 namespace Character_Management
@@ -10,6 +11,7 @@ namespace Character_Management
         public float insectAttackingDamage;
         [SerializeField] HealthBarUI healthUI;
         [SerializeField] ParticleType DeathParticleType;
+        [SerializeField] SoundType InsectDeathSoundType;
        
 
         public float currentHealth;
@@ -24,20 +26,15 @@ namespace Character_Management
         {
             
             if (damage <= insectMaxDamageTaken)
-            {
+            
                 currentHealth -= damage;
-            }
-
             else
                 currentHealth -= insectMaxDamageTaken;
 
+
             if (currentHealth <= 0)
-            {
-               
-                WalkerManager.insectCounter--;
                 Dead();
-            }
-           
+              
             SetUI();
 
         }
@@ -52,7 +49,8 @@ namespace Character_Management
 
         public void Dead()
         {
-
+            WalkerManager.InsectCounterManage();
+            SoundManager.Instance.PlayOneShot(InsectDeathSoundType, 1f);
             ParticleManager.Instance?.PlayParticle(DeathParticleType, transform.position);
             Destroy(gameObject);
 

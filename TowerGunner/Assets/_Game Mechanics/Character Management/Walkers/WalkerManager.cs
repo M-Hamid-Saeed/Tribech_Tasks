@@ -29,8 +29,8 @@ namespace Character_Management
         [SerializeField] float m_MinSpeed = 0.5f;
         [SerializeField] float m_MaxSpeed = 1f;
         [SerializeField] float spawnWaitTime = 5f;
-        public static int insectCounter = 0;
-       
+        public static int insectCounter;
+
 
         public int currentDataIndex;
         int pathIndex;
@@ -49,7 +49,7 @@ namespace Character_Management
                 insectCounter += walkerDataSheet.walkerDataList[currentDataIndex].walkerlist[j].spawnNumber;
             }
             GameController.onGameplay += LoadWalkers;
-         
+
         }
 
         private void HouseManager_OnHouseComplete()
@@ -71,13 +71,13 @@ namespace Character_Management
 
         public void LoadWalkers()
         {
-           
 
-           
+
+
             for (int i = 0; i < walkerDataSheet.walkerDataList[currentDataIndex].
                                             walkerlist.Length; i++)
             {
-                 
+
                 StartCoroutine(SetWalkers(walkerDataSheet.walkerDataList[currentDataIndex].walkerlist[i].character,
                        walkerDataSheet.walkerDataList[currentDataIndex].walkerlist[i].spawnNumber));
             }
@@ -106,7 +106,16 @@ namespace Character_Management
 
             }
         }
+        public static void InsectCounterManage()
+        { 
+           insectCounter--;
+            if (insectCounter <= 0)
+                GameController.changeGameState(GameState.Complete);
+            Debug.Log(insectCounter);
+        }
 
-      
+
+
+
     }
 }

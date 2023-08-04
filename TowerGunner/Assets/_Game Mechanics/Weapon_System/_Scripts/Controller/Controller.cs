@@ -1,7 +1,7 @@
 using Character_Management;
 using GameAssets.GameSet.GameDevUtils.Managers;
 using UnityEngine;
-
+using DarkVortex;
 public class Controller : MonoBehaviour
 {
 
@@ -13,6 +13,8 @@ public class Controller : MonoBehaviour
     [SerializeField] float maxRotationY;
     [SerializeField] float lerpFactor;
     [SerializeField] WeaponAnimation_Controller animationController;
+    private bool canPlay = true;
+    [SerializeField] GameObject Missile;
 
     //Customized Touch Input 
     [SerializeField] InputManager touchInputManager;
@@ -25,18 +27,24 @@ public class Controller : MonoBehaviour
 
     private void Awake()
     {
+        
         firingSystem.Init();
+        // GameController.onGameplay += OnGameStart;
+        //GameController.onLevelFail += OnGameFail;
+        // GameController.onLevelComplete += SetPlayBoolFalse;
         Vibration.Init();
+        
     }
 
     private void Update()
     {
-        //  mousePosition = MouseWorldInput.GetPosition();
-
         insectcounter = WalkerManager.insectCounter;
-        LookRotation();
-        ShootControll();
-        CheckevelComplete();
+
+       
+            LookRotation();
+            ShootControll();
+       
+
     }
 
     private void ShootControll()
@@ -71,16 +79,22 @@ public class Controller : MonoBehaviour
         rot.x = Mathf.Clamp(rot.x, -maxRotationX, maxRotationX) ;
         rot.y = Mathf.Clamp(rot.y, -maxRotationY, maxRotationY);
         transform.rotation = rot;
-
     }
-    private void CheckevelComplete()
+
+    private void OnGameFail()
     {
-
-        if (WalkerManager.insectCounter <= 0)
-        {
-            GameController.changeGameState(GameState.Complete);
-            
-        }
-        // insectcounter = WalkerManager.insectCounter;
+       canPlay = false;
     }
+    private void OnGameStart()
+    {
+        canPlay = true;
+    }
+
+   /* private void spawnMissle()
+    {
+        GameObject missle = Instantiate(Missile, touchInputManager.camera.transform);
+        Vector3 dir = touchInputManager.GetPosition();
+        missle.GetComponent<Missile>().SetDirection(dir);
+        
+    }*/
 }

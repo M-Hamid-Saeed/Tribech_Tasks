@@ -22,7 +22,6 @@ public class playerHealth : MonoBehaviour
             currentHealth -= damage;
         else
             currentHealth -= playerMaxDamageTaken;
-        Debug.Log(damage);
 
         if (currentHealth <= 0)
             levelOver();
@@ -40,8 +39,6 @@ public class playerHealth : MonoBehaviour
 
     private void levelOver()
     {
-       
         GameController.changeGameState(GameState.Fail);
-        
     }
 }

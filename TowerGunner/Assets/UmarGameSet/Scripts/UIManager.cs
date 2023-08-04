@@ -45,6 +45,8 @@ public class UIManager : MonoBehaviour
 
     void OnLevelComplete()
     {
+        Debug.Log("COMPLETED");
+
         ActivePanel(complete: true);
     }
 

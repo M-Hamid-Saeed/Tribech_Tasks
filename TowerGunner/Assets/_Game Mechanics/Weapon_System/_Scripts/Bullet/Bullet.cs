@@ -23,6 +23,7 @@ namespace AxisGames
             
             [SerializeField] ParticleType InsectHitParticleType;
             [SerializeField] SoundType InsectHitSoundType;
+            
             [SerializeField] ParticleType GroundHitParticleType;
             [SerializeField] SoundType GroundHitSoundType;
             public int poolID { get; set; }

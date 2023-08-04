@@ -20,8 +20,8 @@ public class WalkerSpeedMultiplier : MonoBehaviour
 
     private void Awake()
     {
-      //  GameController.onHome += GameController_onHome;
-      //  GameController.onMergeArea += GameController_onMergeArea;
+        GameController.onHome += GameController_onHome;
+       // GameController.onMergeArea += GameController_onMergeArea;
     }
 
     private void Update()

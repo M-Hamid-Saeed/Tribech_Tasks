@@ -10,7 +10,10 @@ public class WalkerAnimationHandler : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Bullet"))
+        {
             TweenImpact();
+            //ScaleImpact();
+        }
         
         
     }
@@ -22,6 +25,6 @@ public class WalkerAnimationHandler : MonoBehaviour
     private void ScaleImpact()
     {
         TweenImpact();
-        transform.DOScale(transform.localScale *2f ,2f);
+        transform.DOScale(transform.localScale *-2f ,1f);
     }
 }

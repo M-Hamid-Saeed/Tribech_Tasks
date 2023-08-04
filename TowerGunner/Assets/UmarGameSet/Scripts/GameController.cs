@@ -19,8 +19,7 @@ public class GameController : MonoBehaviour
 
 	[SerializeField] GameState         gameState = GameState.Home;
 	public static    Action<GameState> changeGameState;
-
-	public static event Action onHome, onGameplay, onLevelComplete, onLevelFail;
+	public static event Action  onHome, onGameplay, onLevelComplete, onLevelFail;
 
 
 	void Awake()
@@ -48,7 +47,7 @@ public class GameController : MonoBehaviour
 				break;
 
 			case GameState.Complete:
-				onLevelComplete?.Invoke();
+				onLevelComplete?.Invoke(  );
 				break;
 
 			case GameState.Fail:

@@ -21,6 +21,7 @@ namespace GameAssets.GameSet.GameDevUtils.Managers
         public AudioClip RockHit;
         public AudioClip WoodenHit;
         public AudioClip DustSound;
+        public AudioClip InsectDeathSound;
 
 
         void Awake()
@@ -119,6 +120,7 @@ namespace GameAssets.GameSet.GameDevUtils.Managers
         MetalHit,
         WoodenHit,
         ExplosionSound,
-        DustSound
+        DustSound,
+        InsectDeath
     }
 }

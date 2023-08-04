@@ -7,17 +7,17 @@ using UnityEngine;
 namespace DarkVortex {
     public class Explosion_Base : MonoBehaviour, IDamageable
     {
-        [SerializeField] float attackRange;
-        [SerializeField] float MaxHealth;
-        [SerializeField] float MaxDamageTaken;
-        [SerializeField] float ExplosionDamage;
+      
+        [SerializeField] protected float MaxHealth;
+        [SerializeField] protected float MaxDamageTaken;
+        [SerializeField] protected float ExplosionDamage;
         [Space(3)]
         [SerializeField] GameObject explosionRange;
         [Space(3)]
         [SerializeField] CameraShake_Management CameraShakeManager;
         [SerializeField]  ParticleType  ExplosinParticleType;
         [SerializeField]  ParticleType  BulletHitParticleType;
-        [SerializeField]  SoundType soundType;
+        [SerializeField]  SoundType MetalsoundType;
         [SerializeField]  SoundType ExplosionSound;
         [SerializeField] float volume;
 
@@ -28,6 +28,7 @@ namespace DarkVortex {
            // gameObject.GetComponent<BoxCollider>().enabled = false;
             currentHealth = MaxHealth;
             explosionRange.SetActive(false);
+           
         }
         public void Damage(float damage)
         {
@@ -38,13 +39,13 @@ namespace DarkVortex {
 
             if (currentHealth <= 0)
             {
-                gameObject.GetComponentInChildren<BoxCollider>().enabled = false;
+                gameObject.GetComponentInChildren<Collider>().enabled = false;
                 gameObject.GetComponentInChildren<MeshRenderer>().enabled = false;
                 CameraShakeManager.ShakeCamera();
                 PlayExplosionParticle();
                 
                 if(explosionRange)
-                    explosionRange?.SetActive(true);
+                    explosionRange.SetActive(true);
                 StartCoroutine(WaitForDestroy());
                 
             }
@@ -59,7 +60,7 @@ namespace DarkVortex {
         }
         private void PlayExplosionParticle()
         {
-            ParticleManager.Instance?.PlayParticle(ExplosinParticleType, transform.position);
+            ParticleManager.Instance?.PlayParticle(ExplosinParticleType, new Vector3(transform.position.x,transform.position.y+1f,transform.position.z));
             SoundManager.Instance.PlayOneShot(ExplosionSound,1f);
         }
         
@@ -67,7 +68,7 @@ namespace DarkVortex {
 
         public void PlayParticle_Sound(Vector3 collisionPoint)
         {
-            SoundManager.Instance.PlayOneShot(soundType, volume);
+            SoundManager.Instance.PlayOneShot(MetalsoundType, volume);
             ParticleManager.Instance?.PlayParticle(BulletHitParticleType, collisionPoint);
 
         }

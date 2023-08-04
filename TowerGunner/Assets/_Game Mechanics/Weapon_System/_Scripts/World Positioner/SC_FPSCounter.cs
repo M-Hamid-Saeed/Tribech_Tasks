@@ -47,6 +47,6 @@ public class SC_FPSCounter : MonoBehaviour
     void OnGUI()
     {
         //Display the fps and round to 2 decimals
-        GUI.Label(new Rect(30, 30, 800  , 925), fps.ToString("F2") + "FPS", textStyle);
+        //GUI.Label(new Rect(30, 30, 800  , 925), fps.ToString("F2") + "FPS", textStyle);
     }
 }

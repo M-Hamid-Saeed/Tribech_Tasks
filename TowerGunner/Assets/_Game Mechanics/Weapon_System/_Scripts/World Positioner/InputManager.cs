@@ -17,7 +17,7 @@ public class InputManager : MonoBehaviour
     private Vector3 rotated;
     //Mouse Position 
     [Header("------Mouse Position------")]
-    [SerializeField] Camera camera;
+    public Camera camera;
     public float shootRange;
     [SerializeField] private LayerMask targetLayerMask;
 
