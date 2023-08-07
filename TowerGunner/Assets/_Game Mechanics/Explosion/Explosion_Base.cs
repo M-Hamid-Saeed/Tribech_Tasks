@@ -19,7 +19,7 @@ namespace DarkVortex {
         [SerializeField]  ParticleType  BulletHitParticleType;
         [SerializeField]  SoundType MetalsoundType;
         [SerializeField]  SoundType ExplosionSound;
-        [SerializeField] float volume;
+        [SerializeField] protected float volume;
 
         public float currentHealth;
 

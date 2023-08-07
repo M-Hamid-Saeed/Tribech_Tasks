@@ -51,7 +51,7 @@ namespace AxisGames
             void FixedUpdate()
             {
 
-                rigidbody.velocity = direction * (speed * Time.fixedDeltaTime);
+                rigidbody.velocity = direction.normalized * (speed * Time.fixedDeltaTime);
                 transform.rotation = Quaternion.LookRotation(direction.normalized, Vector3.up);
                 lifeTime -= Time.deltaTime;
                 if (lifeTime < 0)                                                                                

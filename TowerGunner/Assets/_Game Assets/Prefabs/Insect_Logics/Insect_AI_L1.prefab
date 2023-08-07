@@ -106,8 +106,11 @@ MonoBehaviour:
   totalHealth: 100
   insectMaxDamageTaken: 35
   insectAttackingDamage: 2
-  healthUI: {fileID: 5553706938203002642}
+  UI: {fileID: 5553706938203002642}
+  playerUI: {fileID: 0}
   DeathParticleType: 2
+  InsectDeathSoundType: 6
+  killScore: 5
   currentHealth: 0
 --- !u!1001 &657084941745356593
 PrefabInstance:
@@ -289,7 +292,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 206438366350190895, guid: 534b41c72cef0bc47a6e2300a1acc3b0, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 206438366350190895, guid: 534b41c72cef0bc47a6e2300a1acc3b0, type: 3}
       propertyPath: m_AnchorMax.x
@@ -411,6 +414,10 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Insects
       objectReference: {fileID: 0}
+    - target: {fileID: 6497576299311384376, guid: 534b41c72cef0bc47a6e2300a1acc3b0, type: 3}
+      propertyPath: m_BlockingMask.m_Bits
+      value: 1015
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 534b41c72cef0bc47a6e2300a1acc3b0, type: 3}
 --- !u!114 &5553706938203002642 stripped
@@ -453,7 +460,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8495012325488726478, guid: d3c6c3ffa7d4c414098e23c836205a70, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8495012325488726478, guid: d3c6c3ffa7d4c414098e23c836205a70, type: 3}
       propertyPath: m_LocalScale.x
@@ -507,5 +514,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8983398780840171565, guid: d3c6c3ffa7d4c414098e23c836205a70, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: d3c6c3ffa7d4c414098e23c836205a70, type: 3}

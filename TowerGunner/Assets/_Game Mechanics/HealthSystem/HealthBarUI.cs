@@ -7,8 +7,10 @@ public class HealthBarUI : MonoBehaviour
 {
     [SerializeField] Slider healthSlider;
     
+    
     // Start is called before the first frame update
-   public void SetMaxHealth(float maxHealth)
+    
+    public void SetMaxHealth(float maxHealth)
     {
         healthSlider.maxValue = maxHealth;
         healthSlider.value = maxHealth;
@@ -17,4 +19,6 @@ public class HealthBarUI : MonoBehaviour
     {
         healthSlider.value = health;
     }
+
+   
 }

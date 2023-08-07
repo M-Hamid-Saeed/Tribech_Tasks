@@ -1,14 +1,15 @@
-
+using AxisGames.Pooler;
 using SWS;
 using UnityEngine;
 namespace Character_Management
 {
 
-    public class AiWalker : MonoBehaviour
+    public class AiWalker : MonoBehaviour,IPooled<AiWalker>
     {
         [Header("------ Refrences ------")]
         [SerializeField] splineMove sMove;
         [SerializeField] GameObject pickupObject;
+        
 
         [Space]
         [Header("------ Refrences ------")]
@@ -17,6 +18,9 @@ namespace Character_Management
         float    normalSpeed;
         float    currentSpeed;
         Animator _animator;
+
+        public int poolID { get; set; }
+        public ObjectPooler<AiWalker> pool { get; set; }
 
         public void Initialize(PathManager path, splineMove.LoopType loopType, float speed,bool startWalking = false)
         {
@@ -82,7 +86,7 @@ namespace Character_Management
         private void WalkEndEvent()
         {
             EnablePickup(false);
-           // PopupManager.Instance.PopMessage(PopupType.Cash, coinFactor, transform, worldPosition: true);
+            //PopupManager.Instance.PopMessage(PopupType.Cash, coinFactor, transform, worldPosition: true);
            // CoinsManager.Instance.CollectCoin(coinFactor,saveCurrentCoins:false);
         }
 
@@ -91,5 +95,10 @@ namespace Character_Management
             pickupObject?.SetActive(enabled);
         }
 
+        public void FreePool()
+        {
+            pool.Free(this);
+
+        }
     }
 }

@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 namespace AxisGames
 {
     namespace Pooler
@@ -24,6 +25,29 @@ namespace AxisGames
                 for (int i = 0; i < count; ++i)
                 {
                     instances[i] = UnityEngine.Object.Instantiate(prefab);
+                    instances[i].transform.SetParent(parent);
+                    instances[i].gameObject.SetActive(false);
+                    instances[i].poolID = i;
+                    instances[i].pool = this;
+                    m_FreeIdx.Push(i);
+                }
+            }
+            public void RandomInitialize(int count, T[] prefab, Transform optionalParent = null)
+            {
+                var parent = optionalParent;
+                instances = new T[count];
+                m_FreeIdx = new Stack<int>(count);
+
+                if (optionalParent == null) 
+                {   
+                    for (int i = 0; i < prefab.Length;i++)
+                        parent = new GameObject($"{prefab[i].gameObject.name}s").transform;
+                }
+
+                for (int i = 0; i < count; ++i)
+                {
+                    int ran = UnityEngine.Random.Range(0, prefab.Length);
+                    instances[i] = UnityEngine.Object.Instantiate(prefab[ran]);
                     instances[i].transform.SetParent(parent);
                     instances[i].gameObject.SetActive(false);
                     instances[i].poolID = i;

@@ -15,7 +15,7 @@ namespace Character_Management
         [Header("--------- Walker Prefabs --------")]
         [SerializeField] Transform Container;
         [SerializeField] WalkerData walkerDataSheet;
-
+        [SerializeField] InsectPooler insectPooler;
 
         [Space(5)]
         [Header("--------- Basic Walker --------")]
@@ -30,7 +30,7 @@ namespace Character_Management
         [SerializeField] float m_MaxSpeed = 1f;
         [SerializeField] float spawnWaitTime = 5f;
         public static int insectCounter;
-
+       
 
         public int currentDataIndex;
         int pathIndex;
@@ -48,8 +48,8 @@ namespace Character_Management
             {
                 insectCounter += walkerDataSheet.walkerDataList[currentDataIndex].walkerlist[j].spawnNumber;
             }
+         
             GameController.onGameplay += LoadWalkers;
-
         }
 
         private void HouseManager_OnHouseComplete()
@@ -91,12 +91,15 @@ namespace Character_Management
                 {
                     yield return new WaitForSeconds(spawnWaitTime);
                     if (pathIndex > pathList.Length - 1) { pathIndex = 0; }
-                    AiWalker walker = Instantiate(prefab, Container);
+                    //AiWalker walker = Instantiate(prefab, Container);
                     //insectCounter++;
-                    // AiWalker walker = insectPooler.GetNew();
+                    AiWalker walker = insectPooler.GetNew();
+                    walker.GetComponentInChildren<Collider>().enabled = true;
+                    Debug.Log("POOLING INSECT");
 
 
                     walker.transform.localPosition = pathList[pathIndex].transform.localPosition;
+                    walker.GetComponentInChildren<BoxCollider>().enabled = true;
                     walker.Initialize(pathList[pathIndex],
                                     m_WalkType,
                                     Random.Range(m_MinSpeed, m_MaxSpeed), startWalk);

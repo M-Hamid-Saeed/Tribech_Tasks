@@ -15,7 +15,7 @@ public class Controller : MonoBehaviour
     [SerializeField] WeaponAnimation_Controller animationController;
     private bool canPlay = true;
     [SerializeField] GameObject Missile;
-
+    [SerializeField] Transform missileFirePoint;
     //Customized Touch Input 
     [SerializeField] InputManager touchInputManager;
 
@@ -29,9 +29,9 @@ public class Controller : MonoBehaviour
     {
         
         firingSystem.Init();
-        // GameController.onGameplay += OnGameStart;
-        //GameController.onLevelFail += OnGameFail;
-        // GameController.onLevelComplete += SetPlayBoolFalse;
+       // GameController.onGameplay += OnGameStart;
+       // GameController.onLevelFail += OnGameFail;
+        
         Vibration.Init();
         
     }
@@ -39,11 +39,8 @@ public class Controller : MonoBehaviour
     private void Update()
     {
         insectcounter = WalkerManager.insectCounter;
-
-       
             LookRotation();
             ShootControll();
-       
 
     }
 
@@ -65,9 +62,8 @@ public class Controller : MonoBehaviour
     private void LookRotation()
     {
 
-       
-        float targetLookAmountX = -touchInputManager.Horizontal* _rotateSpeed;
-        float targetLookAmountY = touchInputManager.Vertical * _rotateSpeed;
+        float targetLookAmountX = touchInputManager.Horizontal* _rotateSpeed;
+        float targetLookAmountY = -touchInputManager.Vertical * _rotateSpeed;
 
         
         lookDirection = new Vector3(targetLookAmountX, targetLookAmountY, transform.position.z).normalized;
@@ -90,11 +86,17 @@ public class Controller : MonoBehaviour
         canPlay = true;
     }
 
-   /* private void spawnMissle()
+    private void spawnMissle()
     {
-        GameObject missle = Instantiate(Missile, touchInputManager.camera.transform);
-        Vector3 dir = touchInputManager.GetPosition();
+        GameObject missle = Instantiate(Missile, new Vector3(missileFirePoint.position.x,missileFirePoint.position.y,missileFirePoint.position.z),Quaternion.identity);
+        Vector3 dir =  touchInputManager.GetPosition()- missle.transform.position;
         missle.GetComponent<Missile>().SetDirection(dir);
-        
-    }*/
+
+    }
+    public void OnMissileButtonPressed()
+    {
+        Debug.Log("MISSLE BUTTON PRESSED");
+
+        spawnMissle();
+    }
 }

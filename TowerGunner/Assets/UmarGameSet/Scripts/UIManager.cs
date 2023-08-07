@@ -67,9 +67,11 @@ public class UIManager : MonoBehaviour
     public void TapToPlay()
     {
         GameController.changeGameState.Invoke(GameState.Gameplay);
-
     }
 
+    public void AddPlayerScore()
+    {
 
+    }
 
 }

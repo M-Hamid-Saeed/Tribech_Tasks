@@ -1,20 +1,26 @@
+
 using Character_Management;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+
 public class playerHealth : MonoBehaviour
 {
     [SerializeField] float totalHealth;
     [SerializeField] HealthBarUI healthUI; 
-    [SerializeField] float playerMaxDamageTaken; 
-    private float currentHealth;
+    [SerializeField] float playerMaxDamageTaken;
+    [SerializeField] Text scoreText;
+    [SerializeField] Text killCountText;
+    private int totalInsects;
 
+    private float currentHealth;
+    private int currentScore;
+    private int currentKillCOunt;
     private void Start()
     {
         currentHealth = totalHealth;
         healthUI.SetMaxHealth(totalHealth);
-       
+        totalInsects = WalkerManager.insectCounter;
+        killCountText.text = currentKillCOunt + "/" + totalInsects;
     }
     public void Damage(float damage)
     {
@@ -41,4 +47,17 @@ public class playerHealth : MonoBehaviour
     {
         GameController.changeGameState(GameState.Fail);
     }
+
+    public void PlayerScore(int score)
+    {
+        currentScore += score;
+        scoreText.text = "" + currentScore;
+    }
+    public void AddKill()
+    {
+        currentKillCOunt++;
+        killCountText.text = currentKillCOunt + "/" + totalInsects;
+    }
+
+
 }

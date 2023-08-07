@@ -15,8 +15,10 @@ namespace DarkVortex {
 
             if (insect_health)
             {
+                Debug.Log("IN THE INSECT HEALTH");
                 insect_health.GetComponentInChildren<BoxCollider>().enabled = false;
                 insect_health.Dead();
+
             }
             
         }

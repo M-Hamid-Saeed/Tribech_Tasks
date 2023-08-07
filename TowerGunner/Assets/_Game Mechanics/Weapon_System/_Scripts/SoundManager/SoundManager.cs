@@ -22,6 +22,7 @@ namespace GameAssets.GameSet.GameDevUtils.Managers
         public AudioClip WoodenHit;
         public AudioClip DustSound;
         public AudioClip InsectDeathSound;
+        public AudioClip MissleLaunchSOund;
 
 
         void Awake()
@@ -94,6 +95,12 @@ namespace GameAssets.GameSet.GameDevUtils.Managers
                 case SoundType.DustSound:
                     PlayShootSound(DustSound, volume);
                     break;
+                case SoundType.InsectDeath:
+                    PlayShootSound(InsectDeathSound, volume);
+                    break;
+                case SoundType.MissleLaunchSound:
+                    PlayShootSound(MissleLaunchSOund, volume);
+                    break;
                 default:
                     break;
             }
@@ -121,6 +128,7 @@ namespace GameAssets.GameSet.GameDevUtils.Managers
         WoodenHit,
         ExplosionSound,
         DustSound,
-        InsectDeath
+        InsectDeath,
+        MissleLaunchSound
     }
 }

@@ -1,4 +1,5 @@
 using DarkVortex;
+using GameAssets.GameSet.GameDevUtils.Managers;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,7 +10,8 @@ namespace DarkVortex {
         [SerializeField] float speed;
         private bool canShoot;
         private Rigidbody rb;
-        [SerializeField] InputManager input;
+        [SerializeField] SoundType missleLaunchSound;
+ 
         private bool canMove = false;
         private Vector3 direction;
         // Start is called before the first frame update
@@ -22,7 +24,7 @@ namespace DarkVortex {
             MaxDamageTaken = 1;
             currentHealth = 1;
             rb = GetComponent<Rigidbody>();
-            
+            SoundManager.Instance.PlayOneShot(missleLaunchSound, volume);
         }
 
         // Update is called once per frame
