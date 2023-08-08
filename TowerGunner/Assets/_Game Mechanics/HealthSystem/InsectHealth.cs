@@ -70,7 +70,7 @@ namespace Character_Management
         public void AddScore()
         {
             CoinsManager.Instance?.AddCoins(killScore);
-            CoinsManager.Instance.AddCoins(CoinsManager.Instance.WordPointToCanvasPoint(CoinsManager.Instance.mainCam, transform.position, CoinsManager.Instance.canvasRect), 3);
+            CoinsManager.Instance.AddCoins(CoinsManager.Instance.WordPointToCanvasPoint(CoinsManager.Instance.mainCam, transform.position, CoinsManager.Instance.canvasRect), 2);
         }
     }
 }

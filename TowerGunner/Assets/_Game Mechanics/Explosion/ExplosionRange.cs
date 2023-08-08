@@ -13,7 +13,7 @@ namespace DarkVortex
         {
 
             InsectHealth insect_health = other.gameObject.GetComponentInParent<InsectHealth>();
-            Debug.Log(insect_health);
+            
             if (insect_health)
             {
                 insect_health.GetComponentInChildren<BoxCollider>().enabled = false;

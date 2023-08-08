@@ -39,7 +39,7 @@ namespace DarkVortex {
 
             if (currentHealth <= 0)
             {
-                //gameObject.GetComponentInChildren<Collider>().enabled = false;
+                
                 gameObject.GetComponentInChildren<MeshRenderer>().enabled = false;
                 ReferenceManager.Instance.CameraShakeManager.ShakeCamera();
                 PlayExplosionParticle();
@@ -47,6 +47,7 @@ namespace DarkVortex {
                 if(explosionRange)
                     explosionRange.SetActive(true);
                 StartCoroutine(WaitForDestroy());
+
                 
             }
 
@@ -55,7 +56,8 @@ namespace DarkVortex {
 
         private IEnumerator WaitForDestroy()
         {
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(.5f);
+            gameObject.GetComponentInChildren<Collider>().enabled = false;
             Destroy(gameObject);
         }
         private void PlayExplosionParticle()

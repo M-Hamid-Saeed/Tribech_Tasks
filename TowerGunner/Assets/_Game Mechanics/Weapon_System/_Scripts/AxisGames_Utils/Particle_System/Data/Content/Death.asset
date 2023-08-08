@@ -15,5 +15,5 @@ MonoBehaviour:
   poolerName: Death
   particleType: 2
   particlePrefab: {fileID: 8910720009401647381, guid: 78fc73445b6568648b77ee5c2e63a94a, type: 3}
-  poolSize: 20
+  poolSize: 50
   poolContainer: {fileID: 0}

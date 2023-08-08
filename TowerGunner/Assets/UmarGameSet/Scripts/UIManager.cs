@@ -22,10 +22,13 @@ public class UIManager : MonoBehaviour
         GameController.onGameplay += Gameplay;
         GameController.onLevelFail += LevelFail;
         GameController.onHome += Home;
+        
+    }
+    private void Start()
+    {
         totalInsects = ReferenceManager.Instance.walkerManager.insectCounter;
         KillText.text = currentKillCount + "/" + totalInsects;
     }
-
     //Events Definations
     void Home()
     {
