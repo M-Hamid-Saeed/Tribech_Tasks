@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,10 +8,13 @@ public class UIManager : MonoBehaviour
     [SerializeField] GameObject gamplayPanel;
     [SerializeField] GameObject competePanel;
     [SerializeField] GameObject levelFailPanel;
-    int levelNo;
 
+    private int currentKillCount;
+    int levelNo;
+    private int totalInsects;
 
     [Header("Text Fields"), SerializeField] Text levelNoText;
+    [Header("Text Fields"), SerializeField] Text KillText;
 
     void Awake()
     {
@@ -20,6 +22,8 @@ public class UIManager : MonoBehaviour
         GameController.onGameplay += Gameplay;
         GameController.onLevelFail += LevelFail;
         GameController.onHome += Home;
+        totalInsects = ReferenceManager.Instance.walkerManager.insectCounter;
+        KillText.text = currentKillCount + "/" + totalInsects;
     }
 
     //Events Definations
@@ -69,9 +73,15 @@ public class UIManager : MonoBehaviour
         GameController.changeGameState.Invoke(GameState.Gameplay);
     }
 
-    public void AddPlayerScore()
+    public void AddKillCount()
     {
-
+        currentKillCount++;
+        KillText.text = currentKillCount + "/" + totalInsects;
+        if (currentKillCount == totalInsects)
+        {
+            GameController.changeGameState(GameState.Complete);
+            
+        }
     }
 
 }

@@ -1,26 +1,26 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using Character_Management;
-namespace DarkVortex {
+using UnityEngine;
+namespace DarkVortex
+{
     public class ExplosionRange : MonoBehaviour
     {
         private void Start()
         {
             Destroy(this.gameObject, .5f);
         }
+
         private void OnTriggerStay(Collider other)
         {
-           InsectHealth insect_health =  other.GetComponentInParent<InsectHealth>();
 
+            InsectHealth insect_health = other.gameObject.GetComponentInParent<InsectHealth>();
+            Debug.Log(insect_health);
             if (insect_health)
             {
-                Debug.Log("IN THE INSECT HEALTH");
                 insect_health.GetComponentInChildren<BoxCollider>().enabled = false;
                 insect_health.Dead();
-
+                insect_health.AddScore();
             }
-            
         }
+
     }
 }

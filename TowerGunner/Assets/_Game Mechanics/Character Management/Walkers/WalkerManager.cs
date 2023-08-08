@@ -29,7 +29,7 @@ namespace Character_Management
         [SerializeField] float m_MinSpeed = 0.5f;
         [SerializeField] float m_MaxSpeed = 1f;
         [SerializeField] float spawnWaitTime = 5f;
-        public static int insectCounter;
+        public int insectCounter;
        
 
         public int currentDataIndex;
@@ -50,6 +50,7 @@ namespace Character_Management
             }
          
             GameController.onGameplay += LoadWalkers;
+           
         }
 
         private void HouseManager_OnHouseComplete()
@@ -99,6 +100,7 @@ namespace Character_Management
 
 
                     walker.transform.localPosition = pathList[pathIndex].transform.localPosition;
+                    walker.transform.localRotation = Quaternion.Euler(0, 0, 0);
                     walker.GetComponentInChildren<BoxCollider>().enabled = true;
                     walker.Initialize(pathList[pathIndex],
                                     m_WalkType,
@@ -109,12 +111,12 @@ namespace Character_Management
 
             }
         }
-        public static void InsectCounterManage()
+        public void InsectCounterManage()
         { 
            insectCounter--;
             if (insectCounter <= 0)
                 GameController.changeGameState(GameState.Complete);
-            Debug.Log(insectCounter);
+         
         }
 
 

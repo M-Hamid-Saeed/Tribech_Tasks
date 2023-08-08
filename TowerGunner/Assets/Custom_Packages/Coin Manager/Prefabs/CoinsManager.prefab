@@ -44,20 +44,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dee7f9ea65cb52c448ff5d36471c77ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Coins: 0
-  sceneLoad: {fileID: 0}
-  coinText: {fileID: 0}
-  coinTextAnim: {fileID: 0}
-  UseAnimatedCoins: 1
-  animatedCoinPrefab: {fileID: 0}
-  Container: {fileID: 0}
+  coinUIText: {fileID: 0}
+  animatedCoinPrefab: {fileID: 1767005852478628726, guid: 511ad623cb47a884e9eda44bb0c4d245, type: 3}
   target: {fileID: 0}
-  StartPos: {fileID: 0}
+  canvasRect: {fileID: 0}
+  cashContainer: {fileID: 0}
+  mainCam: {fileID: 0}
+  animatedCoin: {fileID: 0}
   maxCoins: 0
   minAnimDuration: 0.5
   maxAnimDuration: 0.9
   easeType: 0
-  spreadX: 0.3
-  spreadY: 0.3
-  confiti: {fileID: 0}
-  dimondParticle: {fileID: 0}
+  spread: 0
+  CollectionValue: 0
+  isTesting: 0

@@ -107,8 +107,8 @@ public class FiringSystem : Weapon
             {
 				lastShootTime = Time.time;
                 SoundManager.Instance.PlayShootSound(SoundManager.Instance.shoot, .1f);
-
-            }
+				
+			}
 
 
         }
@@ -121,13 +121,16 @@ public class FiringSystem : Weapon
 		return muzzlePoint;
 
 	}
+
 	private IEnumerator BulletShoot()
 	{
+		ReferenceManager.Instance.crossHaironHit.SetActive(false);
 		yield return waitForHold;
 		
 		while (!canShot)
 		{
-			
+			ReferenceManager.Instance.crossHaironHit.SetActive(true);
+			ReferenceManager.Instance.crosshairAnimation.DORestartbyID("crossHairHit");
 			//var bulletClone = pooler.GetNew();
 			Bullet bulletClone = bulletPooler.GetNew();
 			

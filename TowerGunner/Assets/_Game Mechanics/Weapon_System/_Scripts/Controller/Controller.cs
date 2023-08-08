@@ -17,7 +17,6 @@ public class Controller : MonoBehaviour
     [SerializeField] GameObject Missile;
     [SerializeField] Transform missileFirePoint;
     //Customized Touch Input 
-    [SerializeField] InputManager touchInputManager;
 
     public int insectcounter = 0;
 
@@ -38,10 +37,13 @@ public class Controller : MonoBehaviour
 
     private void Update()
     {
-        insectcounter = WalkerManager.insectCounter;
+        insectcounter = ReferenceManager.Instance.walkerManager.insectCounter;
+        if (canPlay)
+        {
+            
             LookRotation();
             ShootControll();
-
+        }
     }
 
     private void ShootControll()
@@ -51,7 +53,7 @@ public class Controller : MonoBehaviour
         {
             animationController.ShootingAnimation(true);
            
-            mousePosition = touchInputManager.GetPosition();
+            mousePosition = ReferenceManager.Instance.input.GetPosition();
             firingSystem.Shot(mousePosition);
             
         }
@@ -62,8 +64,8 @@ public class Controller : MonoBehaviour
     private void LookRotation()
     {
 
-        float targetLookAmountX = touchInputManager.Horizontal* _rotateSpeed;
-        float targetLookAmountY = -touchInputManager.Vertical * _rotateSpeed;
+        float targetLookAmountX = ReferenceManager.Instance.input.Horizontal* _rotateSpeed;
+        float targetLookAmountY = -ReferenceManager.Instance.input.Vertical * _rotateSpeed;
 
         
         lookDirection = new Vector3(targetLookAmountX, targetLookAmountY, transform.position.z).normalized;
@@ -88,15 +90,17 @@ public class Controller : MonoBehaviour
 
     private void spawnMissle()
     {
+        
         GameObject missle = Instantiate(Missile, new Vector3(missileFirePoint.position.x,missileFirePoint.position.y,missileFirePoint.position.z),Quaternion.identity);
-        Vector3 dir =  touchInputManager.GetPosition()- missle.transform.position;
+        Debug.Log(missle.name);
+        Vector3 dir = ReferenceManager.Instance.input.GetPosition()- missle.transform.position;
         missle.GetComponent<Missile>().SetDirection(dir);
 
     }
     public void OnMissileButtonPressed()
     {
-        Debug.Log("MISSLE BUTTON PRESSED");
-
+        canPlay = false;
         spawnMissle();
+        canPlay = true;
     }
 }

@@ -45,7 +45,7 @@ namespace DarkVortex {
 
         private void onGameStart()
         {
-            canMove = false;
+           // canMove = false;
         }
 
         public void SetDirection(Vector3 direction)

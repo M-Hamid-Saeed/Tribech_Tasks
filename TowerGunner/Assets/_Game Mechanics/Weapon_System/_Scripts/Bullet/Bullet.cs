@@ -3,6 +3,7 @@ using AxisGames.Pooler;
 using GameAssets.GameSet.GameDevUtils.Managers;
 using UnityEngine;
 using DarkVortex;
+using System.Collections;
 
 namespace AxisGames
 {
@@ -66,44 +67,45 @@ namespace AxisGames
 
             private void OnCollisionEnter(Collision collision)
             {
+               
+                //ReferenceManager.Instance.crosshairAnimation.DORestartById("crossHairHit");
                 
                 Vibration.Cancel();   
                 IDamageable targetObject = collision.collider.GetComponentInParent<IDamageable>();
                 if (targetObject != null)
                 {
                     targetObject.Damage(damage);
+                   // ReferenceManager.Instance.crossHaironHit.SetActive(true);
                     Vibration.VibrateNope();
                 }
-                Debug.Log(collision.gameObject.name);
+               
                 Explosion_Base explosion_Base = collision.collider.GetComponentInParent<Explosion_Base>();
+
                 if (explosion_Base != null)
-                   explosion_Base.PlayParticle_Sound(collision.GetContact(0).point);
+                {
+                   // ReferenceManager.Instance.crossHaironHit.SetActive(true);
+                    explosion_Base.PlayParticle_Sound(collision.GetContact(0).point);
+                }
 
                 if (collision.gameObject.CompareTag("Insects"))
+                {
                     PlayParticle_Sound(collision.GetContact(0));
+                   // ReferenceManager.Instance.crossHaironHit.SetActive(true);
+                }
                 else if (collision.gameObject.CompareTag("Ground"))
                 {
                     ParticleManager.Instance?.PlayParticle(GroundHitParticleType, collision.GetContact(0).point);
                     SoundManager.Instance.PlayOneShot(GroundHitSoundType, .7f);
                 }
-                /* else if (collision.gameObject.CompareTag("Iron"))
 
-                     PlayParticle_Sound(IronHitParticleType, collision, SoundManager.Instance.MetalHit, .3f);
 
-                 else if (collision.gameObject.CompareTag("Rock"))
-
-                     PlayParticle_Sound(RockHitParticleType, collision, SoundManager.Instance.RockHit, .5f);
-
-                 else if (collision.gameObject.CompareTag("Wood"))
-
-                     PlayParticle_Sound(WoodHitParticleType, collision, SoundManager.Instance.WoodenHit, .5f);
- */
-
+                
                 pool.Free(this);
                 EnableTrail(false);
-               
+
 
             }
+           
             public void PlayParticle_Sound(ContactPoint collision)
             {
                 ParticleManager.Instance?.PlayParticle(InsectHitParticleType, collision.point);

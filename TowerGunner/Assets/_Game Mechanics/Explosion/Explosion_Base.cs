@@ -14,7 +14,7 @@ namespace DarkVortex {
         [Space(3)]
         [SerializeField] GameObject explosionRange;
         [Space(3)]
-        [SerializeField] CameraShake_Management CameraShakeManager;
+        
         [SerializeField]  ParticleType  ExplosinParticleType;
         [SerializeField]  ParticleType  BulletHitParticleType;
         [SerializeField]  SoundType MetalsoundType;
@@ -39,9 +39,9 @@ namespace DarkVortex {
 
             if (currentHealth <= 0)
             {
-                gameObject.GetComponentInChildren<Collider>().enabled = false;
+                //gameObject.GetComponentInChildren<Collider>().enabled = false;
                 gameObject.GetComponentInChildren<MeshRenderer>().enabled = false;
-                CameraShakeManager.ShakeCamera();
+                ReferenceManager.Instance.CameraShakeManager.ShakeCamera();
                 PlayExplosionParticle();
                 
                 if(explosionRange)

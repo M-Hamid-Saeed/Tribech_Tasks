@@ -30,7 +30,7 @@ namespace GameAssets.GameSet.GameDevUtils.Managers
             if (Instance == null)
             {
                 Instance = this;
-                DontDestroyOnLoad(gameObject);
+                //DontDestroyOnLoad(gameObject);
             }
             else
             {

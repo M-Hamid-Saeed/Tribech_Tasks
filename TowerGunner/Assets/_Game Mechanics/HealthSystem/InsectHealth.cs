@@ -37,10 +37,13 @@ namespace Character_Management
 
 
             if (currentHealth <= 0)
+            {
                 Dead();
+                AddScore();
+            }
               
             SetUI();
-
+            ReferenceManager.Instance.crossHaironHit.SetActive(false);
         }
 
    
@@ -52,15 +55,22 @@ namespace Character_Management
        
         public void Dead()
         {
-            WalkerManager.InsectCounterManage();
-            SoundManager.Instance.PlayOneShot(InsectDeathSoundType, .7f);
-            playerUI.PlayerScore(killScore);
-            playerUI.AddKill();
+           // ReferenceManager.Instance.walkerManager.InsectCounterManage();
+            ReferenceManager.Instance.mainUIManager.AddKillCount();
+            SoundManager.Instance?.PlayOneShot(InsectDeathSoundType, .7f);
+            //playerUI.PlayerScore(killScore);
+            //playerUI.AddKill();
             ParticleManager.Instance?.PlayParticle(DeathParticleType, transform.position);
             this.currentHealth = totalHealth;
             
             gameObject.GetComponent<AiWalker>().FreePool();
             
+        }
+
+        public void AddScore()
+        {
+            CoinsManager.Instance?.AddCoins(killScore);
+            CoinsManager.Instance.AddCoins(CoinsManager.Instance.WordPointToCanvasPoint(CoinsManager.Instance.mainCam, transform.position, CoinsManager.Instance.canvasRect), 3);
         }
     }
 }

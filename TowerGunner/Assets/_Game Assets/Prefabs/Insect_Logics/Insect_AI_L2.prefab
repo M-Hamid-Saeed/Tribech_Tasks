@@ -72,7 +72,7 @@ MonoBehaviour:
   pathMode: 1
   easeType: 1
   lockPosition: 0
-  lockRotation: 2
+  lockRotation: 16
   waypointRotation: 0
   rotationTarget: {fileID: 0}
   tweenType: 0
@@ -104,8 +104,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   totalHealth: 100
-  insectMaxDamageTaken: 35
-  insectAttackingDamage: 2
+  insectMaxDamageTaken: 25
+  insectAttackingDamage: 15
   UI: {fileID: 4725371845342639470}
   playerUI: {fileID: 0}
   DeathParticleType: 2

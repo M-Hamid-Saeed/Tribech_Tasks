@@ -18,7 +18,7 @@ GameObject:
   m_Icon: {fileID: 6519382022992737161, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &7529302765281037135
 Transform:
   m_ObjectHideFlags: 0
@@ -104,8 +104,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   totalHealth: 100
-  insectMaxDamageTaken: 35
-  insectAttackingDamage: 2
+  insectMaxDamageTaken: 30
+  insectAttackingDamage: 10
   UI: {fileID: 5553706938203002642}
   playerUI: {fileID: 0}
   DeathParticleType: 2
@@ -384,11 +384,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1313849044018104543, guid: 534b41c72cef0bc47a6e2300a1acc3b0, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1313849044018104543, guid: 534b41c72cef0bc47a6e2300a1acc3b0, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2033027539370493001, guid: 534b41c72cef0bc47a6e2300a1acc3b0, type: 3}
       propertyPath: m_LocalScale.x

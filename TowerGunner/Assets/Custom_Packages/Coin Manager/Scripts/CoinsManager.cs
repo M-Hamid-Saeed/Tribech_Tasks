@@ -1,106 +1,134 @@
-﻿/*using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
 using System.Collections.Generic;
-using System.Collections;
 using TMPro;
-using Sirenix.OdinInspector;
-using AxisGames.BasicGameSet;
 
-public class CoinsManager : SingletonLocal<CoinsManager>
+public class CoinsManager : MonoBehaviour
 {
 
-    [BoxGroup("Coin Status")]
-    [ReadOnly]
-    [SerializeField] int Coins;
-    [BoxGroup("Script Refrences")]
-    [SerializeField] SceneLoad sceneLoad;
-
-    [BoxGroup("Coin UI Refrences")]
-    [TabGroup("Coin UI Refrences/t1", "Coin Text")]
-    //[SerializeField] Text coinText;
-    [SerializeField] TextMeshProUGUI coinText;
-    [TabGroup("Coin UI Refrences/t1", "Coin Text")]
-    [SerializeField] DOTweenAnimation coinTextAnim;
-
-
-    [TabGroup("Coin UI Refrences/t1", "Animated Coin Data")]
-    [InfoBox("Set Up to Make Animated Coins in Game")]
-    [SerializeField] bool UseAnimatedCoins;
-    [TabGroup("Coin UI Refrences/t1", "Animated Coin Data")]
-    [ShowIf("UseAnimatedCoins")]
-    [SerializeField] GameObject animatedCoinPrefab;
-    [TabGroup("Coin UI Refrences/t1", "Animated Coin Data")]
-    [ShowIf("UseAnimatedCoins")]
-    [SerializeField] Transform Container;
-    [TabGroup("Coin UI Refrences/t1", "Animated Coin Data")]
-    [ShowIf("UseAnimatedCoins")]
-    [SerializeField] Transform target;
-    [TabGroup("Coin UI Refrences/t1", "Animated Coin Data")]
-    [ShowIf("UseAnimatedCoins")]
-    [SerializeField] Transform StartPos;
-    [TabGroup("Coin UI Refrences/t1", "Animated Coin Data")]
-    [ShowIf("UseAnimatedCoins")]
-    [Space(5)]
+    public static CoinsManager Instance;
+    //References
+    [Header("UI references")]
+    [SerializeField] public Text coinUIText;
+    
+    [SerializeField] public GameObject animatedCoinPrefab;
+    [SerializeField] public Transform target;
+    public RectTransform canvasRect;
+    public RectTransform cashContainer;
+    public Camera mainCam;
+    [SerializeField] DOTweenAnimation animatedCoin;
+    [Space]
+    [Header("Available coins : (coins to pool)")]
     [SerializeField] int maxCoins;
     Queue<GameObject> coinsQueue = new Queue<GameObject>();
 
-    [TabGroup("Coin UI Refrences/t1", "Animated Coin Data")]
-    [ShowIf("UseAnimatedCoins")]
+
+    [Space]
+    [Header("Animation settings")]
     [SerializeField] [Range(0.5f, 0.9f)] float minAnimDuration;
-    [TabGroup("Coin UI Refrences/t1", "Animated Coin Data")]
-    [ShowIf("UseAnimatedCoins")]
     [SerializeField] [Range(0.9f, 2f)] float maxAnimDuration;
 
-    [TabGroup("Coin UI Refrences/t1", "Animated Coin Data")]
-    [ShowIf("UseAnimatedCoins")]
     [SerializeField] Ease easeType;
-    [TabGroup("Coin UI Refrences/t1", "Animated Coin Data")]
-    [ShowIf("UseAnimatedCoins")]
-    [SerializeField] float spreadX = 0.3f;
-    [TabGroup("Coin UI Refrences/t1", "Animated Coin Data")]
-    [ShowIf("UseAnimatedCoins")]
-    [SerializeField] float spreadY = 0.3f;
+    [SerializeField] float spread;
+    public int CollectionValue;
 
-
-    [BoxGroup("Particles", centerLabel: true)]
-    [SerializeField] GameObject confiti;
-    [BoxGroup("Particles", centerLabel: true)]
-    [SerializeField] ParticleSystem dimondParticle;
-
-    /// <summary>
-    /// Privae Variables
-    /// </summary>
-    int BonusPoint;
-    int CollectedCoins = 1;
-    int Points = 0;
     Vector3 targetPosition;
-    int numCompleted = 0; // this is use by bonus coins
-    int vibrateCount = 0;
 
-    private void Awake()
+
+    private int _c = 0;
+
+    public int Coins
     {
-        if (UseAnimatedCoins) PrepareCoins();
-        CheckPreviousCoins();
+        get { return PlayerPrefs.GetInt("Coin"); }
+        set
+        {
+            PlayerPrefs.SetInt("Coin", value);
+        }
+    }
+    [SerializeField] bool isTesting;
+    void Awake()
+    {
+
+        if (Instance == null)
+        {
+            Instance = this;
+
+        }
+        targetPosition = target.position;
+
+        //Debug.Log("CashStartTime" + ExtendedPrefs.GetBool("CashStartTime"));
+        //if (!ExtendedPrefs.GetBool("CashStartTime1"))
+        //{
+        //    ExtendedPrefs.SetBool("CashStartTime1", true);
+        //    AddCoins(15);
+        //}
+        coinUIText.text = Coins.ToString();
+       
+        if (isTesting)
+        {
+            AddCoins(500);
+        }
+        GameController.onGameplay += AddCoinOnGamePlay;
+        //prepare pool
+        PrepareCoins();
+
     }
 
     void PrepareCoins()
     {
-        if (animatedCoinPrefab == null || Container == null) { Debug.LogError("Coin Refrences not Assign !!"); return; }
         GameObject coin;
         for (int i = 0; i < maxCoins; i++)
         {
             coin = Instantiate(animatedCoinPrefab);
-            coin.transform.SetParent(Container);
-            coin.transform.position = Container.position;
+            coin.transform.parent = cashContainer;
+            coin.transform.localPosition = Vector3.zero;
             coin.transform.localScale = Vector3.one;
             coin.SetActive(false);
             coinsQueue.Enqueue(coin);
         }
     }
 
+    void Animate(Vector3 collectedCoinPosition, int amount)
+    {
+        for (int i = 0; i < amount; i++)
+        {
+            //check if there's coins in the pool
+            if (coinsQueue.Count > 0)
+            {
+                Debug.Log("PopCash");
+                //extract a coin from the pool
+                GameObject coin = coinsQueue.Dequeue();
+                coin.SetActive(true);
+
+                //move coin to the collected coin pos
+                var rectTransform = coin.GetComponent<RectTransform>();
+                rectTransform.localPosition = collectedCoinPosition + new Vector3(Random.Range(-spread, spread), 0f, 0f);
+
+                //animate coin to target position
+                float duration = Random.Range(minAnimDuration, maxAnimDuration);
+                coin.transform.DOMove(targetPosition, duration)
+                .SetEase(easeType)/*.OnUpdate(() => { coin.transform.DOScale(0.08f, 1); })*/
+                .OnComplete(() =>
+                {
+                    //executes whenever coin reach target position
+                    coin.SetActive(false);
+                    coinsQueue.Enqueue(coin);
+                    coinUIText.text = Coins.ToString();
+                    // Coins++;
+                    //CurrencyManager.Instance.PlusCurrencyValue("Coins", 1);
+                });
+            }
+        }
+    }
+
+    public void AddCoins(Vector3 collectedCoinPosition, int amount)
+    {
+        Animate(collectedCoinPosition, amount);
+    }
     public bool CanDoTransaction(int amount)
     {
+        Coins = PlayerPrefs.GetInt("Coin");
         if (Coins >= amount)
         {
             return true;
@@ -110,176 +138,35 @@ public class CoinsManager : SingletonLocal<CoinsManager>
             return false;
         }
     }
-
-    public void DeductCoins(int price)
+    public void AddCoins(int amount)
     {
-        Coins -= price;
-        coinText.text = Coins.ToString();
-        if (!coinTextAnim.hasOnComplete) coinTextAnim.DORestart();
-        if (dimondParticle) dimondParticle.Play();
-        SaveCoins();
-        coinText.color = Color.red;
-        StartCoroutine(nameof(ResetTextColor));
-    }
+        Coins += amount;
 
-    IEnumerator ResetTextColor()
-    {
-        yield return new WaitForSeconds(0.15f);
-        coinText.color = Color.white;
-        StopCoroutine(nameof(ResetTextColor));
-    }
-
-    public void CollectCoin(int value)
-    {
-        Coins += value;
-        CollectedCoins += value;
-        //Points++;
-        if (!coinTextAnim.hasOnComplete) coinTextAnim.DORestart();
-        coinText.text = Coins.ToString();
-    }
-
-    public int GetCollectedCoins()
-    {
-        return CollectedCoins;
-    }
-
-    public void SaveCoins()
-    {
-        SavedCoins = Coins;
-    }
-
-    private void CheckPreviousCoins()
-    {
-        if (SavedCoins == 0 && InitialCash == 0)
-        {
-            InitialCash = 1;
-            Coins = int.Parse(coinText.text);
-            SavedCoins = Coins;
-        }
-        else
-        {
-            Coins = SavedCoins;
-            coinText.text = Coins.ToString();
-        }
-    }
-
-    void Animate(int amount, Vector3 position)
-    {
-
-        if (amount <= 5)
-        {
-            vibrateCount = 2;
-        }
-        else if (amount <= 10)
-        {
-            vibrateCount = 4;
-        }
-        else
-        {
-            vibrateCount = 6;
-        }
-
-        targetPosition = target.position;
-        for (int i = 0; i < amount; i++)
-        {
-            //check if there's coins in the pool
-            if (coinsQueue.Count > 0)
-            {
-                //extract a coin from the pool
-                GameObject coin = coinsQueue.Dequeue();
-                coin.transform.position = position;
-                coin.SetActive(true);
-
-                //move coin to the collected coin pos
-                //coin.transform.position = position + new Vector3
-                //                                (Random.Range(-spreadX, spreadX),
-                //                                Random.Range(-spreadY, spreadY), 0f);
-
-                //animate coin to target position
-                float duration = Random.Range(minAnimDuration, maxAnimDuration);
-
-                coin.transform.DOMove(position + new Vector3
-                                                (Random.Range(-spreadX, spreadX),
-                                                Random.Range(-spreadY, spreadY), 0f), duration).OnComplete(() =>
-             {
-
-                 coin.transform.DOMove(targetPosition, duration)
-                 .SetEase(easeType)
-                 .OnComplete(() =>
-                 {
-                     //executes whenever coin reach target position
-                     coin.SetActive(false);
-                     coinsQueue.Enqueue(coin);
-                     CollectCoin(1);
-
-                     if (vibrateCount != 0)
-                     {
-                         vibrateCount--;
-                         //ReferenceManager.instance.gameManager.PopVibrate();
-                         //Debug.Log("Vibrate " + vibrateCount);
-                     }
-                     numCompleted--;
-                     if (numCompleted == 0)
-                     {
-                         SaveCoins();
-                         Invoke(nameof(RestartScene), 0.6f);
-                     }
-
-                 });
-             });
-            }
-        }
+        animatedCoin.DORestartbyID("Rotate");
+        AddCoinOnGamePlay();
 
     }
-
-    private void RestartScene()
+    public void DecCoins(int amount)
     {
-        if (confiti) confiti.SetActive(false);
-        DOTween.KillAll();
-        StopAllCoroutines();
-        sceneLoad.ReloadScene();
+
+        Coins -= amount;
+
+        AddCoinOnGamePlay();
+
+
+    }
+    public void AddCoinOnGamePlay()
+    {
+
+        coinUIText.text = Coins.ToString();
+       
     }
 
-    public void AddBonusCoins(int animateCount, int totalCash, Transform spawnPoint = null)
+    public Vector2 WordPointToCanvasPoint(Camera camera, Vector3 worldPoint, RectTransform canvasRect)
     {
-        CollectCoin(totalCash - animateCount);
-
-        Vector3 startPos = StartPos.position;
-        if (spawnPoint) { startPos = spawnPoint.position; }
-        //Instantiate(confiti, StartPos);
-        if (confiti) confiti.SetActive(true);
-        numCompleted = animateCount; // used to keep trake of animation completed to restart scene
-        Animate(animateCount, startPos);
-    }
-
-    private void OnDestroy()
-    {
-        SaveCoins();
-    }
-
-    public static int SavedCoins
-    {
-        get
-        {
-            return PlayerPrefs.GetInt("savedcoins");
-        }
-        set
-        {
-            PlayerPrefs.SetInt("savedcoins", value);
-        }
-    }
-
-    public static int InitialCash
-    {
-        get
-        {
-            return PlayerPrefs.GetInt("InitialCash");
-        }
-        set
-        {
-            PlayerPrefs.SetInt("InitialCash", value);
-        }
+        Vector2 viewportPosition = camera.WorldToViewportPoint(worldPoint);
+        Vector2 screenPosition = new Vector2(((viewportPosition.x * canvasRect.sizeDelta.x) - (canvasRect.sizeDelta.x * 0.5f)), ((viewportPosition.y * canvasRect.sizeDelta.y) - (canvasRect.sizeDelta.y * 0.5f)));
+        return screenPosition;
     }
 
 }
-*/

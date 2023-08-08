@@ -611,7 +611,7 @@ namespace DG.Tweening
             DOTween.Rewind(id);
         }
 
-        public void DORestartById(string id)
+        public void DORestartbyID(string id)
         {
             _playCount = -1;
             DOTween.Restart(this.gameObject, id);

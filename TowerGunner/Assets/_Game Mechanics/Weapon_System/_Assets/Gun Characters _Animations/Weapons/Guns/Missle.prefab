@@ -45,7 +45,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 30
+  m_Radius: 10
   m_Center: {x: 0.099998474, y: -2.113515, z: -0.49241638}
 --- !u!54 &1140185905373055846
 Rigidbody:
@@ -101,7 +101,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1140185905381893686}
-  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalRotation: {x: 0.70710677, y: 0, z: 0, w: 0.70710677}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
   m_ConstrainProportionsScale: 1
@@ -240,12 +240,11 @@ MonoBehaviour:
   MaxDamageTaken: 1
   ExplosionDamage: 100
   explosionRange: {fileID: 1140185905373055840}
-  CameraShakeManager: {fileID: 6655221068532155871, guid: d1f94919a88cca0408805f047d34e1ff, type: 3}
   ExplosinParticleType: 4
   BulletHitParticleType: 1
   MetalsoundType: 0
   ExplosionSound: 4
-  volume: 0.5
+  volume: 0.2
   currentHealth: 0
-  speed: 25
+  speed: 20
   missleLaunchSound: 7

@@ -15,13 +15,7 @@ public class InsectPooler : MonoBehaviour
 
     private void Awake()
     {
-      /*  for (int i = 0; i < insectPrefab.Length; i++)
-        {
-            int ran = Random.Range(0, 2);
-            Debug.Log(ran);*/
             pooler.RandomInitialize(poolSize * insectPrefab.Length, insectPrefab, this.transform);
-
-      //  }
     }
 
     public AiWalker GetNew()
