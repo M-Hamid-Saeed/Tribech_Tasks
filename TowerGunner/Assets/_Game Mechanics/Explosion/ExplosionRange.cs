@@ -6,7 +6,7 @@ namespace DarkVortex
     {
         private void Start()
         {
-            Destroy(this.gameObject, .5f);
+            Destroy(this.gameObject,.1f);
         }
 
         private void OnTriggerStay(Collider other)

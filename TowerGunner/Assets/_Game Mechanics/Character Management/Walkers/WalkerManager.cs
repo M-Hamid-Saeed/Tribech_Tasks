@@ -100,8 +100,10 @@ namespace Character_Management
 
 
                     walker.transform.localPosition = pathList[pathIndex].transform.localPosition;
-                    walker.transform.localRotation = Quaternion.Euler(0, 0, 0);
+                   
                     walker.GetComponentInChildren<BoxCollider>().enabled = true;
+                    Quaternion rot = walker.transform.localRotation;
+                    rot.z = 0f;
                     walker.Initialize(pathList[pathIndex],
                                     m_WalkType,
                                     Random.Range(m_MinSpeed, m_MaxSpeed), startWalk);

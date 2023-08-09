@@ -53,7 +53,7 @@ public class CoinsManager : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
-
+            Debug.Log(Instance);
         }
         targetPosition = target.position;
 

@@ -44,18 +44,15 @@ public class GameController : MonoBehaviour
 
 			case GameState.Gameplay:
 				onGameplay?.Invoke();
-				Time.timeScale = 1;
 				break;
 
 			case GameState.Complete:
 				onLevelComplete?.Invoke(  );
-				Time.timeScale = 0;
 				break;
 
 			case GameState.Fail:
 			{
 				onLevelFail?.Invoke();
-					Time.timeScale = 0f;
 				break;
 			}
 		}

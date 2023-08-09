@@ -51,16 +51,24 @@ public class FiringSystem : Weapon
 		if (weaponData == null) { Debug.LogError("Data Not Assigned in Fire System"); return; }
 		LoadGun();
 		//trail = TrailPool.Get();
-
+		
 		InitializeWeapon();
 	}
+    private void Awake()
+    {
+		UpgradeManager.onCharacterSpeedUpGrade += UpgradeGunSpeed;
+	}
+    private void UpgradeGunSpeed(float speed)
+    {
+		weaponData.dataSheet.fireRate = speed;
 
-	private void InitializeWeapon()
+	}
+    private void InitializeWeapon()
 	{
 		//TrailPool = new ObjectPool<TrailRenderer>(weaponData.CreateTrail);
 
 		int megSize = weaponData.dataSheet.megSize;
-
+		
 		//pooler.Initialize(megSize, weaponData.bullet/*,this.transform*/);
 		_bullet.speed = weaponData.dataSheet.bulletSpeed;
 		weaponDamage = weaponData.dataSheet.damage;

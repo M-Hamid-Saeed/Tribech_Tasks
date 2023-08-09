@@ -12,7 +12,7 @@ namespace AxisGames
 			float currentAmo;
 			Vector3 aimPoint;
 			IEnumerator waitForHold;
-
+			
 			void Start()
 			{
 				currentAmo = magSize;

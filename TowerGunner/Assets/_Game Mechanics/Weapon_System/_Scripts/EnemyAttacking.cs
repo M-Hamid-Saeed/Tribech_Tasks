@@ -28,13 +28,14 @@ public class EnemyAttacking : MonoBehaviour
        
         foreach (Collider insect in insects)
         {
+            Debug.Log(insect.transform.parent.name + insect.transform.position);
             Vibration.Cancel();
             InsectHealth insect_health = insect.GetComponentInParent<InsectHealth>();
+            
             player_health.Damage(insect_health.insectAttackingDamage);
             ReferenceManager.Instance.CameraShakeManager.ShakeCamera();
             Vibration.VibrateNope();
             ReferenceManager.Instance.playerHitAnimation.DORestartbyID("BloodHitEffect");
-            Debug.Log("Player Attacked");
             insect_health.GetComponentInChildren<BoxCollider>().enabled = false;
             StartCoroutine(waitforDestroy(insect_health));
         }

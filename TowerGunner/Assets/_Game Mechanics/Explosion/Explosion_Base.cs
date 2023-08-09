@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//This class is base class for all explosives
 namespace DarkVortex {
     public class Explosion_Base : MonoBehaviour, IDamageable
     {
@@ -25,7 +26,7 @@ namespace DarkVortex {
 
         private void Awake()
         {
-           // gameObject.GetComponent<BoxCollider>().enabled = false;
+           
             currentHealth = MaxHealth;
             explosionRange.SetActive(false);
            
@@ -39,16 +40,25 @@ namespace DarkVortex {
 
             if (currentHealth <= 0)
             {
-                
+               /* Disabling mesh at on explosive health = 0, but destroying object after
+                sometime to make the explosion damage in explosion range*/
                 gameObject.GetComponentInChildren<MeshRenderer>().enabled = false;
-                ReferenceManager.Instance.CameraShakeManager.ShakeCamera();
                 PlayExplosionParticle();
-                
                 if(explosionRange)
                     explosionRange.SetActive(true);
                 StartCoroutine(WaitForDestroy());
 
-                
+                /*Disabling drumexplosive visual collider as the gameobject will destroy 
+                after some time so even after meshrenderer off, the collider can still get the bullet damage
+                creating multiple explosion effects*/
+                //Box collider in only on drumexplosive visual, should not disable the missle visual collider
+                BoxCollider drumExplosiveCollider = gameObject.GetComponentInChildren<BoxCollider>();
+                CapsuleCollider MissleCollider = gameObject.GetComponentInChildren<CapsuleCollider>();
+                if (drumExplosiveCollider)
+                    drumExplosiveCollider.enabled = false;
+                if (MissleCollider)
+                    MissleCollider.enabled = false;
+                ReferenceManager.Instance.CameraShakeManager.ShakeCamera();
             }
 
         }
@@ -56,8 +66,7 @@ namespace DarkVortex {
 
         private IEnumerator WaitForDestroy()
         {
-            yield return new WaitForSeconds(.5f);
-            gameObject.GetComponentInChildren<Collider>().enabled = false;
+            yield return new WaitForSeconds(.1f);
             Destroy(gameObject);
         }
         private void PlayExplosionParticle()

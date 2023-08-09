@@ -13,6 +13,7 @@ public class ReferenceManager : MonoBehaviour
     public DOTweenAnimation playerHitAnimation;
     public DOTweenAnimation crosshairAnimation;
     public GameObject crossHaironHit;
+
     private void Awake()
     {
         if (Instance == null)

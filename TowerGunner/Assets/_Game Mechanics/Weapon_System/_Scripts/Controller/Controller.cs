@@ -28,7 +28,8 @@ public class Controller : MonoBehaviour
     {
         
         firingSystem.Init();
-       // GameController.onGameplay += OnGameStart;
+        GameController.onHome += OnGameStart;
+        GameController.onGameplay += OnGamePlay;
        // GameController.onLevelFail += OnGameFail;
         
         Vibration.Init();
@@ -79,13 +80,13 @@ public class Controller : MonoBehaviour
         transform.rotation = rot;
     }
 
-    private void OnGameFail()
+    private void OnGamePlay()
     {
-       canPlay = false;
+       canPlay = true;
     }
     private void OnGameStart()
     {
-        canPlay = true;
+        canPlay = false;
     }
 
     private void spawnMissle()

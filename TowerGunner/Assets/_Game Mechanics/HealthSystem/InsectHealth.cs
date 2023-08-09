@@ -10,7 +10,7 @@ namespace Character_Management
         [SerializeField] float insectMaxDamageTaken;
         public float insectAttackingDamage;
         [SerializeField] HealthBarUI UI;
-        [SerializeField] playerHealth playerUI;
+
     
         [SerializeField] ParticleType DeathParticleType;
         [SerializeField] SoundType InsectDeathSoundType;
@@ -55,16 +55,16 @@ namespace Character_Management
        
         public void Dead()
         {
-           // ReferenceManager.Instance.walkerManager.InsectCounterManage();
+
             ReferenceManager.Instance.mainUIManager.AddKillCount();
             SoundManager.Instance?.PlayOneShot(InsectDeathSoundType, .7f);
-            //playerUI.PlayerScore(killScore);
-            //playerUI.AddKill();
+            this.GetComponentInChildren<BoxCollider>().enabled = false;
+
             ParticleManager.Instance?.PlayParticle(DeathParticleType, transform.position);
-            this.currentHealth = totalHealth;
             
             gameObject.GetComponent<AiWalker>().FreePool();
-            
+            this.currentHealth = totalHealth;
+
         }
 
         public void AddScore()

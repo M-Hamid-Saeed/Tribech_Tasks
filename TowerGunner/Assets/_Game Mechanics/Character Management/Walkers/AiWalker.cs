@@ -36,11 +36,7 @@ namespace Character_Management
 
             sMove.SetAction(WalkStartEvent,WalkEndEvent);
 
-           /* GameController.onHome += GameController_onHome;
-            GameController.onMergeArea += GameController_onMergeArea;*/
 
-            WalkerSpeedMultiplier.onSpeedMultiplied += WalkerSpeedMultiplier_onSpeedMultiplied;
-            WalkerSpeedMultiplier.onSpeedNormalized += WalkerSpeedMultiplier_onSpeedNormalized;
 
             if (startWalking) { GameController_onHome(); }
         }
@@ -92,11 +88,12 @@ namespace Character_Management
 
         private void EnablePickup(bool enabled = false)
         {
-            pickupObject?.SetActive(enabled);
+          //  pickupObject?.SetActive(enabled);
         }
 
         public void FreePool()
         {
+           // this.transform.localRotation = Quaternion.Euler(0,0,0);
             pool.Free(this);
 
         }

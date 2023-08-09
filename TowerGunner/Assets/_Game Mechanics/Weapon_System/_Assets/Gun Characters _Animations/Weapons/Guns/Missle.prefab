@@ -45,7 +45,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 10
+  m_Radius: 15
   m_Center: {x: 0.099998474, y: -2.113515, z: -0.49241638}
 --- !u!54 &1140185905373055846
 Rigidbody:
@@ -246,5 +246,5 @@ MonoBehaviour:
   ExplosionSound: 4
   volume: 0.2
   currentHealth: 0
-  speed: 20
+  speed: 15
   missleLaunchSound: 7

@@ -11,20 +11,17 @@ public class WalkerAnimationHandler : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Bullet"))
         {
-            TweenImpact();
-            //ScaleImpact();
+            Quaternion rot = transform.localRotation;
+            TweenImpact(rot);
         }
         
         
     }
 
-    private void TweenImpact()
+    private void TweenImpact(Quaternion rot)
     {
-        transform.DOShakeRotation(1f,20,10,90);
+        transform.DOShakeRotation(.5f,20,10,90);
+        transform.localRotation = rot;
     }
-    private void ScaleImpact()
-    {
-        TweenImpact();
-        transform.DOScale(transform.localScale *-2f ,1f);
-    }
+   
 }
