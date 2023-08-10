@@ -57,13 +57,17 @@ public class FiringSystem : Weapon
     private void Awake()
     {
 		UpgradeManager.onCharacterSpeedUpGrade += UpgradeGunSpeed;
+		UpgradeManager.onPowerUpgrade += UpgradeBulletPower;
 	}
     private void UpgradeGunSpeed(float speed)
     {
 		weaponData.dataSheet.fireRate = speed;
-
 	}
-    private void InitializeWeapon()
+	private void UpgradeBulletPower(int bulletDamagePower)
+	{
+		weaponData.dataSheet.damage = bulletDamagePower;
+	}
+	private void InitializeWeapon()
 	{
 		//TrailPool = new ObjectPool<TrailRenderer>(weaponData.CreateTrail);
 

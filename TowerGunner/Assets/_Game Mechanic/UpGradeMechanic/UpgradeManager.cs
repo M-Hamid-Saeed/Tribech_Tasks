@@ -12,9 +12,11 @@ public class UpgradeManager : MonoBehaviour
 
 
     public static event Action<Transform> onCharacterUpGrade;
+    public static event Action<int> onPowerUpgrade;
     public static event Action<float> onCharacterSpeedUpGrade;
     public static event Action<int, int, bool> onCharacterUIUpGrade;
     public static event Action<int, int, bool> onCharacterSpeedUIUpGrade;
+    public static event Action<int, int, bool> onPowerUIUpGrade;
 
     [Space(2)]
     [FoldoutGroup("---- Character Upgrade Data ----")]
@@ -40,6 +42,20 @@ public class UpgradeManager : MonoBehaviour
     [FoldoutGroup("---- Speed Upgrade Data ----")]
     [SerializeField] protected float incrementalSpeedFector;
 
+    [Space(2)]
+    [FoldoutGroup("---- Power Upgrade Data ----")]
+    [SerializeField] protected int characterPowerLevel;
+    [FoldoutGroup("---- Power Upgrade Data ----")]
+    [SerializeField] protected int characterPowerPrice;
+    [FoldoutGroup("---- Power Upgrade Data ----")]
+    [SerializeField] protected int characterPowerIncrementPrice;
+    [FoldoutGroup("---- Power Upgrade Data ----")]
+    [SerializeField] protected int defaultPower;
+    [FoldoutGroup("---- Power Upgrade Data ----")]
+    [SerializeField] protected int incrementalPowerFactor;
+    [FoldoutGroup("---- Power Upgrade Data ----")]
+    [SerializeField] protected Transform PowerAnimation;
+
     private void Awake()
     {
         GameController.onLevelComplete += SetUiData;
@@ -50,9 +66,15 @@ public class UpgradeManager : MonoBehaviour
             SpeedLevel = 1;
             characterLevel = 1;
             Speed = defultspeed;
+            Power = defaultPower;
+            PowerLevel = 1;
+            Debug.Log("INCREMENTAL START PRICE" + characterPowerIncrementPrice);
             SaveCharacterData();
             SaveCharacterSpeedData();
+            SaveCharacterPowerData();
             onCharacterSpeedUpGrade?.Invoke(Speed);
+            onPowerUpgrade?.Invoke(Power);
+
         }
         else
         {
@@ -66,8 +88,10 @@ public class UpgradeManager : MonoBehaviour
     void GetData()
     {
         characterPrice = CurrentCharacterPrice;
+        characterPowerPrice = CurrentPowerPrice;
         characterSpeedPrice = CurrentCharacterSpeedPrice;
         characterIncrementPrice = IncrementalCharacterPrice;
+        characterPowerIncrementPrice = IncrementalPowerPrice;
         characterSpeedIncrementPrice = IncrementalCharacterSpeedPrice;
         //characterLevel = (PlayerPrefManager.CharacterLevel) + 1;
         characterSpeedLevel = SpeedLevel;
@@ -80,13 +104,19 @@ public class UpgradeManager : MonoBehaviour
         IncrementalCharacterPrice = characterIncrementPrice;
 
     }
+    void SaveCharacterPowerData()
+    {
+        IncrementalPowerPrice = characterPowerIncrementPrice;
+        PowerLevel = characterPowerLevel;
+        CurrentPowerPrice = characterPowerPrice;
+    }
     void SaveCharacterSpeedData()
     {
         IncrementalCharacterSpeedPrice = characterSpeedIncrementPrice;
-        SpeedLevel = characterSpeedLevel;
+        SpeedLevel =  characterSpeedLevel;
         CurrentCharacterSpeedPrice = characterSpeedPrice;
     }
-    public void UpGradeCharacter(bool isFree = false)
+    public void UpgradeCharacter(bool isFree = false)
     {
 
         if (CoinsManager.Instance.CanDoTransaction(characterPrice) || isFree)
@@ -94,8 +124,8 @@ public class UpgradeManager : MonoBehaviour
             Debug.Log("UpGrade Character");
           //  PlayerPrefManager.CharacterLevel++;
            // characterLevel = (PlayerPrefManager.CharacterLevel) + 1;
-           //  ReferenceManager.Instance.characterController.RestData();
-         //   onCharacterUpGrade?.Invoke(RefrenceManager.Instance.characterController.transform);
+           // ReferenceManager.Instance.characterController.RestData();
+          //  onCharacterUpGrade?.Invoke(ReferenceManager.Instance.characterController.transform);
             if (!isFree)
             {
                 CoinsManager.Instance.DecCoins(characterPrice);
@@ -124,6 +154,31 @@ public class UpgradeManager : MonoBehaviour
                 characterSpeedPrice += IncrementalCharacterSpeedPrice;
             }
             SaveCharacterSpeedData();
+        }
+        else
+        {
+            //MediationManager Rewarded AdPlay
+            Debug.Log("Rewarded Ad Play");
+
+        }
+        SetUiData();
+    }
+    public void UpgradePower(bool isFree = false)
+    {
+        if (CoinsManager.Instance.CanDoTransaction(characterPowerPrice) || isFree)
+        {
+            characterPowerLevel++;
+            Power += incrementalPowerFactor;
+            onPowerUpgrade?.Invoke(Power);
+            if (!isFree)
+            {
+                CoinsManager.Instance.DecCoins(characterPowerPrice);
+                Debug.Log(characterPowerPrice + "" + "Before UPDATING");
+                Debug.Log(IncrementalPowerPrice + "incrementtal price");
+                characterPowerPrice += IncrementalPowerPrice;
+                Debug.Log(characterPowerPrice + "" + "AFTER UPDATING");
+            }
+            SaveCharacterPowerData();
         }
         else
         {
@@ -165,11 +220,29 @@ public class UpgradeManager : MonoBehaviour
         {
             onCharacterSpeedUIUpGrade?.Invoke(characterSpeedLevel, characterSpeedPrice, true);
         }
+        if (CoinsManager.Instance.CanDoTransaction(characterPowerPrice))
+        {
+            onPowerUIUpGrade?.Invoke(characterPowerLevel, characterPowerPrice, false);
+        }
+        else
+        {
+            Debug.Log(characterPowerPrice+"  " + "CHARACTER CURRENT PRICE");
+
+            onPowerUIUpGrade?.Invoke(characterPowerLevel, characterPowerPrice, true);
+        }
+
+
 
 
     }
 
     #region DataBase
+
+    int CurrentPowerPrice
+    {
+        get { return PlayerPrefs.GetInt("CurrentPowerPrice"); }
+        set { PlayerPrefs.SetInt("CurrentPowerPrice", value); }
+    }
     int CurrentCharacterPrice
     {
         get { return PlayerPrefs.GetInt("CurrentCharacterPrice"); }
@@ -184,6 +257,11 @@ public class UpgradeManager : MonoBehaviour
     {
         get { return PlayerPrefs.GetInt("IncrementalCharacterPrice"); }
         set { PlayerPrefs.SetInt("IncrementalCharacterPrice", value); }
+    }
+    int IncrementalPowerPrice
+    {
+        get { return PlayerPrefs.GetInt("IncrementalPowerPrice"); }
+        set { PlayerPrefs.SetInt("IncrementalPowerPrice", value); }
     }
     int IncrementalCharacterSpeedPrice
     {
@@ -206,11 +284,25 @@ public class UpgradeManager : MonoBehaviour
         get { return PlayerPrefs.GetFloat("Speed"); }
         set { PlayerPrefs.SetFloat("Speed", value); }
     }
+    int PowerLevel
+    {
+        get { return PlayerPrefs.GetInt("PowerLevel"); }
+        set { PlayerPrefs.SetInt("PowerLevel", value); }
+    }
+    int Power
+    {
+        get { return PlayerPrefs.GetInt("Power"); }
+        set { PlayerPrefs.SetInt("Power", value); }
+    }
+
+
     #endregion
     private void OnDestroy()
     {
         onCharacterUpGrade = null;
         onCharacterSpeedUIUpGrade = null;
         onCharacterUIUpGrade = null;
+        onPowerUIUpGrade = null;
+        onPowerUpgrade = null;
     }
 }

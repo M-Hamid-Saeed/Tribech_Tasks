@@ -56,7 +56,7 @@ namespace Character_Management
         public void Dead()
         {
 
-            ReferenceManager.Instance.mainUIManager.AddKillCount();
+            ReferenceManager.Instance.mainUIManager.AddKillCount(this.gameObject);
             SoundManager.Instance?.PlayOneShot(InsectDeathSoundType, .7f);
             this.GetComponentInChildren<BoxCollider>().enabled = false;
 

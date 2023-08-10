@@ -1,3 +1,4 @@
+using Character_Management;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -76,9 +77,10 @@ public class UIManager : MonoBehaviour
         GameController.changeGameState.Invoke(GameState.Gameplay);
     }
 
-    public void AddKillCount()
+    public void AddKillCount(GameObject currentInsect)
     {
         currentKillCount++;
+        ReferenceManager.Instance.walkerManager.walkersListsForPaths.Remove(currentInsect);
         KillText.text = currentKillCount + "/" + totalInsects;
         if (currentKillCount == totalInsects)
         {

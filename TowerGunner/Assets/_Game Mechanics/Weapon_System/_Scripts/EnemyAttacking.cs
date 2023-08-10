@@ -48,7 +48,7 @@ public class EnemyAttacking : MonoBehaviour
     IEnumerator waitforDestroy(InsectHealth insect_health)
     {
       
-        yield return new WaitForSeconds(.3f);
+        yield return new WaitForSeconds(.1f);
         insect_health.Dead();
 
     }
