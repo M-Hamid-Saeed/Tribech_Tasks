@@ -50,8 +50,6 @@ MonoBehaviour:
     m_Bits: 64
   attackPoint: {fileID: 2486499039102454050}
   attackRange: 3.79
-  playerHitAnimation: {fileID: 0}
-  CameraShakerManager: {fileID: 0}
 --- !u!1 &1145766099054313727
 GameObject:
   m_ObjectHideFlags: 0
@@ -168,7 +166,6 @@ Transform:
   m_Children:
   - {fileID: 2486499039102454050}
   - {fileID: 3712950951935488922}
-  - {fileID: 2332358943121629286}
   - {fileID: 3713561810376030406}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -193,7 +190,6 @@ MonoBehaviour:
   animationController: {fileID: 0}
   Missile: {fileID: 1140185905662073914, guid: fb3f46800d89f714fa8299d399302a48, type: 3}
   missileFirePoint: {fileID: 0}
-  touchInputManager: {fileID: 0}
   insectcounter: 0
   lookDirection: {x: 0, y: 0, z: 0}
 --- !u!114 &2332358942923454886
@@ -232,8 +228,6 @@ MonoBehaviour:
   totalHealth: 50
   healthUI: {fileID: 0}
   playerMaxDamageTaken: 10
-  scoreText: {fileID: 0}
-  killCountText: {fileID: 0}
 --- !u!1 &2332358943121629285
 GameObject:
   m_ObjectHideFlags: 0
@@ -257,13 +251,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2332358943121629285}
-  m_LocalRotation: {x: -0.095845714, y: 0, z: 0, w: 0.99539626}
-  m_LocalPosition: {x: -0.027, y: -0.013, z: -0.842}
+  m_LocalRotation: {x: -0.095845714, y: -0, z: -0, w: 0.99539626}
+  m_LocalPosition: {x: -0.027, y: -0.01299988, z: -0.84199786}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
-  m_Father: {fileID: 2332358942923454911}
-  m_RootOrder: 2
+  m_Father: {fileID: 3713561810376030406}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: -11, y: 0, z: 0}
 --- !u!1 &3713561810153633251
 GameObject:
@@ -296,7 +290,7 @@ Transform:
   m_Children:
   - {fileID: 5184729133992673569}
   m_Father: {fileID: 3713561810376030406}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &3713561810153633249
 Animator:
@@ -347,10 +341,11 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 2332358943121629286}
   - {fileID: 3528138998461104734}
   - {fileID: 3713561810153633248}
   m_Father: {fileID: 2332358942923454911}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3713561810376030407
 MonoBehaviour:
@@ -446,7 +441,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3713561810376030406}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 15.7, y: -176.62, z: 0}
 --- !u!20 &7541779233719493393
 Camera:

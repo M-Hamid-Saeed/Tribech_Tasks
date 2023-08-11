@@ -18,7 +18,7 @@ public class OffScreenIndicator : MonoBehaviour
     private Vector3 screenCentre;
     private Vector3 screenBounds;
 
-    private List<Target> targets = new List<Target>();
+    public List<Target> targets = new List<Target>();
 
     public static Action<Target, bool> TargetStateChanged;
 
@@ -47,18 +47,12 @@ public class OffScreenIndicator : MonoBehaviour
             float distanceFromCamera = target.NeedDistanceText ? target.GetDistanceFromCamera(mainCamera.transform.position) : float.MinValue;// Gets the target distance from the camera.
             Indicator indicator = null;
 
-            if(target.NeedBoxIndicator && isTargetVisible)
-            {
-                screenPosition.z = 0;
-                indicator = GetIndicator(ref target.indicator, IndicatorType.BOX); // Gets the box indicator from the pool.
-            }
-            else if(target.NeedArrowIndicator && !isTargetVisible)
-            {
+           
                 float angle = float.MinValue;
                 OffScreenIndicatorCore.GetArrowIndicatorPositionAndAngle(ref screenPosition, ref angle, screenCentre, screenBounds);
                 indicator = GetIndicator(ref target.indicator, IndicatorType.ARROW); // Gets the arrow indicator from the pool.
                 indicator.transform.rotation = Quaternion.Euler(0, 0, angle * Mathf.Rad2Deg); // Sets the rotation for the arrow indicator.
-            }
+            
             if(indicator)
             {
                 indicator.SetImageColor(target.TargetColor);// Sets the image color of the indicator.

@@ -1,5 +1,6 @@
 using AxisGames.Pooler;
 using SWS;
+using System.Collections.Generic;
 using UnityEngine;
 namespace Character_Management
 {
@@ -93,7 +94,7 @@ namespace Character_Management
 
         public void FreePool()
         {
-           // this.transform.localRotation = Quaternion.Euler(0,0,0);
+            this.GetComponent<splineMove>().Pause();
             pool.Free(this);
 
         }

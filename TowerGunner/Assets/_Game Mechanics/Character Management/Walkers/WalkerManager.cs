@@ -10,7 +10,7 @@ namespace Character_Management
     {
         [Header("--------- Path Refrences --------")]
         [SerializeField] PathManager[] pathList;
-        public List<GameObject> walkersListsForPaths;
+       
 
         [Space(5)]
         [Header("--------- Walker Prefabs --------")]
@@ -108,9 +108,10 @@ namespace Character_Management
                     walker.Initialize(pathList[pathIndex],
                                     m_WalkType,
                                     Random.Range(m_MinSpeed, m_MaxSpeed), startWalk);
-                   walkersListsForPaths.Add(walker.gameObject);
+                  
                     //WalkersListForPaths[pathIndex].Remove
                     pathIndex++;
+                    
 
                 }
 

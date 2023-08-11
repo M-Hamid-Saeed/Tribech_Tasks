@@ -1,4 +1,4 @@
-using Character_Management;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -23,7 +23,6 @@ public class UIManager : MonoBehaviour
         GameController.onGameplay += Gameplay;
         GameController.onLevelFail += LevelFail;
         GameController.onHome += Home;
-        
     }
     private void Start()
     {
@@ -80,13 +79,11 @@ public class UIManager : MonoBehaviour
     public void AddKillCount(GameObject currentInsect)
     {
         currentKillCount++;
-        ReferenceManager.Instance.walkerManager.walkersListsForPaths.Remove(currentInsect);
         KillText.text = currentKillCount + "/" + totalInsects;
         if (currentKillCount == totalInsects)
-        {
             GameController.changeGameState(GameState.Complete);
-            
-        }
+
+
     }
 
 }

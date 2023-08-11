@@ -6,16 +6,15 @@ namespace DarkVortex
     {
         private void Start()
         {
-            Destroy(this.gameObject,.1f);
+            Destroy(this.gameObject, .1f);
         }
 
         private void OnTriggerStay(Collider other)
         {
-
-            InsectHealth insect_health = other.gameObject.GetComponentInParent<InsectHealth>();
-            
-            if (insect_health)
+            if (other.gameObject.CompareTag("Insects"))
             {
+                InsectHealth insect_health = other.gameObject.GetComponentInParent<InsectHealth>();
+
                 insect_health.GetComponentInChildren<BoxCollider>().enabled = false;
                 insect_health.Dead();
                 insect_health.AddScore();

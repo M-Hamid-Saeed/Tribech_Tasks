@@ -1,11 +1,7 @@
 
-using System;
-using Character_Management;
-using UnityEngine;
-
 using Sirenix.OdinInspector;
-
-using DG.Tweening;
+using System;
+using UnityEngine;
 
 public class UpgradeManager : MonoBehaviour
 {
@@ -13,10 +9,12 @@ public class UpgradeManager : MonoBehaviour
 
     public static event Action<Transform> onCharacterUpGrade;
     public static event Action<int> onPowerUpgrade;
+    public static event Action<int> onHealthUpgrade;
     public static event Action<float> onCharacterSpeedUpGrade;
     public static event Action<int, int, bool> onCharacterUIUpGrade;
     public static event Action<int, int, bool> onCharacterSpeedUIUpGrade;
     public static event Action<int, int, bool> onPowerUIUpGrade;
+    public static event Action<int, int, bool> onHealthUIUpGrade;
 
     [Space(2)]
     [FoldoutGroup("---- Character Upgrade Data ----")]
@@ -56,6 +54,23 @@ public class UpgradeManager : MonoBehaviour
     [FoldoutGroup("---- Power Upgrade Data ----")]
     [SerializeField] protected Transform PowerAnimation;
 
+    [Space(2)]
+    [FoldoutGroup("---- Health Upgrade Data ----")]
+    [SerializeField] protected int characterHealthLevel;
+    [FoldoutGroup("---- Health Upgrade Data ----")]
+    [SerializeField] protected int characterHealthPrice;
+    [FoldoutGroup("---- Health Upgrade Data ----")]
+    [SerializeField] protected int characterHealthIncrementPrice;
+    [FoldoutGroup("---- Health Upgrade Data ----")]
+    [SerializeField] protected int defaultHealth;
+    [FoldoutGroup("---- Health Upgrade Data ----")]
+    [SerializeField] protected int incrementalHealthFactor;
+    [FoldoutGroup("---- Health Upgrade Data ----")]
+    [SerializeField] protected Transform HealthAnimation;
+
+
+
+
     private void Awake()
     {
         GameController.onLevelComplete += SetUiData;
@@ -68,12 +83,17 @@ public class UpgradeManager : MonoBehaviour
             Speed = defultspeed;
             Power = defaultPower;
             PowerLevel = 1;
+            HealthLevel = 1;
+            Health = defaultHealth;
             Debug.Log("INCREMENTAL START PRICE" + characterPowerIncrementPrice);
             SaveCharacterData();
             SaveCharacterSpeedData();
             SaveCharacterPowerData();
+            SaveCharacterHealthData();
             onCharacterSpeedUpGrade?.Invoke(Speed);
             onPowerUpgrade?.Invoke(Power);
+            onHealthUpgrade?.Invoke(Health);
+
 
         }
         else
@@ -95,7 +115,11 @@ public class UpgradeManager : MonoBehaviour
         characterSpeedIncrementPrice = IncrementalCharacterSpeedPrice;
         //characterLevel = (PlayerPrefManager.CharacterLevel) + 1;
         characterSpeedLevel = SpeedLevel;
+        characterHealthIncrementPrice = IncrementalHealthPrice;
+        characterHealthPrice = CurrentHealthPrice; 
         onCharacterSpeedUpGrade?.Invoke(Speed);
+        onPowerUpgrade?.Invoke(Power);
+        onHealthUpgrade?.Invoke(Health);
     }
     void SaveCharacterData()
     {
@@ -110,10 +134,16 @@ public class UpgradeManager : MonoBehaviour
         PowerLevel = characterPowerLevel;
         CurrentPowerPrice = characterPowerPrice;
     }
+    void SaveCharacterHealthData()
+    {
+        IncrementalHealthPrice = characterHealthIncrementPrice;
+        HealthLevel = characterHealthLevel;
+        CurrentHealthPrice = characterHealthPrice;
+    }
     void SaveCharacterSpeedData()
     {
         IncrementalCharacterSpeedPrice = characterSpeedIncrementPrice;
-        SpeedLevel =  characterSpeedLevel;
+        SpeedLevel = characterSpeedLevel;
         CurrentCharacterSpeedPrice = characterSpeedPrice;
     }
     public void UpgradeCharacter(bool isFree = false)
@@ -122,10 +152,10 @@ public class UpgradeManager : MonoBehaviour
         if (CoinsManager.Instance.CanDoTransaction(characterPrice) || isFree)
         {
             Debug.Log("UpGrade Character");
-          //  PlayerPrefManager.CharacterLevel++;
-           // characterLevel = (PlayerPrefManager.CharacterLevel) + 1;
-           // ReferenceManager.Instance.characterController.RestData();
-          //  onCharacterUpGrade?.Invoke(ReferenceManager.Instance.characterController.transform);
+            //  PlayerPrefManager.CharacterLevel++;
+            // characterLevel = (PlayerPrefManager.CharacterLevel) + 1;
+            // ReferenceManager.Instance.characterController.RestData();
+            //  onCharacterUpGrade?.Invoke(ReferenceManager.Instance.characterController.transform);
             if (!isFree)
             {
                 CoinsManager.Instance.DecCoins(characterPrice);
@@ -188,6 +218,31 @@ public class UpgradeManager : MonoBehaviour
         }
         SetUiData();
     }
+    public void UpgradeHealth(bool isFree = false)
+    {
+        if (CoinsManager.Instance.CanDoTransaction(characterHealthPrice) || isFree)
+        {
+            characterHealthLevel++;
+            Health -= incrementalHealthFactor;
+            onHealthUpgrade?.Invoke(Health);
+            if (!isFree)
+            {
+                Debug.Log(characterHealthPrice + "" + "Before UPDATING Health Price");
+                CoinsManager.Instance.DecCoins(characterHealthPrice);
+               
+                characterHealthPrice += IncrementalHealthPrice;
+                Debug.Log(characterHealthPrice + "" + "Before UPDATING Health Price");
+            }
+            SaveCharacterHealthData();
+        }
+        else
+        {
+            //MediationManager Rewarded AdPlay
+            Debug.Log("Rewarded Ad Play");
+
+        }
+        SetUiData();
+    }
     public void onReset()
     {
 
@@ -226,9 +281,16 @@ public class UpgradeManager : MonoBehaviour
         }
         else
         {
-            Debug.Log(characterPowerPrice+"  " + "CHARACTER CURRENT PRICE");
-
             onPowerUIUpGrade?.Invoke(characterPowerLevel, characterPowerPrice, true);
+        }
+
+        if (CoinsManager.Instance.CanDoTransaction(characterHealthPrice))
+        {
+            onHealthUIUpGrade?.Invoke(characterHealthLevel, characterHealthPrice, false);
+        }
+        else
+        {
+            onHealthUIUpGrade?.Invoke(characterHealthLevel, characterHealthPrice, true);
         }
 
 
@@ -243,6 +305,7 @@ public class UpgradeManager : MonoBehaviour
         get { return PlayerPrefs.GetInt("CurrentPowerPrice"); }
         set { PlayerPrefs.SetInt("CurrentPowerPrice", value); }
     }
+
     int CurrentCharacterPrice
     {
         get { return PlayerPrefs.GetInt("CurrentCharacterPrice"); }
@@ -263,6 +326,7 @@ public class UpgradeManager : MonoBehaviour
         get { return PlayerPrefs.GetInt("IncrementalPowerPrice"); }
         set { PlayerPrefs.SetInt("IncrementalPowerPrice", value); }
     }
+
     int IncrementalCharacterSpeedPrice
     {
         get { return PlayerPrefs.GetInt("IncrementalCharacterSpeedPrice"); }
@@ -294,8 +358,26 @@ public class UpgradeManager : MonoBehaviour
         get { return PlayerPrefs.GetInt("Power"); }
         set { PlayerPrefs.SetInt("Power", value); }
     }
-
-
+    int Health
+    {
+        get { return PlayerPrefs.GetInt("Health"); }
+        set { PlayerPrefs.SetInt("Health", value); }
+    }
+    int HealthLevel
+    {
+        get { return PlayerPrefs.GetInt("HealthLevel"); }
+        set { PlayerPrefs.SetInt("HealthLevel", value); }
+    }
+    int CurrentHealthPrice
+    {
+        get { return PlayerPrefs.GetInt("CurrentHealthPrice"); }
+        set { PlayerPrefs.SetInt("CurrentHealthPrice", value); }
+    }
+    int IncrementalHealthPrice
+    {
+        get { return PlayerPrefs.GetInt("IncrementalHealthPrice"); }
+        set { PlayerPrefs.SetInt("IncrementalHealthPrice", value); }
+    }
     #endregion
     private void OnDestroy()
     {
@@ -304,5 +386,7 @@ public class UpgradeManager : MonoBehaviour
         onCharacterUIUpGrade = null;
         onPowerUIUpGrade = null;
         onPowerUpgrade = null;
+        onHealthUpgrade = null;
+        onHealthUIUpGrade = null;
     }
 }

@@ -8,16 +8,20 @@ public class playerHealth : MonoBehaviour
     [SerializeField] float totalHealth;
     [SerializeField] HealthBarUI healthUI; 
     [SerializeField] float playerMaxDamageTaken;
-
-
-
     private float currentHealth;
-
+    private void Awake()
+    {
+        UpgradeManager.onHealthUpgrade += SetMaxDamage;
+    }
     private void Start()
     {
         currentHealth = totalHealth;
         healthUI.SetMaxHealth(totalHealth);
 
+    }
+    private void SetMaxDamage(int maxDamageTaken)
+    {
+        playerMaxDamageTaken = maxDamageTaken;
     }
     public void Damage(float damage)
     {

@@ -17,6 +17,7 @@ public class UpGradeUiHandler : MonoBehaviour
         UpgradeManager.onCharacterUIUpGrade += CharacterUiUpdate;
         UpgradeManager.onCharacterSpeedUIUpGrade += SpeedUiUpdate;
         UpgradeManager.onPowerUIUpGrade += PowerUiUpdate;
+        UpgradeManager.onHealthUIUpGrade += HealthUiUpdate;
     }
     [FoldoutGroup("---- Component Refrences ----")]
     [InlineButton("LoadVisual", "Load")]
@@ -41,6 +42,16 @@ public class UpGradeUiHandler : MonoBehaviour
     [SerializeField] protected GameObject _PowerAdImage;
     [FoldoutGroup("---- Power Upgrade UI ----")]
     [SerializeField] protected GameObject _PowerCashImage;
+
+    [Space(2)]
+    [FoldoutGroup("---- Health Upgrade UI ----")]
+    [SerializeField] protected Text _HealthPriceText;
+    [FoldoutGroup("---- Health Upgrade UI ----")]
+    [SerializeField] protected Text _HealthLevelText;
+    [FoldoutGroup("---- Health Upgrade UI ----")]
+    [SerializeField] protected GameObject _HealthAdImage;
+    [FoldoutGroup("---- Health Upgrade UI ----")]
+    [SerializeField] protected GameObject _HealthCashImage;
 
 
     [Space(2)]
@@ -78,6 +89,13 @@ public class UpGradeUiHandler : MonoBehaviour
         SwipeImage(_PowerCashImage, _PowerAdImage, isFree);
         _PowerPriceText.text = price.ToString();
         _PowerLevelText.text = level.ToString();
+    }
+    void HealthUiUpdate(int level, int price, bool isFree)
+    {
+
+        SwipeImage(_HealthCashImage, _HealthAdImage, isFree);
+        _HealthPriceText.text = price.ToString();
+        _HealthLevelText.text = level.ToString();
 
     }
     void SwipeImage(GameObject cashButton, GameObject AdButton, bool isAd = false)
