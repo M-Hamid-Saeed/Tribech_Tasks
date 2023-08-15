@@ -122,7 +122,7 @@ namespace AxisGames
             public void SetDamage(int damage)
             {
                 this.damage = damage;
-                Debug.Log(this.damage);
+                
 
             }
 

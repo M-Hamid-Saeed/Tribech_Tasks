@@ -59,8 +59,10 @@ namespace AxisGames
             public T GetNew()
             {
                 int idx = m_FreeIdx.Pop();
-                if (idx == null) { return null; }
+               
+               
                 instances[idx].gameObject.SetActive(true);
+                Debug.Log(instances[idx]);
                 return instances[idx];
             }
 
