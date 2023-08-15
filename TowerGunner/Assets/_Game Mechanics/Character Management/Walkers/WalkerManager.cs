@@ -38,7 +38,7 @@ namespace Character_Management
 
         private void Awake()
         {
-            Debug.Log("In awake");
+           
 
             if (!walkerDataSheet) { Debug.Log("Walker Data Not Assigned !!"); return; }
             if (!Container) { Debug.Log("Container Not Assigned !!"); return; }
@@ -97,7 +97,7 @@ namespace Character_Management
                     //insectCounter++;
                     AiWalker walker = insectPooler.GetNew();
                     walker.GetComponentInChildren<Collider>().enabled = true;
-                    Debug.Log("POOLING INSECT");
+               
 
 
                     walker.transform.localPosition = pathList[pathIndex].transform.localPosition;

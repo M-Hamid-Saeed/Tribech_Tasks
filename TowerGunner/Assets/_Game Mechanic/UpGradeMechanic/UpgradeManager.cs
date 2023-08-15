@@ -9,7 +9,7 @@ public class UpgradeManager : MonoBehaviour
 
     public static event Action<Transform> onCharacterUpGrade;
     public static event Action<int> onPowerUpgrade;
-    public static event Action<int> onHealthUpgrade;
+    public static event Action<float> onHealthUpgrade;
     public static event Action<float> onCharacterSpeedUpGrade;
     public static event Action<int, int, bool> onCharacterUIUpGrade;
     public static event Action<int, int, bool> onCharacterSpeedUIUpGrade;
@@ -64,7 +64,7 @@ public class UpgradeManager : MonoBehaviour
     [FoldoutGroup("---- Health Upgrade Data ----")]
     [SerializeField] protected int defaultHealth;
     [FoldoutGroup("---- Health Upgrade Data ----")]
-    [SerializeField] protected int incrementalHealthFactor;
+    [SerializeField] protected float incrementalHealthFactor;
     [FoldoutGroup("---- Health Upgrade Data ----")]
     [SerializeField] protected Transform HealthAnimation;
 
@@ -358,10 +358,10 @@ public class UpgradeManager : MonoBehaviour
         get { return PlayerPrefs.GetInt("Power"); }
         set { PlayerPrefs.SetInt("Power", value); }
     }
-    int Health
+    float Health
     {
-        get { return PlayerPrefs.GetInt("Health"); }
-        set { PlayerPrefs.SetInt("Health", value); }
+        get { return PlayerPrefs.GetFloat ("Health"); }
+        set { PlayerPrefs.SetFloat("Health", value); }
     }
     int HealthLevel
     {

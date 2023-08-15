@@ -19,6 +19,8 @@ public class BulletPooler : MonoBehaviour
 
     internal Bullet GetNew()
     {
+
         return pooler.GetNew();
     }
+
 }

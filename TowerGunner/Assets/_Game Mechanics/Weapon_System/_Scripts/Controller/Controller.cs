@@ -27,21 +27,17 @@ public class Controller : MonoBehaviour
     private void Awake()
     {
         
-        firingSystem.Init();
+       
         GameController.onHome += OnGameStart;
-        GameController.onGameplay += OnGamePlay;
-       // GameController.onLevelFail += OnGameFail;
-        
+        GameController.onGameplay += OnGamePlay;      
         Vibration.Init();
         
     }
 
     private void Update()
     {
-        insectcounter = ReferenceManager.Instance.walkerManager.insectCounter;
         if (canPlay)
         {
-            
             LookRotation();
             ShootControll();
         }

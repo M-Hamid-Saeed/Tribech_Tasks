@@ -53,7 +53,7 @@ public class CoinsManager : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
-            Debug.Log(Instance);
+            
         }
         targetPosition = target.position;
 
@@ -96,7 +96,7 @@ public class CoinsManager : MonoBehaviour
             //check if there's coins in the pool
             if (coinsQueue.Count > 0)
             {
-                Debug.Log("PopCash");
+                
                 //extract a coin from the pool
                 GameObject coin = coinsQueue.Dequeue();
                 coin.SetActive(true);

@@ -8,7 +8,8 @@ namespace AxisGames
 	{
 		public abstract class Weapon : MonoBehaviour
 		{   
-			protected Transform muzzlePoint;
+			protected Transform muzzlePoint1;
+			protected Transform muzzlePoint2;
 			protected float fireRate;
 			protected Bullet bullet;
 			protected int magSize;

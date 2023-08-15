@@ -69,7 +69,7 @@ public class OffScreenIndicatorNew : MonoBehaviour
         foreach (var kvp in enemyAngles)
         {
             GameObject enemy = kvp.Key;
-            Debug.Log(enemy.name);
+    
             float angle = kvp.Value;
 
             // Check if the enemy and its health component are valid

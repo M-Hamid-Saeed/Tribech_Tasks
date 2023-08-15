@@ -56,8 +56,8 @@ namespace AxisGames
 				{
 					currentAmo--;
 					var bulletClone = pooler.GetNew();
-					bulletClone.transform.position = muzzlePoint.position;
-					bulletClone.Trigger((aimPoint - muzzlePoint.position).normalized);
+					bulletClone.transform.position = muzzlePoint1.position;
+					bulletClone.Trigger((aimPoint - muzzlePoint1.position).normalized);
 					//bulletClone.transform.rotation = Quaternion.LookRotation(aimPoint - muzzlePoint.position, Vector3.up);
 					yield return fireRateTime;
 					canShot = true;

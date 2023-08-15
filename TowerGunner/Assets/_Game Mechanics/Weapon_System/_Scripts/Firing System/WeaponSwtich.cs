@@ -46,6 +46,6 @@ public class WeaponSwtich : MonoBehaviour
     private void WeaponInitialiaze()
     {
 
-        firingSystem.Init();
+      
     }
 }

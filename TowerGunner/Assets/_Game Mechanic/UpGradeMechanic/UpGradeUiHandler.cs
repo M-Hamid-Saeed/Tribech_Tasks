@@ -69,7 +69,7 @@ public class UpGradeUiHandler : MonoBehaviour
 
     void SpeedUiUpdate(int level, int price, bool isFree)
     {
-        Debug.Log(level + "LEVEL");
+       
         SwipeImage(_CharacterSpeedCashImage, _CharacterSpeedAdImage, isFree);
         _SpeedPriceText.text = price.ToString();
         _SpeedCharacterLevelText.text = level.ToString();

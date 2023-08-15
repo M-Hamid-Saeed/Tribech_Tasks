@@ -19,7 +19,7 @@ public class playerHealth : MonoBehaviour
         healthUI.SetMaxHealth(totalHealth);
 
     }
-    private void SetMaxDamage(int maxDamageTaken)
+    private void SetMaxDamage(float maxDamageTaken)
     {
         playerMaxDamageTaken = maxDamageTaken;
     }
