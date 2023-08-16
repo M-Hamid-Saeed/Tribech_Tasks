@@ -37,7 +37,7 @@ public class playerHealth : MonoBehaviour
     }
     private void SetUI()
     {
-        Debug.Log("SETTING UI");
+        
         healthUI.SetDamage(currentHealth);
     }
 

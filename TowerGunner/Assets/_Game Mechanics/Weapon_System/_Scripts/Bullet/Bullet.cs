@@ -61,7 +61,7 @@ namespace AxisGames
                    
                     pool.Free(this);
                     EnableTrail(false);
-                    lifeTime = 2;
+                    lifeTime = 1.5f;
                 }
             }
 

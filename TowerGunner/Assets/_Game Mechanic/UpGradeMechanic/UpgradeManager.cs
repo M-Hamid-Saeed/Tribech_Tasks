@@ -10,7 +10,7 @@ public class UpgradeManager : MonoBehaviour
     public static event Action<Transform> onCharacterUpGrade;
     public static event Action<int> onPowerUpgrade;
     public static event Action<float> onHealthUpgrade;
-    public static event Action<float> onCharacterSpeedUpGrade;
+    public static event Action<float,int> onCharacterSpeedUpGrade;
     public static event Action<int, int, bool> onCharacterUIUpGrade;
     public static event Action<int, int, bool> onCharacterSpeedUIUpGrade;
     public static event Action<int, int, bool> onPowerUIUpGrade;
@@ -38,7 +38,12 @@ public class UpgradeManager : MonoBehaviour
     [FoldoutGroup("---- Speed Upgrade Data ----")]
     [SerializeField] protected float defultspeed;
     [FoldoutGroup("---- Speed Upgrade Data ----")]
+    [SerializeField] protected int defultBulletSpeed;
+    [FoldoutGroup("---- Speed Upgrade Data ----")]
     [SerializeField] protected float incrementalSpeedFector;
+    [FoldoutGroup("---- Speed Upgrade Data ----")]
+    [SerializeField] protected int incrementalBulletSpeedFactor;
+
 
     [Space(2)]
     [FoldoutGroup("---- Power Upgrade Data ----")]
@@ -82,6 +87,7 @@ public class UpgradeManager : MonoBehaviour
             characterLevel = 1;
             Speed = defultspeed;
             Power = defaultPower;
+            BulletSpeed = defultBulletSpeed;
             PowerLevel = 1;
             HealthLevel = 1;
             Health = defaultHealth;
@@ -90,7 +96,7 @@ public class UpgradeManager : MonoBehaviour
             SaveCharacterSpeedData();
             SaveCharacterPowerData();
             SaveCharacterHealthData();
-            onCharacterSpeedUpGrade?.Invoke(Speed);
+            onCharacterSpeedUpGrade?.Invoke(Speed,BulletSpeed);
             onPowerUpgrade?.Invoke(Power);
             onHealthUpgrade?.Invoke(Health);
 
@@ -117,7 +123,7 @@ public class UpgradeManager : MonoBehaviour
         characterSpeedLevel = SpeedLevel;
         characterHealthIncrementPrice = IncrementalHealthPrice;
         characterHealthPrice = CurrentHealthPrice; 
-        onCharacterSpeedUpGrade?.Invoke(Speed);
+        onCharacterSpeedUpGrade?.Invoke(Speed,BulletSpeed);
         onPowerUpgrade?.Invoke(Power);
         onHealthUpgrade?.Invoke(Health);
     }
@@ -177,7 +183,8 @@ public class UpgradeManager : MonoBehaviour
         {
             characterSpeedLevel++;
             Speed -= incrementalSpeedFector;
-            onCharacterSpeedUpGrade?.Invoke(Speed);
+            BulletSpeed += incrementalBulletSpeedFactor;
+            onCharacterSpeedUpGrade?.Invoke(Speed,BulletSpeed);
             if (!isFree)
             {
                 CoinsManager.Instance.DecCoins(characterSpeedPrice);
@@ -253,7 +260,7 @@ public class UpgradeManager : MonoBehaviour
         Speed = defultspeed;
         SaveCharacterData();
         SaveCharacterSpeedData();
-        onCharacterSpeedUpGrade?.Invoke(Speed);
+        onCharacterSpeedUpGrade?.Invoke(Speed,BulletSpeed);
         SetUiData();
     }
     void SetUiData()
@@ -347,6 +354,11 @@ public class UpgradeManager : MonoBehaviour
     {
         get { return PlayerPrefs.GetFloat("Speed"); }
         set { PlayerPrefs.SetFloat("Speed", value); }
+    }
+    int BulletSpeed
+    {
+        get { return PlayerPrefs.GetInt("BulletSpeed"); }
+        set { PlayerPrefs.SetInt("BulletSpeed", value); }
     }
     int PowerLevel
     {

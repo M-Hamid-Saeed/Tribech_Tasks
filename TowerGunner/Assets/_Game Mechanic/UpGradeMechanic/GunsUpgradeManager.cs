@@ -1,7 +1,4 @@
-using AxisGames.WeaponSystem;
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class GunsUpgradeManager : MonoBehaviour
@@ -17,12 +14,12 @@ public class GunsUpgradeManager : MonoBehaviour
     {
         UpgradeManager.onCharacterSpeedUpGrade += UpgradeGunSpeed;
         UpgradeManager.onPowerUpgrade += UpgradeBulletPower;
-        
+        onGunUpGrade?.Invoke(weaponData.guntype);
     }
     public void onWeaponButtonPressed(int gunType)
     {
         GunType guntype = (GunType)gunType;
-   
+
         switch (guntype)
         {
             case GunType.M4:
@@ -42,14 +39,15 @@ public class GunsUpgradeManager : MonoBehaviour
                 break;
         }
         onGunUpGrade?.Invoke(guntype);
-       // ReferenceManager.Instance?.firingSystem.init();
-       
-       
+        // ReferenceManager.Instance?.firingSystem.init();
+
+
         // StartCoroutine(ReferenceManager.Instance.firingSystem.BulletShoot(guntype));
-    }   
-    private void UpgradeGunSpeed(float speed)
+    }
+    private void UpgradeGunSpeed(float speed, int bulletSpeed)
     {
         weaponData.dataSheet.fireRate = speed;
+        weaponData.dataSheet.bulletSpeed = bulletSpeed;
     }
     private void UpgradeBulletPower(int bulletDamagePower)
     {

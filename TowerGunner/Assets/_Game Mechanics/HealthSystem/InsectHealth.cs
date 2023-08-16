@@ -57,7 +57,7 @@ namespace Character_Management
         {
             
             ReferenceManager.Instance.mainUIManager.AddKillCount(this.gameObject);
-            SoundManager.Instance?.PlayOneShot(InsectDeathSoundType, .7f);
+            SoundManager.Instance?.PlayOneShot(InsectDeathSoundType, 1f);
             this.GetComponentInChildren<BoxCollider>().enabled = false;
             ParticleManager.Instance?.PlayParticle(DeathParticleType, transform.position);
             gameObject.GetComponent<AiWalker>().FreePool();

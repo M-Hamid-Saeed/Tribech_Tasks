@@ -12,6 +12,8 @@ public class ReferenceManager : MonoBehaviour
     public CameraShake_Management CameraShakeManager;
     public DOTweenAnimation playerHitAnimation;
     public DOTweenAnimation crosshairAnimation;
+    public DOTweenAnimation machineGunAnimation;
+    public DOTweenAnimation machineGunShakeAnimation;
     public GameObject crossHaironHit;
     public OffScreenIndicatorNew offscreenIndicator;
     public FiringSystem firingSystem;

@@ -115,7 +115,7 @@ public class FiringSystem : Weapon
             if (Time.time > weaponData.dataSheet.fireRate + lastShootTime)
             {
                 lastShootTime = Time.time;
-                SoundManager.Instance.PlayShootSound(SoundManager.Instance.shoot, .1f);
+                SoundManager.Instance.PlayShootSound(SoundManager.Instance.shoot, .4f);
             }
 
         }
@@ -131,25 +131,24 @@ public class FiringSystem : Weapon
 
         if (gunType == GunType.DoubleUzi)
         {
-
             leftGun = !leftGun;
-            BulletShooting();
+            SimpleBulletShooting();
         }
         else if (currentGunType == GunType.ShotGun)
-            BulletSpreadShooting();
+            SpreadBulletShooting();
         else
-        {
-            Debug.Log("ONLY SHOOTING");
-            BulletShooting();
-        }
-           
+
+
+            SimpleBulletShooting();
+
+
 
         yield return fireRateTime;
         canShot = true;
         yield return BulletShoot(currentGunType);
     }
 
-    private void BulletShooting()
+    private void SimpleBulletShooting()
     {
 
         CrossHairAnimation();
@@ -158,34 +157,26 @@ public class FiringSystem : Weapon
 
         if (currentGunType != GunType.DoubleUzi && currentGunType != GunType.ShotGun)
 
-            BulletShootingLogic(bulletClone, muzzlePoint1, muzzlePoint1.rotation, new Vector3(0,0,0));
+            BulletShootingLogic(bulletClone, muzzlePoint1, muzzlePoint1.rotation, new Vector3(0, 0, 0));
 
         else
         {
             if (leftGun)
             {
                 Debug.Log("LEFT GUN");
-                BulletShootingLogic(bulletClone, muzzlePoint1, muzzlePoint1.rotation, new Vector3(0,0,0));
+                BulletShootingLogic(bulletClone, muzzlePoint1, muzzlePoint1.rotation, new Vector3(0, 0, 0));
             }
             else
             {
                 Debug.Log("Else");
-                BulletShootingLogic(bulletClone, muzzlePoint2, muzzlePoint2.rotation, new Vector3(0,0,0));
+                BulletShootingLogic(bulletClone, muzzlePoint2, muzzlePoint2.rotation, new Vector3(0, 0, 0));
 
             }
         }
     }
-    private void BulletSpreadShooting()
+    private void SpreadBulletShooting()
     {
         CrossHairAnimation();
-      /*  Vector3 spreadAimPoint = new Vector3(aimPoint.x + UnityEngine.Random.Range(-1f, 1f), aimPoint.y + UnityEngine.Random.Range(-1f, 1f), aimPoint.z);
-        Bullet bulletClone = bulletPooler.GetNew();
-        bulletClone.GetComponent<CapsuleCollider>().enabled = false;
-        BulletShootingLogic(bulletClone, muzzlePoint1, muzzlePoint1.rotation, spreadAimPoint);
-        Bullet bulletClone1 = bulletPooler.GetNew();
-        spreadAimPoint = new Vector3(aimPoint.x + UnityEngine.Random.Range(-1f, 1f), aimPoint.y + UnityEngine.Random.Range(-1f, 1f), aimPoint.z);
-        BulletShootingLogic(bulletClone1, muzzlePoint1, muzzlePoint1.rotation, spreadAimPoint);*/
-
         Bullet[] bulletClones = new Bullet[3];
 
         for (int i = 0; i < 3; i++)
@@ -194,7 +185,7 @@ public class FiringSystem : Weapon
         }
         foreach (Bullet bulletClone in bulletClones)
         {
-            Vector3 spreadAimPoint = new Vector3(aimPoint.x + UnityEngine.Random.Range(-1f, 1f), aimPoint.y + UnityEngine.Random.Range(-1f, 1f), aimPoint.z);
+            Vector3 spreadAimPoint = new Vector3(aimPoint.x + UnityEngine.Random.Range(-2.5f, 2.5f), aimPoint.y + UnityEngine.Random.Range(-2.5f, 2.5f), aimPoint.z);
             BulletShootingLogic(bulletClone, muzzlePoint1, muzzlePoint1.rotation, spreadAimPoint);
         }
     }
@@ -211,19 +202,18 @@ public class FiringSystem : Weapon
         {
             aimPoint = spreadAimPoint;
             Vector3 pos = spawnPos.position;
-            pos.x = spawnPos.position.x + UnityEngine.Random.Range(-1f, 1f);
-            pos.y = spawnPos.position.y + UnityEngine.Random.Range(-1f, 1f);
-            bulletClone.transform.position = pos; 
+            //pos.x = spawnPos.position.x + UnityEngine.Random.Range(-.02f, .02f);
+           
+            bulletClone.transform.position = pos;
         }
         else
             bulletClone.transform.position = spawnPos.position;
         bulletClone.SetDamage(weaponDamage);
         bulletClone.SetHitPosition(aimPoint);
-        bulletClone.transform.position = spawnPos.position;
         bulletClone.Trigger((aimPoint - spawnPos.position).normalized);
-       
+
         PlayFiringPlartice(spawnPos, firingParticle1);
-     
+
     }
     private void PlayFiringPlartice(Transform target, ParticleSystem firingParticle)
     {

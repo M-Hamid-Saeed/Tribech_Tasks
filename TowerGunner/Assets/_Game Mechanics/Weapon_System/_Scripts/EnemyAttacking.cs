@@ -1,5 +1,4 @@
 using Character_Management;
-using DG.Tweening;
 using System.Collections;
 using UnityEngine;
 
@@ -9,7 +8,7 @@ public class EnemyAttacking : MonoBehaviour
     [SerializeField] LayerMask insectLayer;
     [SerializeField] Transform attackPoint;
     [SerializeField] float attackRange;
-   
+
 
 
 
@@ -25,13 +24,13 @@ public class EnemyAttacking : MonoBehaviour
     {
 
         Collider[] insects = Physics.OverlapSphere(attackPoint.position, attackRange, insectLayer);
-       
+
         foreach (Collider insect in insects)
         {
-            Debug.Log(insect.transform.parent.name + insect.transform.position);
+
             Vibration.Cancel();
             InsectHealth insect_health = insect.GetComponentInParent<InsectHealth>();
-            
+
             player_health.Damage(insect_health.insectAttackingDamage);
             ReferenceManager.Instance.CameraShakeManager.ShakeCamera();
             Vibration.VibrateNope();
@@ -47,7 +46,7 @@ public class EnemyAttacking : MonoBehaviour
 
     IEnumerator waitforDestroy(InsectHealth insect_health)
     {
-      
+
         yield return new WaitForSeconds(.1f);
         insect_health.Dead();
 

@@ -13,6 +13,7 @@ public class Controller : MonoBehaviour
     [SerializeField] float maxRotationY;
     [SerializeField] float lerpFactor;
     [SerializeField] WeaponAnimation_Controller animationController;
+    
     private bool canPlay = true;
     [SerializeField] GameObject Missile;
     [SerializeField] Transform missileFirePoint;
@@ -49,13 +50,17 @@ public class Controller : MonoBehaviour
         if (Input.GetMouseButton(0))
         {
             animationController.ShootingAnimation(true);
-           
+
             mousePosition = ReferenceManager.Instance.input.GetPosition();
             firingSystem.Shot(mousePosition);
-            
+
         }
         else
+        {
             animationController.ShootingAnimation(false);
+            ReferenceManager.Instance?.machineGunAnimation.DOPause();
+            ReferenceManager.Instance?.machineGunShakeAnimation.DOPause();
+        }
     }
    
     private void LookRotation()
