@@ -18,3 +18,8 @@ MonoBehaviour:
       character: {fileID: 2953454471113467057, guid: ac57dacdd3c81734aa860538b436e6f1, type: 3}
     - spawnNumber: 15
       character: {fileID: 53518355755952330, guid: 3a5d2dc1d85af6445a6ee6066d7585e6, type: 3}
+  - walkerlist:
+    - spawnNumber: 15
+      character: {fileID: 53518355755952330, guid: 3a5d2dc1d85af6445a6ee6066d7585e6, type: 3}
+    - spawnNumber: 15
+      character: {fileID: 8283118349664396853, guid: d0539c851f6c19544ac7f64d60d63eab, type: 3}

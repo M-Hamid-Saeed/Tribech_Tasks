@@ -12,7 +12,7 @@ public class UIManager : MonoBehaviour
 
     private int currentKillCount;
     int levelNo;
-    private int totalInsects;
+    public int totalInsects;
 
     [Header("Text Fields"), SerializeField] Text levelNoText;
     [Header("Text Fields"), SerializeField] Text KillText;

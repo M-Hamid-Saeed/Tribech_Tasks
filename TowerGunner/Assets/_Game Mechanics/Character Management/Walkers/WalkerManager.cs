@@ -42,12 +42,13 @@ namespace Character_Management
 
             if (!walkerDataSheet) { Debug.Log("Walker Data Not Assigned !!"); return; }
             if (!Container) { Debug.Log("Container Not Assigned !!"); return; }
-            currentDataIndex = LevelManager.CurrentLevelNumber;
-            if (currentDataIndex > walkerDataSheet.walkerDataList.Length - 1)
-                currentDataIndex %= walkerDataSheet.walkerDataList.Length;
+            currentDataIndex = 1;// LevelManager.CurrentLevelNumber;
+            /*if (currentDataIndex > walkerDataSheet.walkerDataList.Length - 1)
+                currentDataIndex %= walkerDataSheet.walkerDataList.Length;*/
             for (int j = 0; j < walkerDataSheet.walkerDataList[currentDataIndex].walkerlist.Length; j++)
             {
                 insectCounter += walkerDataSheet.walkerDataList[currentDataIndex].walkerlist[j].spawnNumber;
+                Debug.Log("INSECT COUNTER " + j + "  "+insectCounter);
             }
          
             GameController.onGameplay += LoadWalkers;
@@ -82,6 +83,7 @@ namespace Character_Management
 
                 StartCoroutine(SetWalkers(walkerDataSheet.walkerDataList[currentDataIndex].walkerlist[i].character,
                        walkerDataSheet.walkerDataList[currentDataIndex].walkerlist[i].spawnNumber));
+                Debug.Log(walkerDataSheet.walkerDataList[currentDataIndex].walkerlist[i].character.name);
             }
         }
         IEnumerator SetWalkers(AiWalker prefab, int count, bool startWalk = true)

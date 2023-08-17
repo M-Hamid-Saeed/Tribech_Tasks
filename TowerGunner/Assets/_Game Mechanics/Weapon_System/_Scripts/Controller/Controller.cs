@@ -23,7 +23,7 @@ public class Controller : MonoBehaviour
 
 
     Vector3 mousePosition;
-    public Vector3 lookDirection;
+    private Vector3 lookDirection;
 
     private void Awake()
     {
@@ -31,6 +31,8 @@ public class Controller : MonoBehaviour
        
         GameController.onHome += OnGameStart;
         GameController.onGameplay += OnGamePlay;      
+        GameController.onLevelComplete += OnGameStart;
+        GameController.onLevelFail += OnGameStart;     
         Vibration.Init();
         
     }
@@ -103,6 +105,8 @@ public class Controller : MonoBehaviour
     {
         canPlay = false;
         spawnMissle();
-        canPlay = true;
+        if (Input.GetMouseButtonUp(0))
+            canPlay = true;
     }
+
 }
