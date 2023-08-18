@@ -4636,13 +4636,10 @@ PrefabInstance:
     - target: {fileID: 8008020417550009096, guid: faaa9a493ba8f6b4f9d4b7286d01070b, type: 3}
       propertyPath: m_RootOrder
       value: 31
-<<<<<<< HEAD
       objectReference: {fileID: 0}
     - target: {fileID: 8135223707451273575, guid: faaa9a493ba8f6b4f9d4b7286d01070b, type: 3}
       propertyPath: m_LocalPosition.y
       value: -1.35
-=======
->>>>>>> parent of d729d1f (.)
       objectReference: {fileID: 0}
     - target: {fileID: 8172326737597222794, guid: faaa9a493ba8f6b4f9d4b7286d01070b, type: 3}
       propertyPath: m_RootOrder
