@@ -1,11 +1,11 @@
 using AxisGames.ParticleSystem;
 using GameAssets.GameSet.GameDevUtils.Managers;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 //This class is base class for all explosives
-namespace DarkVortex {
+namespace DarkVortex
+{
     public class Explosion_Base : MonoBehaviour, IDamageable
     {
       
@@ -28,7 +28,8 @@ namespace DarkVortex {
         {
            
             currentHealth = MaxHealth;
-            explosionRange.SetActive(false);
+            if(explosionRange!=null)
+             explosionRange.SetActive(false);
            
         }
         public void Damage(float damage)

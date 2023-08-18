@@ -9,9 +9,9 @@ public enum GunType
 {
     M4 = 0,
     DoubleUzi = 1,
-    ShotGun = 2,
-    MachineGun = 3
-
+    LMG = 2,
+    ShotGun = 3,
+    MachineGun = 4
 }
 
 public class FiringSystem : Weapon
@@ -115,7 +115,8 @@ public class FiringSystem : Weapon
             if (Time.time > weaponData.dataSheet.fireRate + lastShootTime)
             {
                 lastShootTime = Time.time;
-                SoundManager.Instance.PlayShootSound(SoundManager.Instance.shoot, .4f);
+                SoundManager.Instance.PlayShootSound(SoundManager.Instance?.shoot, .3f);
+                SoundManager.Instance.PlayShootSound(SoundManager.Instance?.bulletShellSound, 1f);
             }
 
         }

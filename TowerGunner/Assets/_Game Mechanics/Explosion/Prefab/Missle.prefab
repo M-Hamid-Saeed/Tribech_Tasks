@@ -244,7 +244,7 @@ MonoBehaviour:
   BulletHitParticleType: 1
   MetalsoundType: 0
   ExplosionSound: 4
-  volume: 0.2
+  volume: 0.5
   currentHealth: 0
   speed: 15
   missleLaunchSound: 7

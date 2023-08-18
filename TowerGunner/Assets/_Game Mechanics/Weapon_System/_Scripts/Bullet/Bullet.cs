@@ -49,10 +49,10 @@ namespace AxisGames
                 this.direction = direction;
             }
 
-            void FixedUpdate()
+            void Update()
             {
 
-                rigidbody.velocity = direction.normalized * (speed * Time.fixedDeltaTime);
+                rigidbody.velocity = direction.normalized * (speed * Time.deltaTime);
                 transform.rotation = Quaternion.LookRotation(direction.normalized, Vector3.up);
                 lifeTime -= Time.deltaTime;
                 if (lifeTime < 0)                                                                                

@@ -6,35 +6,48 @@ public class WeaponAnimation_Controller : MonoBehaviour
     [SerializeField] Animator animator;
     private GunType currentGunType;
     public AudioClip machineGunClip;
+    public AudioClip shotGun;
     public AudioClip simpleGunClip;
+    public AudioClip bulletShellSound;
+    public AudioClip LMGSound;
 
     private void Awake()
     {
-       GunsUpgradeManager.onGunUpGrade += CurrentSelectedGun;
+        GunsUpgradeManager.onGunUpGrade += CurrentSelectedGun;
     }
     private void CurrentSelectedGun(GunType gunType)
     {
         currentGunType = gunType;
-        if (currentGunType == GunType.MachineGun)
+        switch (currentGunType)
         {
-            if (SoundManager.Instance)
-            {
-                Debug.Log(machineGunClip == null);
+            case GunType.MachineGun:
+
                 SoundManager.Instance.shoot = machineGunClip;
-                Debug.Log("MACHINE GUN  " + SoundManager.Instance.shoot);
-            }
+                SoundManager.Instance.bulletShellSound = bulletShellSound;
+                break;
 
+            case GunType.ShotGun:
 
-        }
-        else
-        {
-            if (SoundManager.Instance)
-            {
+                SoundManager.Instance.shoot = shotGun;
+                SoundManager.Instance.bulletShellSound = null;
+                break;
+            case GunType.LMG:
+
+                SoundManager.Instance.shoot = LMGSound;
+                SoundManager.Instance.bulletShellSound = null;
+                break;
+
+            default:
+
                 SoundManager.Instance.shoot = simpleGunClip;
-                Debug.Log("SIMPLE GUN  " + SoundManager.Instance.shoot );
-            }
+                SoundManager.Instance.bulletShellSound = null;
+                break;
         }
-        Debug.Log(gunType);
+
+
+
+
+
     }
     public void ShootingAnimation(bool state)
     {
@@ -48,8 +61,8 @@ public class WeaponAnimation_Controller : MonoBehaviour
     }
     private void OnDestroy()
     {
-      /*  machineGunClip = null;
-        simpleGunClip = null;*/
-            
+        /*  machineGunClip = null;
+          simpleGunClip = null;*/
+
     }
 }

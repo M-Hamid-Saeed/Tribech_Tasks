@@ -34,6 +34,9 @@ public class GunsUpgradeManager : MonoBehaviour
             case GunType.MachineGun:
                 weaponData.guntype = GunType.MachineGun;
                 break;
+            case GunType.LMG:
+                weaponData.guntype = GunType.LMG;
+                break;
             default:
                 weaponData.guntype = GunType.M4;
                 break;
