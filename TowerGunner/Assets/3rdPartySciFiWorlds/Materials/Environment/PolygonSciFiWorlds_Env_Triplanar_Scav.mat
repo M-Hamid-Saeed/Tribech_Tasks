@@ -302,11 +302,11 @@ Material:
     - _EmissiveColor: {r: 1, g: 1, b: 1, a: 0}
     - _EmissiveColor1: {r: 1, g: 1, b: 1, a: 0}
     - _GroundColour: {r: 1, g: 1, b: 1, a: 0}
-    - _Ground_Colour: {r: 0.8301887, g: 0.4200877, b: 0.18405126, a: 1}
+    - _Ground_Colour: {r: 0.8773585, g: 0.4586192, b: 0.21933962, a: 1}
     - _Ground_Detail_Colour: {r: 0.30147058, g: 0.25407916, b: 0.24605319, a: 1}
     - _RimColor: {r: 0.2555147, g: 1, b: 0.9269017, a: 0}
     - _RimColor1: {r: 0.1614143, g: 0.1380298, b: 0.8161765, a: 0}
-    - _Road_Colour: {r: 1, g: 0.54509807, b: 0.3019608, a: 1}
+    - _Road_Colour: {r: 0.9622642, g: 0.52152395, b: 0.28595585, a: 1}
     - _RockColour: {r: 0.17560555, g: 0.18834269, b: 0.20588237, a: 0}
     - _Rock_Colour: {r: 0.40392157, g: 0.28235295, b: 0.21568628, a: 0.92156863}
     - _Rock_Colour_Primary: {r: 0.36764705, g: 0.25899357, b: 0.20004325, a: 0}
