@@ -50,7 +50,7 @@ namespace Character_Management
                 insectCounter += walkerDataSheet.walkerDataList[currentDataIndex].walkerlist[j].spawnNumber;
                 Debug.Log("INSECT COUNTER " + j + "  " + insectCounter);
             }
-            ReferenceManager.Instance.mainUIManager.totalInsects = insectCounter;
+            //ReferenceManager.Instance.mainUIManager.totalInsects = insectCounter;
             GameController.onGameplay += LoadWalkers;
            
         }

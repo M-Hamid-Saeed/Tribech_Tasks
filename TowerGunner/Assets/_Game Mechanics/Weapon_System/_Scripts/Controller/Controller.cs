@@ -51,7 +51,8 @@ public class Controller : MonoBehaviour
 
         if (Input.GetMouseButton(0))
         {
-            animationController.ShootingAnimation(true);
+            if(canPlay)
+                animationController.ShootingAnimation(true);
 
             mousePosition = ReferenceManager.Instance.input.GetPosition();
             firingSystem.Shot(mousePosition);

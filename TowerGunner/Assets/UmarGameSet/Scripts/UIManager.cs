@@ -26,7 +26,7 @@ public class UIManager : MonoBehaviour
     }
     private void Start()
     {
-       // totalInsects = ReferenceManager.Instance.walkerManager.insectCounter;
+        totalInsects = ReferenceManager.Instance.walkerManager.insectCounter;
         Debug.Log(totalInsects);
         KillText.text = currentKillCount + "/" + totalInsects;
     }

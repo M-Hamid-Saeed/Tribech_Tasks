@@ -47,8 +47,9 @@ public class LevelManager : MonoBehaviour
         if (levelNo > levels.Length - 1)
             levelNo %= levels.Length;
         currentLevel = levels[levelNo];
+        Debug.Log(levels[levelNo]);
         currentLevel.levelData.gameObject.SetActive(true);
-        if (player && currentLevel.playerSpawn)
+       /* if (player && currentLevel.playerSpawn)
         {
             player.transform.SetPositionAndRotation(currentLevel.playerSpawn.position, currentLevel.playerSpawn.rotation);
         }
@@ -56,7 +57,7 @@ public class LevelManager : MonoBehaviour
         if (camera && currentLevel.cameraPosition)
         {
             camera.transform.SetPositionAndRotation(currentLevel.cameraPosition.position, currentLevel.cameraPosition.rotation);
-        }
+        }*/
     }
 
 }
