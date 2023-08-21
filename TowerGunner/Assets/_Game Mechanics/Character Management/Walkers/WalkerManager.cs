@@ -42,15 +42,15 @@ namespace Character_Management
 
             if (!walkerDataSheet) { Debug.Log("Walker Data Not Assigned !!"); return; }
             if (!Container) { Debug.Log("Container Not Assigned !!"); return; }
-            currentDataIndex = 1;// LevelManager.CurrentLevelNumber;
-            /*if (currentDataIndex > walkerDataSheet.walkerDataList.Length - 1)
-                currentDataIndex %= walkerDataSheet.walkerDataList.Length;*/
+            currentDataIndex =  LevelManager.CurrentLevelNumber;
+           if (currentDataIndex > walkerDataSheet.walkerDataList.Length - 1)
+                currentDataIndex %= walkerDataSheet.walkerDataList.Length;
             for (int j = 0; j < walkerDataSheet.walkerDataList[currentDataIndex].walkerlist.Length; j++)
             {
                 insectCounter += walkerDataSheet.walkerDataList[currentDataIndex].walkerlist[j].spawnNumber;
-                Debug.Log("INSECT COUNTER " + j + "  "+insectCounter);
+                Debug.Log("INSECT COUNTER " + j + "  " + insectCounter);
             }
-         
+            ReferenceManager.Instance.mainUIManager.totalInsects = insectCounter;
             GameController.onGameplay += LoadWalkers;
            
         }

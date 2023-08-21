@@ -63,6 +63,8 @@ public class Controller : MonoBehaviour
             ReferenceManager.Instance?.machineGunAnimation.DOPause();
             ReferenceManager.Instance?.machineGunShakeAnimation.DOPause();
         }
+
+
     }
    
     private void LookRotation()

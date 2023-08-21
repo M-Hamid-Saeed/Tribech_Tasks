@@ -94,6 +94,11 @@ namespace Character_Management
 
         public void FreePool()
         {
+            if (ReferenceManager.Instance.offscreenIndicator.enemiesList.Contains(this.transform.GetChild(0).gameObject))
+            {
+                ReferenceManager.Instance.offscreenIndicator.enemiesList.Remove(this.transform.GetChild(0).gameObject);
+                ReferenceManager.Instance.offscreenIndicator.shouldIndicateNext = true;
+            }
             this.GetComponent<splineMove>().Pause();
             pool.Free(this);
 

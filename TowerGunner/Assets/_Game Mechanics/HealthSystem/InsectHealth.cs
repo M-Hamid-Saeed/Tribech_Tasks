@@ -62,7 +62,7 @@ namespace Character_Management
             ParticleManager.Instance?.PlayParticle(DeathParticleType, transform.position);
             gameObject.GetComponent<AiWalker>().FreePool();
             this.currentHealth = totalHealth;
-
+            ReferenceManager.Instance.offscreenIndicator.shouldIndicateNext = true;
         }
 
         public void AddScore()

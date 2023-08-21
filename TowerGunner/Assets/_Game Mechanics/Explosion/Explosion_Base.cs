@@ -59,7 +59,7 @@ namespace DarkVortex
                     drumExplosiveCollider.enabled = false;
                 if (MissleCollider)
                     MissleCollider.enabled = false;
-                ReferenceManager.Instance.CameraShakeManager.ShakeCamera();
+                ReferenceManager.Instance?.CameraShakeManager.ShakeCamera();
             }
 
         }
