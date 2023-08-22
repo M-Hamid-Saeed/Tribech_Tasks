@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -27,9 +27,11 @@ public class UIManager : MonoBehaviour
     private void Start()
     {
         totalInsects = ReferenceManager.Instance.walkerManager.insectCounter;
-        Debug.Log(totalInsects);
-        KillText.text = currentKillCount + "/" + totalInsects;
+        Debug.Log("TOTAL INSECTS" + ReferenceManager.Instance.walkerManager.insectCounter);
+        KillText.text = currentKillCount + "/" + totalInsects;     
     }
+
+
     //Events Definations
     void Home()
     {
@@ -49,7 +51,10 @@ public class UIManager : MonoBehaviour
 
         levelNoText.text = $"Level {levelNo.ToString("00")}";
         ActivePanel(gameplay: true);
+        totalInsects = ReferenceManager.Instance.walkerManager.insectCounter;
+        Debug.Log("TOTAL INSECTS" + ReferenceManager.Instance.walkerManager.insectCounter);
     }
+
 
     void OnLevelComplete()
     {

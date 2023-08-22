@@ -240,10 +240,10 @@ MonoBehaviour:
   MaxDamageTaken: 1
   ExplosionDamage: 100
   explosionRange: {fileID: 1140185905373055840}
-  ExplosinParticleType: 4
-  BulletHitParticleType: 1
-  MetalsoundType: 0
-  ExplosionSound: 4
+  explosinParticleType: 4
+  bulletHitParticleType: 4
+  bulletHitsound: 4
+  explosionSound: 4
   volume: 0.5
   currentHealth: 0
   speed: 15

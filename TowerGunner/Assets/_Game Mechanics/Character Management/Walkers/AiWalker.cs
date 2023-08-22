@@ -62,14 +62,20 @@ namespace Character_Management
             sMove.Stop();
             sMove.ResetToStart();
         }
-
+        public void OnGetDamage(bool MovingState)
+        {
+            
+            UpdateAnimator(!MovingState);
+           
+            
+        }
         private void GameController_onHome()
         {
             UpdateAnimator(walk: true);
             sMove.StartMove();
         }
 
-        private void UpdateAnimator(bool walk = false)
+        public void UpdateAnimator(bool walk = false)
         {
             if (walk) { _animator.SetTrigger("Walk"); }
             else { _animator.SetTrigger("Idle"); }

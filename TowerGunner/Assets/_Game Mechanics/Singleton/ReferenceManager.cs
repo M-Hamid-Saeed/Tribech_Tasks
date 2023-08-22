@@ -17,6 +17,7 @@ public class ReferenceManager : MonoBehaviour
     public GameObject crossHaironHit;
     public OffScreenIndicatorNew offscreenIndicator;
     public FiringSystem firingSystem;
+    
 
 
 
@@ -29,7 +30,7 @@ public class ReferenceManager : MonoBehaviour
         else
             DestroyImmediate(gameObject);
         crossHaironHit.SetActive(false);
-
+        Debug.Log("Walker Manager Insects" + walkerManager.insectCounter);
     }
-
+ 
 }

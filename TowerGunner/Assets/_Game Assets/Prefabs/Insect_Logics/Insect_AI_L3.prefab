@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 2932620843221450380}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 4, y: 4, z: 4}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 8110731346963075411}
@@ -97,7 +97,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0.028, y: 0.262}
+  m_AnchoredPosition: {x: 0.12, y: 0.262}
   m_SizeDelta: {x: 1080, y: 1920}
   m_Pivot: {x: 0, y: 0}
 --- !u!223 &2932620843562956560
@@ -340,7 +340,7 @@ RectTransform:
   m_GameObject: {fileID: 2932620845111547310}
   m_LocalRotation: {x: -0.08534244, y: 0.034953408, z: -0.0030137207, w: -0.99573386}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.02, y: 0.02, z: 0.02}
+  m_LocalScale: {x: 0.03, y: 0.03, z: 0.03}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 2932620843854345867}
@@ -524,8 +524,10 @@ MonoBehaviour:
   insectMaxDamageTaken: 35
   insectAttackingDamage: 15
   UI: {fileID: 2932620845111547311}
-  DeathParticleType: 2
-  InsectDeathSoundType: 6
+  deathParticle: 0
+  insectDeathSound: 0
+  bulletHitSound: 0
+  bulletHitParticle: 0
   killScore: 15
   currentHealth: 0
 --- !u!1001 &2925780723280060316

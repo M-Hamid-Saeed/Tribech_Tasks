@@ -1,3 +1,4 @@
+using Character_Management;
 using System;
 using UnityEngine;
 
@@ -7,8 +8,7 @@ public struct LevelInfo
 {
 
     public Transform levelData;
-    public Transform playerSpawn;
-    public Transform cameraPosition;
+    public WalkerManager walkerManager;
 
 }
 
@@ -16,12 +16,13 @@ public class LevelManager : MonoBehaviour
 {
 
     [SerializeField] LevelInfo[] levels;
+   public GunsUpgradeManager gunUpgradeManager;
 
-    [SerializeField] Transform player, camera;
+ //   [SerializeField] Transform player, camera;
 
     [HideInInspector] public LevelInfo currentLevel;
 
-    private bool isTesting;
+    [SerializeField] bool isTesting;
     public static int CurrentLevelNumber
     {
         get { return PlayerPrefs.GetInt("LevelNumber"); }
@@ -32,6 +33,7 @@ public class LevelManager : MonoBehaviour
     {
         ActiveLevel();
         GameController.onLevelComplete += OnLevelComplete;
+
     }
 
     void OnLevelComplete()
@@ -39,25 +41,35 @@ public class LevelManager : MonoBehaviour
         var levelNo = PlayerPrefs.GetInt("LevelNumber", 0);
         levelNo++;
         PlayerPrefs.SetInt("LevelNumber", levelNo);
+        
     }
 
     void ActiveLevel()
     {
         int levelNo = PlayerPrefs.GetInt("LevelNumber");
+        
         if (levelNo > levels.Length - 1)
             levelNo %= levels.Length;
         currentLevel = levels[levelNo];
-        Debug.Log(levels[levelNo]);
+       
         currentLevel.levelData.gameObject.SetActive(true);
-       /* if (player && currentLevel.playerSpawn)
+        ReferenceManager.Instance.walkerManager = levels[levelNo].walkerManager;
+        Debug.Log(levelNo);
+        int levelNoTemp = PlayerPrefs.GetInt("LevelNumber");
+        if ( levelNoTemp % 5 == 0)
         {
-            player.transform.SetPositionAndRotation(currentLevel.playerSpawn.position, currentLevel.playerSpawn.rotation);
+            Debug.Log("LEVEL NO " + levelNoTemp);
+            gunUpgradeManager.onWeaponButtonPressed((levelNoTemp) / 5);
         }
+        /* if (player && currentLevel.playerSpawn)
+         {
+             player.transform.SetPositionAndRotation(currentLevel.playerSpawn.position, currentLevel.playerSpawn.rotation);
+         }
 
-        if (camera && currentLevel.cameraPosition)
-        {
-            camera.transform.SetPositionAndRotation(currentLevel.cameraPosition.position, currentLevel.cameraPosition.rotation);
-        }*/
+         if (camera && currentLevel.cameraPosition)
+         {
+             camera.transform.SetPositionAndRotation(currentLevel.cameraPosition.position, currentLevel.cameraPosition.rotation);
+         }*/
     }
 
 }

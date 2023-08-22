@@ -12,8 +12,10 @@ namespace Character_Management
         [SerializeField] HealthBarUI UI;
 
     
-        [SerializeField] ParticleType DeathParticleType;
-        [SerializeField] SoundType InsectDeathSoundType;
+        [SerializeField] ParticleType deathParticle;
+        [SerializeField] SoundType insectDeathSound;
+        [SerializeField] SoundType bulletHitSound;
+        [SerializeField] ParticleType bulletHitParticle;
         [SerializeField] int killScore;
 
 
@@ -26,9 +28,9 @@ namespace Character_Management
             currentHealth = totalHealth;
             UI.SetMaxHealth(totalHealth);
         }
-        public void Damage(float damage)
+        public void Damage(float damage, ContactPoint hitPoint)
         {
-            
+           
             if (damage <= insectMaxDamageTaken)
             
                 currentHealth -= damage;
@@ -43,6 +45,7 @@ namespace Character_Management
             }
               
             SetUI();
+            PlayParticle_Sound(hitPoint.point);
             ReferenceManager.Instance.crossHaironHit.SetActive(false);
         }
 
@@ -57,14 +60,20 @@ namespace Character_Management
         {
             
             ReferenceManager.Instance.mainUIManager.AddKillCount(this.gameObject);
-            SoundManager.Instance?.PlayOneShot(InsectDeathSoundType, .8f);
+            SoundManager.Instance?.PlayOneShot(insectDeathSound, .8f);
             this.GetComponentInChildren<BoxCollider>().enabled = false;
-            ParticleManager.Instance?.PlayParticle(DeathParticleType, transform.position);
+            ParticleManager.Instance?.PlayParticle(deathParticle, transform.position);
             gameObject.GetComponent<AiWalker>().FreePool();
             this.currentHealth = totalHealth;
             ReferenceManager.Instance.offscreenIndicator.shouldIndicateNext = true;
         }
 
+
+        public void PlayParticle_Sound(Vector3 collisionPoint)
+        {
+            ParticleManager.Instance?.PlayParticle(bulletHitParticle, collisionPoint);
+            SoundManager.Instance.PlayOneShot(bulletHitSound, 1f);
+        }
         public void AddScore()
         {
             CoinsManager.Instance?.AddCoins(killScore);

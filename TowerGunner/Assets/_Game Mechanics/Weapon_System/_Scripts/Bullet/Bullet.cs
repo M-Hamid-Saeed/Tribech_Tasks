@@ -2,8 +2,6 @@ using AxisGames.ParticleSystem;
 using AxisGames.Pooler;
 using GameAssets.GameSet.GameDevUtils.Managers;
 using UnityEngine;
-using DarkVortex;
-using System.Collections;
 
 namespace AxisGames
 {
@@ -74,25 +72,21 @@ namespace AxisGames
                 IDamageable targetObject = collision.collider.GetComponentInParent<IDamageable>();
                 if (targetObject != null)
                 {
-                    targetObject.Damage(damage);
-                   // ReferenceManager.Instance.crossHaironHit.SetActive(true);
+                    targetObject.Damage(damage, collision.GetContact(0));
                     Vibration.VibrateNope();
                 }
                
-                Explosion_Base explosion_Base = collision.collider.GetComponentInParent<Explosion_Base>();
+              //  Explosion_Base explosion_Base = collision.collider.GetComponentInParent<Explosion_Base>();
 
-                if (explosion_Base != null)
-                {
+              /*  if (explosion_Base != null)
+                
                    // ReferenceManager.Instance.crossHaironHit.SetActive(true);
-                    explosion_Base.PlayParticle_Sound(collision.GetContact(0).point);
-                }
-
-                if (collision.gameObject.CompareTag("Insects"))
-                {
-                    PlayParticle_Sound(collision.GetContact(0));
+                    explosion_Base.PlayBulletHitParticle_Sound(collision.GetContact(0).point);*/
+                
                    // ReferenceManager.Instance.crossHaironHit.SetActive(true);
-                }
-                else if (collision.gameObject.CompareTag("Ground"))
+                   // Ground would be one in all scene, So playing sound and particle here,
+                   // No need to implement separate class and implement onCollisionEnter on ground;
+                 if (collision.gameObject.CompareTag("Ground"))
                 {
                     ParticleManager.Instance?.PlayParticle(GroundHitParticleType, collision.GetContact(0).point);
                     SoundManager.Instance.PlayOneShot(GroundHitSoundType, .7f);

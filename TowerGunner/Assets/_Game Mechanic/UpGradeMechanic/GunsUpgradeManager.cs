@@ -1,10 +1,12 @@
 using System;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GunsUpgradeManager : MonoBehaviour
 {
 
     public static event Action<GunType> onGunUpGrade;
+    public Button[] GunsButtonCards;
 
 
     [Header("----- Weapons Data-----------------")]
@@ -15,6 +17,7 @@ public class GunsUpgradeManager : MonoBehaviour
         UpgradeManager.onCharacterSpeedUpGrade += UpgradeGunSpeed;
         UpgradeManager.onPowerUpgrade += UpgradeBulletPower;
         onGunUpGrade?.Invoke(weaponData.guntype);
+        
     }
     public void onWeaponButtonPressed(int gunType)
     {
@@ -41,11 +44,13 @@ public class GunsUpgradeManager : MonoBehaviour
                 weaponData.guntype = GunType.M4;
                 break;
         }
+
         onGunUpGrade?.Invoke(guntype);
-        // ReferenceManager.Instance?.firingSystem.init();
-
-
-        // StartCoroutine(ReferenceManager.Instance.firingSystem.BulletShoot(guntype));
+        Debug.Log("GUNTYPE " + gunType);
+        GunsButtonCards[gunType].interactable = true;
+        Debug.Log(GunsButtonCards[gunType]);
+        ReferenceManager.Instance?.firingSystem.init();
+         StartCoroutine(ReferenceManager.Instance.firingSystem.BulletShoot(guntype));
     }
     private void UpgradeGunSpeed(float speed, int bulletSpeed)
     {

@@ -12,7 +12,7 @@ public class Controller : MonoBehaviour
     [SerializeField] float maxRotationX;
     [SerializeField] float maxRotationY;
     [SerializeField] float lerpFactor;
-    [SerializeField] WeaponAnimation_Controller animationController;
+    [SerializeField] WeaponAnimation_SoundController animationController;
     
     private bool canPlay = true;
     [SerializeField] GameObject Missile;
@@ -93,6 +93,7 @@ public class Controller : MonoBehaviour
     private void OnGameStart()
     {
         canPlay = false;
+        animationController.ShootingAnimation(false);
     }
 
     private void spawnMissle()

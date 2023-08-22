@@ -13,6 +13,8 @@ namespace GameAssets.GameSet.GameDevUtils.Managers
 
         public AudioClip bgClip;
         public AudioClip buttonClip;
+        public AudioClip winSound;
+        public AudioClip loseClip;
         public AudioClip InsectHit;
         public AudioClip bombHitClip;
         public AudioClip shoot;
@@ -28,6 +30,7 @@ namespace GameAssets.GameSet.GameDevUtils.Managers
 
         void Awake()
         {
+
             if (Instance == null)
             {
                 Instance = this;
@@ -37,6 +40,8 @@ namespace GameAssets.GameSet.GameDevUtils.Managers
             {
                 DestroyImmediate(gameObject);
             }
+            GameController.onLevelComplete += PlayWindSound;
+            GameController.onLevelFail += PlayLoseSound;
         }
 
         void Start()
@@ -114,8 +119,16 @@ namespace GameAssets.GameSet.GameDevUtils.Managers
 
             sFXSoundSource.PlayOneShot(clip, volume);
         }
+         void PlayWindSound()
+        {
 
+            sFXSoundSource.PlayOneShot(winSound, 1f);
+        }
+        void PlayLoseSound()
+        {
 
+            sFXSoundSource.PlayOneShot(loseClip, 1f);
+        }
         public void PlayButtonSound() => sFXSoundSource.PlayOneShot(buttonClip, 1);
 
 

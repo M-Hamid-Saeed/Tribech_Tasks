@@ -13,7 +13,7 @@ public class EnemyAttacking : MonoBehaviour
 
 
 
-    private void FixedUpdate()
+    private void Update()
     {
         GetHit();
     }

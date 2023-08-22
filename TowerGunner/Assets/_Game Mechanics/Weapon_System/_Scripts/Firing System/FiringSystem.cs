@@ -116,7 +116,7 @@ public class FiringSystem : Weapon
             {
                 lastShootTime = Time.time;
                 SoundManager.Instance.PlayShootSound(SoundManager.Instance?.shoot, .3f);
-                SoundManager.Instance.PlayShootSound(SoundManager.Instance?.bulletShellSound, 1f);
+               
             }
 
         }
@@ -138,8 +138,6 @@ public class FiringSystem : Weapon
         else if (currentGunType == GunType.ShotGun)
             SpreadBulletShooting();
         else
-
-
             SimpleBulletShooting();
 
 

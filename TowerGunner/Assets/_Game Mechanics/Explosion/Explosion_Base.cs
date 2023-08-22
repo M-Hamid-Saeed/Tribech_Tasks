@@ -16,10 +16,10 @@ namespace DarkVortex
         [SerializeField] GameObject explosionRange;
         [Space(3)]
         
-        [SerializeField]  ParticleType  ExplosinParticleType;
-        [SerializeField]  ParticleType  BulletHitParticleType;
-        [SerializeField]  SoundType MetalsoundType;
-        [SerializeField]  SoundType ExplosionSound;
+        [SerializeField]  ParticleType  explosinParticleType;
+        [SerializeField]  ParticleType  bulletHitParticleType;
+        [SerializeField]  SoundType bulletHitsound;
+        [SerializeField]  SoundType explosionSound;
         [SerializeField] protected float volume;
 
         public float currentHealth;
@@ -32,7 +32,7 @@ namespace DarkVortex
              explosionRange.SetActive(false);
            
         }
-        public void Damage(float damage)
+        public void Damage(float damage, ContactPoint hitPoint)
         {
             if (damage <= MaxDamageTaken)
                 currentHealth -= damage;
@@ -62,6 +62,8 @@ namespace DarkVortex
                 ReferenceManager.Instance?.CameraShakeManager.ShakeCamera();
             }
 
+            PlayParticle_Sound(hitPoint.point);
+
         }
 
 
@@ -72,18 +74,17 @@ namespace DarkVortex
         }
         private void PlayExplosionParticle()
         {
-            ParticleManager.Instance?.PlayParticle(ExplosinParticleType, new Vector3(transform.position.x,transform.position.y+1f,transform.position.z));
-            SoundManager.Instance.PlayOneShot(ExplosionSound,1f);
+            ParticleManager.Instance?.PlayParticle(explosinParticleType, new Vector3(transform.position.x,transform.position.y+1f,transform.position.z));
+            SoundManager.Instance.PlayOneShot(explosionSound,1f);
         }
-        
+
 
 
         public void PlayParticle_Sound(Vector3 collisionPoint)
         {
-            SoundManager.Instance.PlayOneShot(MetalsoundType, volume);
-            ParticleManager.Instance?.PlayParticle(BulletHitParticleType, collisionPoint);
-
+            ParticleManager.Instance?.PlayParticle(bulletHitParticleType, collisionPoint);
+            SoundManager.Instance.PlayOneShot(bulletHitsound, 1f);
         }
-       
+
     } 
 }

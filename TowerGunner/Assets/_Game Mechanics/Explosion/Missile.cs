@@ -40,7 +40,7 @@ namespace DarkVortex {
 
         private void OnCollisionEnter(Collision collision)
         {
-            Damage(1);
+            Damage(1,collision.GetContact(0));
         }
 
         private void onGameStart()
