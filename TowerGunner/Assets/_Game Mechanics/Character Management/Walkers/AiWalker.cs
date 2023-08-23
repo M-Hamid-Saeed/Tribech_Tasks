@@ -29,7 +29,6 @@ namespace Character_Management
 
             sMove.pathContainer = path;
             sMove.loopType = loopType;
-
             normalSpeed = speed;
             currentSpeed = normalSpeed;
 

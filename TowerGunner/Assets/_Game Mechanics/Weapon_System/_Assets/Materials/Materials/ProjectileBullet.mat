@@ -49,7 +49,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: 5312e9f8bbd7aa5488181f922f51c6cc, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MatCapMask:
@@ -162,7 +162,7 @@ Material:
     - _ZWrite: 1
     m_Colors:
     - _BaseColor: {r: 1, g: 0.5464047, b: 0, a: 1}
-    - _Color: {r: 1, g: 0.45679078, b: 0.07058823, a: 1}
+    - _Color: {r: 1, g: 0.46264225, b: 0, a: 0.83137256}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _HColor: {r: 0.9716981, g: 0.9716981, b: 0.9716981, a: 1}
     - _MatCapColor: {r: 1, g: 1, b: 1, a: 1}

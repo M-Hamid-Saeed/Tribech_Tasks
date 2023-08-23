@@ -23,6 +23,7 @@ public class LevelManager : MonoBehaviour
     [HideInInspector] public LevelInfo currentLevel;
 
     [SerializeField] bool isTesting;
+    [SerializeField] int levelNoTesting;
     public static int CurrentLevelNumber
     {
         get { return PlayerPrefs.GetInt("LevelNumber"); }
@@ -31,7 +32,10 @@ public class LevelManager : MonoBehaviour
 
     public void Awake()
     {
-        ActiveLevel();
+        if (isTesting)
+            ActiveLevelTesting();
+        else
+            ActiveLevel();
         GameController.onLevelComplete += OnLevelComplete;
 
     }
@@ -56,6 +60,7 @@ public class LevelManager : MonoBehaviour
         ReferenceManager.Instance.walkerManager = levels[levelNo].walkerManager;
         Debug.Log(levelNo);
         int levelNoTemp = PlayerPrefs.GetInt("LevelNumber");
+
         if ( levelNoTemp % 5 == 0)
         {
             Debug.Log("LEVEL NO " + levelNoTemp);
@@ -70,6 +75,33 @@ public class LevelManager : MonoBehaviour
          {
              camera.transform.SetPositionAndRotation(currentLevel.cameraPosition.position, currentLevel.cameraPosition.rotation);
          }*/
+    }
+    void ActiveLevelTesting()
+    {
+   
+        
+        PlayerPrefs.SetInt("LevelNumber", levelNoTesting);
+        
+        int levelNo = PlayerPrefs.GetInt("LevelNumber");
+
+        if (levelNo > levels.Length - 1)
+            levelNo %= levels.Length;
+        currentLevel = levels[levelNo];
+
+        currentLevel.levelData.gameObject.SetActive(true);
+        ReferenceManager.Instance.walkerManager = levels[levelNo].walkerManager;
+        if(levelNoTesting == 0)
+        {
+            gunUpgradeManager.onWeaponButtonPressed(0);
+        }
+       
+        else if (levelNoTesting % 5 == 0)
+        {
+            Debug.Log("LEVEL NO " + levelNoTesting);
+            gunUpgradeManager.onWeaponButtonPressed((levelNoTesting) / 5);
+        }
+       
+
     }
 
 }

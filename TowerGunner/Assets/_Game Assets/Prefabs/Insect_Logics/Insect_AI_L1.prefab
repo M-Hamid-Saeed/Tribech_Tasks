@@ -236,7 +236,7 @@ Transform:
   m_GameObject: {fileID: 3113855087066449205}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 4, y: 4, z: 4}
+  m_LocalScale: {x: 3, y: 3, z: 3}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 2024688956576574868}
@@ -1573,8 +1573,8 @@ MonoBehaviour:
   pathMode: 1
   easeType: 1
   lockPosition: 0
-  lockRotation: 0
-  waypointRotation: 0
+  lockRotation: 8
+  waypointRotation: 1
   rotationTarget: {fileID: 0}
   tweenType: 0
 --- !u!114 &2953454471113467057

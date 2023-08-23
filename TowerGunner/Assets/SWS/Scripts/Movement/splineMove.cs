@@ -217,7 +217,7 @@ namespace SWS
             originSpeed = speed;
             //cache original rotation if waypoint rotation is enabled
             originRot = transform.rotation;
-
+            
             //initialize waypoint positions
             startPoint = Mathf.Clamp(startPoint, 0, waypoints.Length - 1);
             int index = startPoint;
@@ -295,7 +295,10 @@ namespace SWS
                     rotationTarget = transform;
                 parms.OnUpdate(OnWaypointRotation);
             }
-
+            Quaternion rot = transform.rotation;
+            rot.z = 0f;
+            transform.rotation = rot;
+            
             if (local)
             {
                 tween = transform.DOLocalPath(wpPos, originSpeed, pathType, pathMode)
@@ -352,6 +355,9 @@ namespace SWS
                 return;
 
             events[index].Invoke();
+            Quaternion rot = transform.rotation;
+            rot.z = 0f;
+            transform.rotation = rot;
         }
 
 

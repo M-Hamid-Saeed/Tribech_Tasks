@@ -472,7 +472,7 @@ MonoBehaviour:
   currentPoint: 0
   closeLoop: 0
   local: 0
-  lookAhead: 0
+  lookAhead: 1
   sizeToAdd: 0
   timeValue: 1
   speed: 5
@@ -489,8 +489,8 @@ MonoBehaviour:
   pathMode: 1
   easeType: 1
   lockPosition: 0
-  lockRotation: 0
-  waypointRotation: 0
+  lockRotation: 8
+  waypointRotation: 1
   rotationTarget: {fileID: 0}
   tweenType: 0
 --- !u!114 &3749260124125177267

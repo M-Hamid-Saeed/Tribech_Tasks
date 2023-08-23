@@ -32,7 +32,7 @@ public class WalkerAnimationHandler : MonoBehaviour
         // transform.DOShakeRotation(.1f, 10, 10, 30);
         transform.DOShakeRotation(.1f,12f,10,90);
         
-        transform.parent.DOMove(new Vector3(transform.parent.position.x - 0.06f, transform.parent.position.y, transform.parent.position.z - 0.07f), 0.1f);
+        //transform.parent.DOMove(new Vector3(transform.parent.position.x - 0.06f, transform.parent.position.y, transform.parent.position.z - 0.07f), 0.1f);
         //transform.DOPunchPosition(new Vector3(transform.position.x, transform.position.y, transform.position.z - 0.2f),.1f);
         // collision.gameObject.transform.localRotation = rot;
     }

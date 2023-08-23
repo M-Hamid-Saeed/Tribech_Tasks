@@ -47,10 +47,11 @@ public class GunsUpgradeManager : MonoBehaviour
 
         onGunUpGrade?.Invoke(guntype);
         Debug.Log("GUNTYPE " + gunType);
-        GunsButtonCards[gunType].interactable = true;
+        if(GunsButtonCards[gunType])
+            GunsButtonCards[gunType].interactable = true;
         Debug.Log(GunsButtonCards[gunType]);
         ReferenceManager.Instance?.firingSystem.init();
-         StartCoroutine(ReferenceManager.Instance.firingSystem.BulletShoot(guntype));
+        
     }
     private void UpgradeGunSpeed(float speed, int bulletSpeed)
     {

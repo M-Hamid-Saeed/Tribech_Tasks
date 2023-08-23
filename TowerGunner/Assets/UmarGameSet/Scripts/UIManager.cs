@@ -31,7 +31,7 @@ public class UIManager : MonoBehaviour
         KillText.text = currentKillCount + "/" + totalInsects;     
     }
 
-
+                          
     //Events Definations
     void Home()
     {
