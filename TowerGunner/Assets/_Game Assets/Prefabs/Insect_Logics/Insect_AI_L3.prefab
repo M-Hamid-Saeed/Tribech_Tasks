@@ -522,13 +522,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   totalHealth: 100
   insectMaxDamageTaken: 35
-  insectAttackingDamage: 15
+  insectAttackingDamage: 9
   UI: {fileID: 2932620845111547311}
-  deathParticle: 0
-  insectDeathSound: 0
+  deathParticle: 2
+  insectDeathSound: 6
   bulletHitSound: 0
   bulletHitParticle: 0
-  killScore: 15
+  killScore: 12
   currentHealth: 0
 --- !u!1001 &2925780723280060316
 PrefabInstance:

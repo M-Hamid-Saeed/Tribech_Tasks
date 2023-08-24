@@ -46,7 +46,7 @@ MonoBehaviour:
   - walkerlist:
     - spawnNumber: 8
       character: {fileID: 2953454471113467057, guid: ac57dacdd3c81734aa860538b436e6f1, type: 3}
-    - spawnNumber: 8
+    - spawnNumber: 9
       character: {fileID: 9111073068998725290, guid: c105c03b38c96324994e170a6f29cab3, type: 3}
-    - spawnNumber: 6
+    - spawnNumber: 8
       character: {fileID: 7816101560903480131, guid: 550ae52d93558364e9fb74e5c1a89dd3, type: 3}

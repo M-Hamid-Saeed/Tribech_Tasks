@@ -131,7 +131,19 @@ namespace GameAssets.GameSet.GameDevUtils.Managers
         }
         public void PlayButtonSound() => sFXSoundSource.PlayOneShot(buttonClip, 1);
 
+        private void OnEnable()
+        {
+            AudioSettings.Mobile.OnMuteStateChanged += onMusicVolChanged;
+        }
+        public void onMusicVolChanged(bool flag)
+        {
+            AudioSettings.Mobile.stopAudioOutputOnMute = flag;
+        }
 
+        public void onMusicVolChanged(float volume)
+        {
+            AudioSettings.Mobile.stopAudioOutputOnMute = volume > 0 ? false : true;
+        }
 
     }
 
