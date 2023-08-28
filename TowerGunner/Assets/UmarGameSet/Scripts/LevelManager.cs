@@ -9,13 +9,14 @@ public struct LevelInfo
 
     public Transform levelData;
     public WalkerManager walkerManager;
+    public int NoOfMissles; 
 
 }
 
 public class LevelManager : MonoBehaviour
 {
 
-    [SerializeField] LevelInfo[] levels;
+    public LevelInfo[] levels;
    public GunsUpgradeManager gunUpgradeManager;
 
  //   [SerializeField] Transform player, camera;
@@ -60,8 +61,11 @@ public class LevelManager : MonoBehaviour
         ReferenceManager.Instance.walkerManager = levels[levelNo].walkerManager;
         Debug.Log(levelNo);
         int levelNoTemp = PlayerPrefs.GetInt("LevelNumber");
-
-        if ( levelNoTemp % 5 == 0)
+        if (levelNoTemp == 0)
+        {
+            gunUpgradeManager.onWeaponButtonPressed(0);
+        }
+        else if ( levelNoTemp % 5 == 0)
         {
             Debug.Log("LEVEL NO " + levelNoTemp);
             gunUpgradeManager.onWeaponButtonPressed((levelNoTemp) / 5);

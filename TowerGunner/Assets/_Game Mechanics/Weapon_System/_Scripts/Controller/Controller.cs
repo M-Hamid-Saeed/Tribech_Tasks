@@ -21,7 +21,7 @@ public class Controller : MonoBehaviour
 
     public int insectcounter = 0;
 
-
+   
     Vector3 mousePosition;
     private Vector3 lookDirection;
 
@@ -107,8 +107,12 @@ public class Controller : MonoBehaviour
     }
     public void OnMissileButtonPressed()
     {
+        int Missles = ReferenceManager.Instance.levelManager.levels[LevelManager.CurrentLevelNumber].NoOfMissles;
+        if ( Missles <= 0)
+            return;
         canPlay = false;
         spawnMissle();
+        Missles--;
         if (Input.GetMouseButtonUp(0))
             canPlay = true;
     }

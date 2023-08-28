@@ -17,6 +17,7 @@ public class ReferenceManager : MonoBehaviour
     public GameObject crossHaironHit;
     public OffScreenIndicatorNew offscreenIndicator;
     public FiringSystem firingSystem;
+    public LevelManager levelManager;
     
 
 

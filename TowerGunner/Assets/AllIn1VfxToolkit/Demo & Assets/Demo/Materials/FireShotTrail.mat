@@ -40,7 +40,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _DistortTex:
-        m_Texture: {fileID: 2800000, guid: fcb027caad6963b4a80539bbce0d10e9, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _FadeBurnTex:
@@ -48,7 +48,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _FadeTex:
-        m_Texture: {fileID: 2800000, guid: 854b25bc08516364da5a786b1cad247e, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _GlowTex:
@@ -60,7 +60,7 @@ Material:
         m_Scale: {x: 3, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MaskTex:
-        m_Texture: {fileID: 2800000, guid: 2f6642b43dc405d498acba7e288c068c, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Shape1MaskTex:
@@ -92,7 +92,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _VertOffsetTex:
-        m_Texture: {fileID: 2800000, guid: 48da24d771916524899d36e4bfe7f762, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Ints: []
@@ -183,7 +183,7 @@ Material:
     - _Shape2Brightness: 0
     - _Shape2ColorWeight: 2
     - _Shape2Contrast: 1.54
-    - _Shape2DistortAmount: 2
+    - _Shape2DistortAmount: 0
     - _Shape2DistortXSpeed: -3
     - _Shape2DistortYSpeed: 0.1
     - _Shape2RotationOffset: 0
@@ -194,7 +194,7 @@ Material:
     - _Shape3Brightness: 0
     - _Shape3ColorWeight: 2
     - _Shape3Contrast: 1
-    - _Shape3DistortAmount: 0.5
+    - _Shape3DistortAmount: 0
     - _Shape3DistortXSpeed: 0.1
     - _Shape3DistortYSpeed: 0.1
     - _Shape3RotationOffset: 0

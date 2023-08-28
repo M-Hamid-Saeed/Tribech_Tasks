@@ -104,7 +104,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   totalHealth: 100
-  insectMaxDamageTaken: 35
+  insectMaxDamageTaken: 45
   insectAttackingDamage: 20
   UI: {fileID: 8125217053197206367}
   deathParticle: 2

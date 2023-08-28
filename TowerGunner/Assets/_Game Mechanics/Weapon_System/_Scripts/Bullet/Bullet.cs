@@ -51,7 +51,7 @@ namespace AxisGames
             {
 
                 rigidbody.velocity = direction.normalized * (speed * Time.deltaTime);
-                transform.rotation = Quaternion.LookRotation(direction.normalized, Vector3.up);
+                //transform.rotation = Quaternion.LookRotation(direction.normalized, Vector3.up);
                 lifeTime -= Time.deltaTime;
                 if (lifeTime < 0)                                                                                
                 {

@@ -104,10 +104,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   totalHealth: 100
-  insectMaxDamageTaken: 35
+  insectMaxDamageTaken: 50
   insectAttackingDamage: 2
-  healthUI: {fileID: 4782786062740774564}
-  DeathParticleType: 2
+  UI: {fileID: 0}
+  deathParticle: 0
+  insectDeathSound: 0
+  bulletHitSound: 0
+  bulletHitParticle: 0
+  killScore: 0
   currentHealth: 0
 --- !u!1001 &63945384431103997
 PrefabInstance:
@@ -126,7 +130,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 206438366350190895, guid: 534b41c72cef0bc47a6e2300a1acc3b0, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 206438366350190895, guid: 534b41c72cef0bc47a6e2300a1acc3b0, type: 3}
       propertyPath: m_AnchorMax.x

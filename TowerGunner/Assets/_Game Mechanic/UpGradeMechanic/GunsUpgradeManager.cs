@@ -47,8 +47,14 @@ public class GunsUpgradeManager : MonoBehaviour
 
         onGunUpGrade?.Invoke(guntype);
         Debug.Log("GUNTYPE " + gunType);
-        if(GunsButtonCards[gunType])
-            GunsButtonCards[gunType].interactable = true;
+        if (GunsButtonCards[gunType])
+        {
+           if(!GunsButtonCards[gunType].gameObject.activeSelf)
+            GunsButtonCards[gunType].gameObject.SetActive(true);
+            if (gunType != 0)
+               if (GunsButtonCards[gunType].transform.parent.GetChild(0).gameObject.activeSelf)
+                GunsButtonCards[gunType].transform.parent.GetChild(0).gameObject.SetActive(false);
+        }
         Debug.Log(GunsButtonCards[gunType]);
         ReferenceManager.Instance?.firingSystem.init();
         

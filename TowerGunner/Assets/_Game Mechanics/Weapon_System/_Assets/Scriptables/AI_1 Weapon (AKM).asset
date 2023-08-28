@@ -18,5 +18,5 @@ MonoBehaviour:
     megSize: 40
     fireRate: 0.18
     damage: 25
-    bulletSpeed: 6000
+    bulletSpeed: 6500
   TrailConfig: {fileID: 11400000, guid: 08a38657b69617b4cbd88223c4c3d8b9, type: 2}

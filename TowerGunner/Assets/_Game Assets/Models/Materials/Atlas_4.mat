@@ -69,16 +69,16 @@ Material:
     - _Mode: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.02
-    - _RampSmooth: 0.266
-    - _RampSmoothOtherLights: 0.637
-    - _RampThreshold: 0.5
-    - _RampThresholdOtherLights: 0.523
-    - _RimMax: 1
-    - _RimMin: 0.5
-    - _Shadow_HSV_H: 0
-    - _Shadow_HSV_S: 0
-    - _Shadow_HSV_V: 0
-    - _Smoothness: 0.2
+    - _RampSmooth: 0.62
+    - _RampSmoothOtherLights: 0.74
+    - _RampThreshold: 0.36
+    - _RampThresholdOtherLights: 0.48
+    - _RimMax: 1.25
+    - _RimMin: 0.38
+    - _Shadow_HSV_H: -69
+    - _Shadow_HSV_S: 0.15
+    - _Shadow_HSV_V: -0.11
+    - _Smoothness: 0.15
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
@@ -86,10 +86,10 @@ Material:
     - _ZWrite: 1
     - __dummy__: 0
     m_Colors:
-    - _Color: {r: 0.9150943, g: 0.9150943, b: 0.9150943, a: 1}
+    - _Color: {r: 0.8207547, g: 0.8207547, b: 0.8207547, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _HColor: {r: 0.764151, g: 0.764151, b: 0.764151, a: 1}
-    - _RimColor: {r: 0.3490566, g: 0.3490566, b: 0.3490566, a: 0.6}
-    - _SColor: {r: 0.103773594, g: 0.103773594, b: 0.103773594, a: 1}
-    - _SpecColor: {r: 0.2264151, g: 0.2264151, b: 0.2264151, a: 1}
+    - _RimColor: {r: 0.4528302, g: 0.06621573, b: 0.113707975, a: 0.6}
+    - _SColor: {r: 0.3018868, g: 0.3018868, b: 0.3018868, a: 1}
+    - _SpecColor: {r: 0.1981132, g: 0.1981132, b: 0.1981132, a: 1}
   m_BuildTextureStacks: []

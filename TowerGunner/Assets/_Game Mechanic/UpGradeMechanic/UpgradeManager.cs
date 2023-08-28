@@ -99,7 +99,7 @@ public class UpgradeManager : MonoBehaviour
             onCharacterSpeedUpGrade?.Invoke(Speed,BulletSpeed);
             onPowerUpgrade?.Invoke(Power);
             onHealthUpgrade?.Invoke(Health);
-
+            
 
         }
         else
@@ -137,6 +137,7 @@ public class UpgradeManager : MonoBehaviour
     void SaveCharacterPowerData()
     {
         IncrementalPowerPrice = characterPowerIncrementPrice;
+        
         PowerLevel = characterPowerLevel;
         CurrentPowerPrice = characterPowerPrice;
     }
