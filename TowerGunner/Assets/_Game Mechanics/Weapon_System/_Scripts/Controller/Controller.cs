@@ -21,19 +21,20 @@ public class Controller : MonoBehaviour
 
     public int insectcounter = 0;
 
-   
+    public int totalMissles;
     Vector3 mousePosition;
     private Vector3 lookDirection;
 
     private void Awake()
     {
-        
-       
+
+        Vibration.Init();
         GameController.onHome += OnGameStart;
         GameController.onGameplay += OnGamePlay;      
         GameController.onLevelComplete += OnGameStart;
-        GameController.onLevelFail += OnGameStart;     
-        Vibration.Init();
+        GameController.onLevelFail += OnGameStart;
+        totalMissles = ReferenceManager.Instance.levelManager.levels[LevelManager.CurrentLevelNumber].NoOfMissles;
+        
         
     }
 
@@ -107,14 +108,15 @@ public class Controller : MonoBehaviour
     }
     public void OnMissileButtonPressed()
     {
-        int Missles = ReferenceManager.Instance.levelManager.levels[LevelManager.CurrentLevelNumber].NoOfMissles;
-        if ( Missles <= 0)
+        
+        if ( totalMissles <= 0)
             return;
         canPlay = false;
         spawnMissle();
-        Missles--;
+        totalMissles--;
         if (Input.GetMouseButtonUp(0))
             canPlay = true;
+        ReferenceManager.Instance.mainUIManager.SetMissleUI();
     }
 
 }

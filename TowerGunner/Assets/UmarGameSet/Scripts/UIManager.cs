@@ -10,6 +10,9 @@ public class UIManager : MonoBehaviour
     [SerializeField] GameObject competePanel;
     [SerializeField] GameObject levelFailPanel;
 
+
+    [SerializeField] Text totalMisslesText;
+
     private int currentKillCount;
     int levelNo;
     public int totalInsects;
@@ -28,7 +31,8 @@ public class UIManager : MonoBehaviour
     {
         totalInsects = ReferenceManager.Instance.walkerManager.insectCounter;
         Debug.Log("TOTAL INSECTS" + ReferenceManager.Instance.walkerManager.insectCounter);
-        KillText.text = currentKillCount + "/" + totalInsects;     
+        KillText.text = currentKillCount + "/" + totalInsects;
+        totalMisslesText.text = ReferenceManager.Instance.levelManager.levels[LevelManager.CurrentLevelNumber].NoOfMissles.ToString();
     }
 
                           
@@ -73,6 +77,10 @@ public class UIManager : MonoBehaviour
         levelFailPanel.SetActive(fail);
     }
 
+    public void SetMissleUI()
+    {
+        totalMisslesText.text = ReferenceManager.Instance.controller.totalMissles.ToString();
+    }
 
     // Buttons 
 

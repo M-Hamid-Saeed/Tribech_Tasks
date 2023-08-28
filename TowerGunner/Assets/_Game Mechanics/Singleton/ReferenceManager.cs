@@ -18,6 +18,7 @@ public class ReferenceManager : MonoBehaviour
     public OffScreenIndicatorNew offscreenIndicator;
     public FiringSystem firingSystem;
     public LevelManager levelManager;
+    public Controller controller;
     
 
 
