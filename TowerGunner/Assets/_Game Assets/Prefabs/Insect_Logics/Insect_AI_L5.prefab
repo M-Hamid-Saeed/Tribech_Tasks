@@ -55,7 +55,7 @@ MonoBehaviour:
   currentPoint: 0
   closeLoop: 0
   local: 0
-  lookAhead: -1
+  lookAhead: 0
   sizeToAdd: 0
   timeValue: 1
   speed: 5
@@ -105,7 +105,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   totalHealth: 100
   insectMaxDamageTaken: 45
-  insectAttackingDamage: 20
+  insectAttackingDamage: 15
   UI: {fileID: 8125217053197206367}
   deathParticle: 2
   insectDeathSound: 6

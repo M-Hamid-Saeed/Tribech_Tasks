@@ -79,12 +79,20 @@ public class Controller : MonoBehaviour
         lookDirection = new Vector3(targetLookAmountX, targetLookAmountY, transform.position.z).normalized;
         
         Quaternion rotTarget = Quaternion.LookRotation(lookDirection);
-        transform.rotation = Quaternion.Slerp(transform.rotation, rotTarget, lerpFactor * Time.deltaTime);
+        rotTarget.x = Mathf.Clamp(rotTarget.x, -maxRotationX, maxRotationX);
+        rotTarget.y = Mathf.Clamp(rotTarget.y, -maxRotationY, maxRotationY);
+        rotTarget.z = Mathf.Clamp(rotTarget.z, 0, 0);
+        //rotTarget.z = 0;
+        transform.rotation = Quaternion.Lerp(transform.rotation, rotTarget, lerpFactor * Time.deltaTime);
+
+        Quaternion RequiredRot = transform.rotation;
+        //RequiredRot.x = Mathf.Clamp(RequiredRot.x, -maxRotationX, maxRotationX) ;
+        //RequiredRot.y = Mathf.Clamp(RequiredRot.y, -maxRotationY, maxRotationY);
+        //RequiredRot.z = 0f;       
+        //transform.rotation = Quaternion.Euler(RequiredRot.x,RequiredRot.y,RequiredRot.z);
+        //transform.rotation = RequiredRot;
         
-        Quaternion rot = transform.rotation;
-        rot.x = Mathf.Clamp(rot.x, -maxRotationX, maxRotationX) ;
-        rot.y = Mathf.Clamp(rot.y, -maxRotationY, maxRotationY);
-        transform.rotation = rot;
+   
     }
 
     private void OnGamePlay()

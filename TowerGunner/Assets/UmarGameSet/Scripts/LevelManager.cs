@@ -38,6 +38,8 @@ public class LevelManager : MonoBehaviour
         else
             ActiveLevel();
         GameController.onLevelComplete += OnLevelComplete;
+        int gunNum = PlayerPrefs.GetInt("GunType");
+        gunUpgradeManager.onWeaponButtonPressed(gunNum);
 
     }
 
@@ -56,19 +58,24 @@ public class LevelManager : MonoBehaviour
         if (levelNo > levels.Length - 1)
             levelNo %= levels.Length;
         currentLevel = levels[levelNo];
-       
+        int gunNum = PlayerPrefs.GetInt("GunType");
+        gunUpgradeManager.onWeaponButtonPressed(gunNum);
+        Debug.Log("GUNNUM" + gunNum);
         currentLevel.levelData.gameObject.SetActive(true);
         ReferenceManager.Instance.walkerManager = levels[levelNo].walkerManager;
         Debug.Log(levelNo);
         int levelNoTemp = PlayerPrefs.GetInt("LevelNumber");
         if (levelNoTemp == 0)
         {
+            
             gunUpgradeManager.onWeaponButtonPressed(0);
+            PlayerPrefs.SetInt("GunType",0 );
         }
         else if ( levelNoTemp % 5 == 0)
         {
-            Debug.Log("LEVEL NO " + levelNoTemp);
-            gunUpgradeManager.onWeaponButtonPressed((levelNoTemp) / 5);
+            
+            gunUpgradeManager.onWeaponButtonPressed(levelNoTemp / 5);
+            PlayerPrefs.SetInt("GunType", levelNoTemp / 5);
         }
         /* if (player && currentLevel.playerSpawn)
          {

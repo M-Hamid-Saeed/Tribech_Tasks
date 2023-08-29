@@ -246,5 +246,5 @@ MonoBehaviour:
   explosionSound: 4
   volume: 0.5
   currentHealth: 0
-  speed: 15
+  speed: 20
   missleLaunchSound: 7
