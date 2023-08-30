@@ -6,9 +6,7 @@ using UnityEngine.UI;
 public class HealthBarUI : MonoBehaviour
 {
     [SerializeField] Slider healthSlider;
-    
-    
-    // Start is called before the first frame update
+
     
     public void SetMaxHealth(float maxHealth)
     {

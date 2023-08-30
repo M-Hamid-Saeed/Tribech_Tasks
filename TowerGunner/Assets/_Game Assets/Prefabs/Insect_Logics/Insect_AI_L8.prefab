@@ -524,8 +524,8 @@ MonoBehaviour:
   insectMaxDamageTaken: 35
   insectAttackingDamage: 15
   UI: {fileID: 610274381512004795}
-  deathParticle: 0
-  insectDeathSound: 0
+  deathParticle: 2
+  insectDeathSound: 6
   bulletHitSound: 0
   bulletHitParticle: 0
   killScore: 15
