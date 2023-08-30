@@ -111,7 +111,7 @@ MonoBehaviour:
   insectDeathSound: 0
   bulletHitSound: 0
   bulletHitParticle: 0
-  killScore: 15
+  killScore: 12
   currentHealth: 0
 --- !u!1 &6882083955374281459
 GameObject:

@@ -9,8 +9,9 @@ public struct LevelInfo
 
     public Transform levelData;
     public WalkerManager walkerManager;
-    public int NoOfMissles; 
-
+    public int NoOfMissles;
+    public Material skyBoxMaterial;
+   
 }
 
 public class LevelManager : MonoBehaviour
@@ -53,6 +54,7 @@ public class LevelManager : MonoBehaviour
 
     void ActiveLevel()
     {
+        
         int levelNo = PlayerPrefs.GetInt("LevelNumber");
         
         if (levelNo > levels.Length - 1)
@@ -77,6 +79,7 @@ public class LevelManager : MonoBehaviour
             gunUpgradeManager.onWeaponButtonPressed(levelNoTemp / 5);
             PlayerPrefs.SetInt("GunType", levelNoTemp / 5);
         }
+        RenderSettings.skybox = currentLevel.skyBoxMaterial;
         /* if (player && currentLevel.playerSpawn)
          {
              player.transform.SetPositionAndRotation(currentLevel.playerSpawn.position, currentLevel.playerSpawn.rotation);
@@ -111,7 +114,8 @@ public class LevelManager : MonoBehaviour
             Debug.Log("LEVEL NO " + levelNoTesting);
             gunUpgradeManager.onWeaponButtonPressed((levelNoTesting) / 5);
         }
-       
+
+        RenderSettings.skybox = levels[levelNoTesting].skyBoxMaterial;
 
     }
 

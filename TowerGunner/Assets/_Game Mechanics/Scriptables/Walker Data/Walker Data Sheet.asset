@@ -64,3 +64,61 @@ MonoBehaviour:
       character: {fileID: 2562001708511168085, guid: c4fadae4603617f4d92d1ff34ff86811, type: 3}
     - spawnNumber: 8
       character: {fileID: 4843865267928621806, guid: 55ac42699b3e04c40aba8b62cda473ae, type: 3}
+  - walkerlist:
+    - spawnNumber: 10
+      character: {fileID: 4843865267928621806, guid: 55ac42699b3e04c40aba8b62cda473ae, type: 3}
+    - spawnNumber: 10
+      character: {fileID: 2562001708511168085, guid: c4fadae4603617f4d92d1ff34ff86811, type: 3}
+    - spawnNumber: 10
+      character: {fileID: 7816101560903480131, guid: 550ae52d93558364e9fb74e5c1a89dd3, type: 3}
+  - walkerlist:
+    - spawnNumber: 11
+      character: {fileID: 53518355755952330, guid: 3a5d2dc1d85af6445a6ee6066d7585e6, type: 3}
+    - spawnNumber: 10
+      character: {fileID: 7816101560903480131, guid: 550ae52d93558364e9fb74e5c1a89dd3, type: 3}
+    - spawnNumber: 10
+      character: {fileID: 4843865267928621806, guid: 55ac42699b3e04c40aba8b62cda473ae, type: 3}
+  - walkerlist:
+    - spawnNumber: 12
+      character: {fileID: 4843865267928621806, guid: 55ac42699b3e04c40aba8b62cda473ae, type: 3}
+    - spawnNumber: 11
+      character: {fileID: 9111073068998725290, guid: c105c03b38c96324994e170a6f29cab3, type: 3}
+    - spawnNumber: 10
+      character: {fileID: 4843865267928621806, guid: 55ac42699b3e04c40aba8b62cda473ae, type: 3}
+  - walkerlist:
+    - spawnNumber: 13
+      character: {fileID: 7816101560903480131, guid: 550ae52d93558364e9fb74e5c1a89dd3, type: 3}
+    - spawnNumber: 10
+      character: {fileID: 2562001708511168085, guid: c4fadae4603617f4d92d1ff34ff86811, type: 3}
+    - spawnNumber: 11
+      character: {fileID: 4843865267928621806, guid: 55ac42699b3e04c40aba8b62cda473ae, type: 3}
+  - walkerlist:
+    - spawnNumber: 14
+      character: {fileID: 2562001708511168085, guid: c4fadae4603617f4d92d1ff34ff86811, type: 3}
+    - spawnNumber: 11
+      character: {fileID: 9111073068998725290, guid: c105c03b38c96324994e170a6f29cab3, type: 3}
+    - spawnNumber: 10
+      character: {fileID: 53518355755952330, guid: 3a5d2dc1d85af6445a6ee6066d7585e6, type: 3}
+  - walkerlist:
+    - spawnNumber: 16
+      character: {fileID: 2562001708511168085, guid: c4fadae4603617f4d92d1ff34ff86811, type: 3}
+    - spawnNumber: 10
+      character: {fileID: 4843865267928621806, guid: 55ac42699b3e04c40aba8b62cda473ae, type: 3}
+    - spawnNumber: 10
+      character: {fileID: 2562001708511168085, guid: c4fadae4603617f4d92d1ff34ff86811, type: 3}
+  - walkerlist:
+    - spawnNumber: 15
+      character: {fileID: 1496020225760978087, guid: 27d91aa2641239c4b9480d1e2ac29f27, type: 3}
+    - spawnNumber: 15
+      character: {fileID: 9111073068998725290, guid: c105c03b38c96324994e170a6f29cab3, type: 3}
+    - spawnNumber: 7
+      character: {fileID: 3749260124125177267, guid: b55a15cb2ce29cc438bf4efe8c7aff09, type: 3}
+  - walkerlist:
+    - spawnNumber: 15
+      character: {fileID: 7816101560903480131, guid: 550ae52d93558364e9fb74e5c1a89dd3, type: 3}
+    - spawnNumber: 15
+      character: {fileID: 2562001708511168085, guid: c4fadae4603617f4d92d1ff34ff86811, type: 3}
+    - spawnNumber: 2
+      character: {fileID: 1496020225760978087, guid: 27d91aa2641239c4b9480d1e2ac29f27, type: 3}
+    - spawnNumber: 6
+      character: {fileID: 2562001708511168085, guid: c4fadae4603617f4d92d1ff34ff86811, type: 3}

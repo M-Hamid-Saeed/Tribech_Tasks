@@ -528,7 +528,7 @@ MonoBehaviour:
   insectDeathSound: 0
   bulletHitSound: 0
   bulletHitParticle: 0
-  killScore: 15
+  killScore: 13
   currentHealth: 0
 --- !u!1001 &8147419360576417354
 PrefabInstance:
